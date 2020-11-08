@@ -27,7 +27,7 @@ public class HomePageController {
 			Instructor theInstructor = new Instructor();
 			theModel.addAttribute("theUser",theInstructor);
 		}
-		return "user_login_form";
+		return "user-login-form";
 	}
 
 }

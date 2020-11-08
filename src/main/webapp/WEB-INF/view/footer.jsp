@@ -11,9 +11,9 @@
 <body>
 <footer>
 	<div id = "footerLinks">
-		<div id="footerlink"><a href = "home/showContact">Contact Us</a></div>
-		<div id='footerlink'><a href = "home/showAbout">About</a></div>
-		<div id='footerlink'><a href = "home/showServices">Services</a></div>
+		<div id="footerlink"><a href = "/GoCrafty/#contactus">Contact Us</a></div>
+		<div id='footerlink'><a href = "/GoCrafty/#about">About</a></div>
+		<div id='footerlink'><a href = "/GoCrafty/#services">Services</a></div>
 	</div>  
 </footer>
 </body>
