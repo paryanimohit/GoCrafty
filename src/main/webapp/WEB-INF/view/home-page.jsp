@@ -1,38 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ include file="header.jsp"%>
+<%@ include file="footer.jsp"%>
+
 <! DOCTYPE html>
 <html>
 <head>
-	<title>The Barber Shop</title>
+	<title>Go Crafty</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
-<!-- 	<link href='https://fonts.googleapis.com/css?family=Fredericka the Great' rel='stylesheet'> -->
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <body>
-<%-- <%@ include file="header.jsp"%> --%>
 	<div class = content>
 		<div class="button">
-			<input class="buttonuser" type = "button" value = "Are You a User ??" onclick="location.href = 'home/showUserLogin';"/> 
-			<input class="buttonbarber" type = "button" value = "Are You a Barber ??" onclick="location.href = 'home/showBarberLogin';"/>
+			<input class="button-student" type = "button" value = "For Students" onclick="location.href = 'home/showUserLogin?role=student';"/> 
+			<input class="button-instructor" type = "button" value = "For Instructors" onclick="location.href = 'home/showUserLogin?role=instructor';"/>
+		</div>
+		<div id="about">
+			Hey You Are at about!
+		</div>
+		<div id="services">
+			Hey You Are at services!
+		</div>
+		<div id="contactus">
+			Hey You Are at contact us!
 		</div>
 	</div>
-		<div class="parallax1">
-	</div>
-	<div id="about">
-		Hey You Are at about!
-	</div>
-	<div class="parallax2">
-	</div>
-	<div id="services">
-		Hey You Are at services!
-	</div>
-	<div class="parallax3">
-	</div>
-	<div id="contactus">
-		Hey You Are at contact us!
-	</div>
-	<div class="parallax4">
-	</div>
-<%-- <%@ include file="footer.jsp" %> --%>
 </body>
 </html>
