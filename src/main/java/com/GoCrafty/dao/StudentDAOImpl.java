@@ -81,4 +81,30 @@ public class StudentDAOImpl implements StudentDAO {
 		}
 	}
 
+
+
+	@Override
+	public String studentSignup(Student theStudent) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			Encryption encr = new Encryption();
+			String encryptedPassword=encr.encrypt(theStudent.getPassword());
+			System.out.println("StuDAO, apply for job: |"+theStudent.getApplyForJob()+"|");
+			Student newStudent;
+			if(theStudent.getApplyForJob()==null)
+			{
+				theStudent.setApplyForJob("0");
+			}
+			newStudent= new Student(theStudent.getFirstName(), theStudent.getLastName(),theStudent.getEmail(),encryptedPassword,theStudent.getBirthDate(),theStudent.getApplyForJob());
+
+	
+			currentSession.save(newStudent);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return "Cannot create user! Please try again";
+		}
+			return "Success! User created, Please login to continue";
+	}
+
 }

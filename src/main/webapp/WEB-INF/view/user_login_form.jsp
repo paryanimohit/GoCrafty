@@ -25,7 +25,7 @@
 					<td><input class="loginbutton" type="Submit" value= "Log In"/></td>
 				</tr>
 				<tr>
-					<td class="linklog"><a href = "user/addUser">Create an account</a></td>
+					<td class="linklog"><a href = "student/addStudent">Create an account</a></td>
 				</tr>
 			
 			</tbody>

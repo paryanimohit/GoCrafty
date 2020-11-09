@@ -32,4 +32,11 @@ public class StudentServiceImpl implements StudentService {
 		return studentDAO.getImage(id);
 	}
 
+	@Override
+	@Transactional
+	public String studentSignup(Student theStudent) {
+		// TODO Auto-generated method stub
+		return studentDAO.studentSignup(theStudent);
+	}
+
 }

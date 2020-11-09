@@ -9,4 +9,6 @@ public interface StudentDAO {
 
 	public String getImage(int id);
 
+	public String studentSignup(Student theStudent);
+
 }

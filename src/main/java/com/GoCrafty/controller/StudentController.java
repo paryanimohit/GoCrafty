@@ -22,14 +22,12 @@ public class StudentController {
 	private StudentService studentService;
 	
 	@PostMapping("/login")
-	public String userLogin(@ModelAttribute("user") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession) 
+	public String StudentLogin(@ModelAttribute("theUser") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession) 
 		{
 		
 
 		String email = student.getEmail();
-		System.out.println("Email: "+ email);
 		String password = student.getPassword();
-		System.out.println("Email: "+ password);
 	//checking for null input values
 		if (email.isEmpty() || password.isEmpty())
 		{
@@ -43,19 +41,11 @@ public class StudentController {
 		{
 			
 			m.addAttribute("message","Incorrect Email or Password");
-			System.out.println("wrong email/pass");
 			return "redirect:/home/showUserLogin";
 		}
 		else {
-			System.out.println("correct email/pass");
 			studentSession.put("id", id);
-//			userSession.put("firstName",userList.getFirstName());
-//			userSession.put("lastName",userList.getLastName());
-//			userSession.put("email",userList.getEmail());
-			
-			
-
-				return "redirect:/home/student/viewProfile";
+			return "redirect:/home/student/viewProfile";
 			}
 			
 
@@ -88,5 +78,34 @@ public class StudentController {
 	{
 		return "user-header";
 	}
+	
+	@GetMapping("/addStudent")
+	public String addStudent(Model theModel)
+	{
+		Student theStudent= new Student();
+		theModel.addAttribute("theStudent",theStudent);
+		return "student-signup";
+	}
+	
+	@PostMapping("/studentSignup")
+	public String studentSignup(@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute(name="theStudent") Student theStudent,Model m) {
+		
+		String message=studentService.studentSignup(theStudent);
+		if (message.equals("Cannot create user! Please try again"))
+		{
+			m.addAttribute("message", message);
+			return "user-form";
+		}
+		else
+		{
+			m.addAttribute("message", message);
+			if(studentSession.containsKey("status")){
+				return "redirect:/home/admin/getUsers";
+			}
+			else
+				return "redirect:/home/showUserLogin?role=student";
+		}
+	}
+	
 
 }

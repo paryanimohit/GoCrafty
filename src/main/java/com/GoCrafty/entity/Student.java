@@ -36,7 +36,7 @@ public class Student {
 	private byte[] profilePic;
 	
 	@Column(name = "apply_for_job")
-	private int applyForJob;
+	private String applyForJob;
 	
 	@Column(name = "logs")
 	private String logs;
@@ -97,11 +97,11 @@ public class Student {
 		this.profilePic = profilePic;
 	}
 
-	public int getApplyForJob() {
+	public String getApplyForJob() {
 		return applyForJob;
 	}
 
-	public void setApplyForJob(int applyForJob) {
+	public void setApplyForJob(String applyForJob) {
 		this.applyForJob = applyForJob;
 	}
 
@@ -114,18 +114,22 @@ public class Student {
 	}
 	public Student() {
 	}
+	
+
+
 	public Student(String firstName, String lastName, String email, String password, String birthDate,
-			byte[] profilePic, int applyForJob, String logs) {
-		super();
+			String applyForJob) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.birthDate = birthDate;
-		this.profilePic = profilePic;
 		this.applyForJob = applyForJob;
-		this.logs = logs;
 	}
+	
+	
+
+	
 	
 	
 	
