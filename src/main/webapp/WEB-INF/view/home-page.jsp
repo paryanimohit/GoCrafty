@@ -45,15 +45,15 @@
 			<h2>Contact Us</h2>
 				<p>GoCrafty is an initiative for students who wants to learn Arts and Crafts 100% online. The project is a part of course curriculum for ENPM613: Software Design and Architecture.
 					GoCrafty is currently in development stage and will be launched soon. The members of the team are:
-					</p>
-					<div id="memberCards">
-						<div id="membercard1">HARSH SHAH</div>
-						<div id="membercard2">MOHIT PARYANI</div>
-						<div id="membercard3">NIKITA WADHWANI</div>
-						<div id="membercard4">PRAKHAR SHARMA</div>
-					</div>
-					<p>For any technical assistance, reach us at supportgocrafty@gmail.com ('@gocrafty.com' coming soon)</p>
+				</p>
+				<div id="memberCards">
+					<div id="membercard1">HARSH SHAH</div>
+					<div id="membercard2">MOHIT PARYANI</div>
+					<div id="membercard3">NIKITA WADHWANI</div>
+					<div id="membercard4">PRAKHAR SHARMA</div>
+				</div>
+				<p>For any technical assistance, reach us at supportgocrafty@gmail.com ('@gocrafty.com' coming soon)</p>
 		</div>
 	</div>
-	</body>
+</body>
 </html>

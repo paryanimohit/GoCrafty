@@ -22,7 +22,7 @@ public class StudentController {
 	private StudentService studentService;
 	
 	@PostMapping("/login")
-	public String StudentLogin(@ModelAttribute("theUser") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession) 
+	public String userLogin(@ModelAttribute("user") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession) 
 		{
 		
 
@@ -106,6 +106,4 @@ public class StudentController {
 				return "redirect:/home/showUserLogin?role=student";
 		}
 	}
-	
-
 }
