@@ -27,10 +27,8 @@ public class StudentController {
 		
 
 		String email = student.getEmail();
-		System.out.println("Email: "+ email);
 		String password = student.getPassword();
-		System.out.println("Email: "+ password);
-	//checking for null input values
+		//checking for null input values
 		if (email.isEmpty() || password.isEmpty())
 		{
 			m.addAttribute("message","Incorrect Email or Password");
