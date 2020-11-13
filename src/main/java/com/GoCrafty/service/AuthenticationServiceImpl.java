@@ -12,9 +12,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
 	@Override
 	@Transactional
-	public String userLogin(String email, String password, String role) {
+	public String userLogin(Object theUser, String role) {
 		
-		return authenticationDAO.studentLogin(email, password,role);	
+		return authenticationDAO.studentLogin( theUser,role);	
 		}
 	
 

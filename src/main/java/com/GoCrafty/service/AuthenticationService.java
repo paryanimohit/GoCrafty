@@ -2,7 +2,7 @@ package com.GoCrafty.service;
 
 public interface AuthenticationService {
 	
-	public String userLogin(String email,String password,String role);
+	public String userLogin(Object theUser,String role);
 
 
 }

@@ -23,7 +23,7 @@
 			${message}
 			</c:if>
 		</div>
-<form:form action="${role}/login" modelAttribute="theUser" method="POST">
+<form:form action="userAuthentication/login" modelAttribute="theUser" method="POST">
 		<table id="lgtbl">
 			<tbody>
 				<tr>
