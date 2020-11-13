@@ -36,7 +36,7 @@
 				</tr>
 					<tr>	
 					<td><input class="loginbutton" type="Submit" value= "Log In"/></td>
-					<td class="linklog"><a href = "home/createUser?role=${role}">Create an account</a></td>
+					<td class="linklog"><a href = "createUser?role=${role}">Create an account</a></td>
 				</tr>
 			</tbody>
 		</table>

@@ -34,7 +34,9 @@ public class HomePageController {
 	public String createUser(@RequestParam("role") String role, Model theModel)
 	{
 		if(role.equals("instructor")) {
-			return "instructor-signp";
+			Instructor instructor = new Instructor();
+			theModel.addAttribute("instructor",instructor);
+			return "instructor-signup";
 		}
 		
 		else if (role.equals("student")) {
