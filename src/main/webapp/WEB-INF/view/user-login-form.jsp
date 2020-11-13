@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div id = "login-container">
-		<div id="loginhead">User Login</div>
+		<div id="loginhead">Login</div>
 			<div id="loginerror"><c:catch var="exception">
 			${message}
  			</c:catch>
@@ -36,13 +36,7 @@
 				</tr>
 					<tr>	
 					<td><input class="loginbutton" type="Submit" value= "Log In"/></td>
-<<<<<<< HEAD:src/main/webapp/WEB-INF/view/user_login_form.jsp
-				</tr>
-				<tr>
-					<td class="linklog"><a href = "student/addStudent">Create an account</a></td>
-=======
-					<td class="linklog"><a href = "user/addUser">Create an account</a></td>
->>>>>>> fc1f222ce70cf6b4bd0402e41f1dd2aa34dc4946:src/main/webapp/WEB-INF/view/user-login-form.jsp
+					<td class="linklog"><a href = "home/createUser?role=${role}">Create an account</a></td>
 				</tr>
 			</tbody>
 		</table>
