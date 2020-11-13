@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Student;
+import com.GoCrafty.service.AuthenticationService;
 import com.GoCrafty.service.StudentService;
 
 
@@ -20,9 +21,11 @@ import com.GoCrafty.service.StudentService;
 public class StudentController {
 	@Autowired
 	private StudentService studentService;
+	@Autowired
+	private AuthenticationService authenticationService;
 	
 	@PostMapping("/login")
-	public String userLogin(@ModelAttribute("user") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession) 
+	public String userLogin(@ModelAttribute("user") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute("role") String role) 
 		{
 		
 
@@ -35,7 +38,7 @@ public class StudentController {
 			return "redirect:/home/showUserLogin";
 		}
 	 
-		String id = studentService.studentLogin(email,password);
+		String id = authenticationService.userLogin(email,password,role);
 		
 		if(id == null)
 		{
@@ -66,6 +69,7 @@ public class StudentController {
 			m.addAttribute("img",image);
 			m.addAttribute("studentlist",studentList);
 			sendToHeader(m);
+			System.out.println("login success");
 			return "student-profile";
 			}
 		catch (NullPointerException e)
@@ -79,13 +83,7 @@ public class StudentController {
 		return "user-header";
 	}
 	
-	@GetMapping("/addStudent")
-	public String addStudent(Model theModel)
-	{
-		Student theStudent= new Student();
-		theModel.addAttribute("theStudent",theStudent);
-		return "student-signup";
-	}
+	
 	
 	@PostMapping("/studentSignup")
 	public String studentSignup(@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute(name="theStudent") Student theStudent,Model m) {
