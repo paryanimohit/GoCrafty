@@ -1,4 +1,6 @@
-
+/**
+ * 
+ */
 window.scrollSmooth = function(target) {
     var scrollContainer = target;
     do { //find scroll container
