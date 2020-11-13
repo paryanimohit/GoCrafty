@@ -29,5 +29,18 @@ public class HomePageController {
 		}
 		return "user-login-form";
 	}
-
+	
+	@RequestMapping("/createUser")
+	public String createUser(@RequestParam("role") String role, Model theModel)
+	{
+		if(role.equals("instructor")) {
+			return "instructor-signp";
+		}
+		
+		else if (role.equals("student")) {
+			return "student-signup";	
+		}
+		
+		else return "error-page";
+	}
 }
