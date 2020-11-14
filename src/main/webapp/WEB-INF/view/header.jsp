@@ -14,10 +14,8 @@
 <body>
 <header>
 <div id="leftHeader">
-	<div id="logo">
 		<a href="${pageContext.request.contextPath}">
-		<img src="${pageContext.request.contextPath}/resources/images/LOGO AAEGA YAHAN"></a>
-	</div> 
+		<img src="${pageContext.request.contextPath}/resources/images/logo.png" class="logoprop"></a> 
 </div>
 <div id="header-links">
 	<div id="headerLink"><a id="about1" href = "${pageContext.request.contextPath}/#about" class="smooth-scroll" onclick="scrollSmooth(this.id)">About</a></div>

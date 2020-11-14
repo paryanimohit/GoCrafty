@@ -85,18 +85,18 @@ public class StudentController {
 	
 	
 	
-	@PostMapping("/studentSignup")
-	public String studentSignup(@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute(name="theStudent") Student theStudent,Model m) {
+	@PostMapping("/createAccount")
+	public String createAccount(@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute(name="student") Student theStudent,Model theModel) {
 		
-		String message=studentService.studentSignup(theStudent);
+		String message=studentService.createAccount(theStudent);
 		if (message.equals("Cannot create user! Please try again"))
 		{
-			m.addAttribute("message", message);
+			theModel.addAttribute("message", message);
 			return "user-form";
 		}
 		else
 		{
-			m.addAttribute("message", message);
+			theModel.addAttribute("message", message);
 			if(studentSession.containsKey("status")){
 				return "redirect:/home/admin/getUsers";
 			}
