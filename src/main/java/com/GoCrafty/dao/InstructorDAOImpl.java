@@ -71,4 +71,29 @@ public class InstructorDAOImpl implements InstructorDAO {
 		     return "failed";
 		}
 	}
+
+	@Override
+	public String createAccount(Instructor theInstructor) {
+
+		Session  currentSession= sessionFactory.getCurrentSession();
+			try {
+				Encryption encr = new Encryption();
+				String encryptedPassword=encr.encrypt(theInstructor.getPassword());
+				Instructor newInstructor;
+				if(theInstructor.getRecruiter()==null)
+				{
+					theInstructor.setRecruiter("0");
+				}
+				newInstructor= new Instructor(theInstructor.getFirstName(), theInstructor.getLastName(),theInstructor.getEmail(),encryptedPassword,theInstructor.getRecruiter());
+
+		
+				currentSession.save(newInstructor);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				return "Cannot create Instructor! Please try again";
+			}
+				return "Success! Instructor created, Please login to continue";
+		}
+
 }

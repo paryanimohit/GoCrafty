@@ -32,7 +32,7 @@ public class Instructor {
 	private byte[] profilePic;
 	
 	@Column(name = "recruiter")
-	private int recruiter;
+	private String recruiter;
 	
 	@Column(name = "logs")
 	private String logs;
@@ -87,11 +87,11 @@ public class Instructor {
 		this.profilePic = profilePic;
 	}
 
-	public int getRecruiter() {
+	public String getRecruiter() {
 		return recruiter;
 	}
 
-	public void setRecruiter(int recruiter) {
+	public void setRecruiter(String recruiter) {
 		this.recruiter = recruiter;
 	}
 
@@ -103,16 +103,14 @@ public class Instructor {
 		this.logs = logs;
 	}
 
-	public Instructor(String firstName, String lastName, String email, String password, byte[] profilePic,
-			int recruiter, String logs) {
+	public Instructor(String firstName, String lastName, String email, String password,
+			String recruiter) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.profilePic = profilePic;
 		this.recruiter = recruiter;
-		this.logs = logs;
 	}
 	
 	

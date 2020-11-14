@@ -9,4 +9,6 @@ public interface InstructorDAO {
 
 	public String getImage(int id);
 
+	public String createAccount(Instructor theInstructor);
+
 }

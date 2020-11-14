@@ -36,7 +36,7 @@ public class StudentServiceImpl implements StudentService {
 	@Transactional
 	public String createAccount(Student theStudent) {
 		// TODO Auto-generated method stub
-		return studentDAO.studentSignup(theStudent);
+		return studentDAO.createAccount(theStudent);
 	}
 
 }
