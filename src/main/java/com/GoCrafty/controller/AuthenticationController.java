@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
+import com.GoCrafty.entity.User;
 import com.GoCrafty.service.AuthenticationService;
 
 @Controller
@@ -21,8 +23,12 @@ public class AuthenticationController {
 	@Autowired
 	private AuthenticationService authenticationService;
 	@PostMapping("/login")
-	public String login(@ModelAttribute("role")String role,@ModelAttribute("theUser") Object theUser,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
+	public String login(@RequestParam("role")String role,@ModelAttribute("theUser") User theUser,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
 	{
+		Student su=new Student();
+				su=(Student) theUser;
+		System.out.println("name"+su.getFirstName());
+		
 //		Student student = null;
 //		Instructor instructor =null;
 //		
@@ -45,6 +51,7 @@ public class AuthenticationController {
 //		}
 //		
 //	 
+		System.out.println("contoller   role:|"+role+"|");
 		String id = authenticationService.userLogin(theUser,role);
 		
 		if(id == null)
