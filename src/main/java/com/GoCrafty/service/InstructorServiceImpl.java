@@ -32,4 +32,10 @@ public class InstructorServiceImpl implements InstructorService {
 		return instructorDAO.getImage(id);
 	}
 
+	@Override
+	@Transactional
+	public String createAccount(Instructor theInstructor) {
+		return instructorDAO.createAccount(theInstructor);
+	}
+
 }

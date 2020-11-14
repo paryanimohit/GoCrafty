@@ -46,6 +46,8 @@ public class HomePageController {
 		}
 		
 		else if (role.equals("student")) {
+			Student student = new Student();
+			theModel.addAttribute("student",student);
 			return "student-signup";	
 		}
 		

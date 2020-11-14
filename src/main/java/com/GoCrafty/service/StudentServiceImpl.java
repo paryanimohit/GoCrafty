@@ -34,9 +34,9 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	@Transactional
-	public String studentSignup(Student theStudent) {
+	public String createAccount(Student theStudent) {
 		// TODO Auto-generated method stub
-		return studentDAO.studentSignup(theStudent);
+		return studentDAO.createAccount(theStudent);
 	}
 
 }

@@ -84,7 +84,7 @@ public class StudentDAOImpl implements StudentDAO {
 
 
 	@Override
-	public String studentSignup(Student theStudent) {
+	public String createAccount(Student theStudent) {
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
 			Encryption encr = new Encryption();

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Instructor;
+import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.InstructorService;
 
 
@@ -19,7 +20,7 @@ import com.GoCrafty.service.InstructorService;
 @RequestMapping("home/instructor")
 public class InstructorController {
 	@Autowired
-	private InstructorService InstructorService;
+	private InstructorService instructorService;
 	
 	@PostMapping("/login")
 	public String userLogin(@ModelAttribute("theUser") Instructor instructor, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) 
@@ -36,7 +37,7 @@ public class InstructorController {
 			return "redirect:/home/instructorLogin";
 		}
 	 
-		String id = InstructorService.instructorLogin(email,password);
+		String id = instructorService.instructorLogin(email,password);
 		
 		if(id == null)
 		{	
@@ -54,8 +55,8 @@ public class InstructorController {
 	{
 		int id=Integer.parseInt(instructorSession.get("id"));
 		try {
-			Instructor instructorList= InstructorService.getInstructor(id);
-			String image = InstructorService.getImage(id);
+			Instructor instructorList= instructorService.getInstructor(id);
+			String image = instructorService.getImage(id);
 			instructorSession.put("firstName",instructorList.getFirstName());
 			instructorSession.put("lastName",instructorList.getLastName());
 			instructorSession.put("email",instructorList.getEmail());
@@ -74,5 +75,25 @@ public class InstructorController {
 	String sendToHeader(Model m) 
 	{
 		return "user-header";
+	}
+	
+	@PostMapping("/createAccount")
+	public String createAcount(@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,@ModelAttribute(name="instructor") Instructor theInstructor,Model theModel) {
+		
+		String message= instructorService.createAccount(theInstructor);
+		if (message.equals("Cannot create user! Please try again"))
+		{
+			theModel.addAttribute("message", message);
+			return "user-form";
+		}
+		else
+		{
+			theModel.addAttribute("message", message);
+			if(instructorSession.containsKey("status")){
+				return "redirect:/home/admin/getUsers";
+			}
+			else
+				return "redirect:/home/showUserLogin?role=student";
+		}
 	}
 }
