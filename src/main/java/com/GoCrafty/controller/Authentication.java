@@ -30,24 +30,19 @@ public class Authentication {
 	public String login(Model theModel,@ModelAttribute("user") User theUser,@RequestParam("role") String role,@SessionAttribute(name="tempSession") HashMap<String,String> userSession)
 	{
 		
-		
 		String id=authenticationService.login(theUser,role);
-		System.out.println("auth controll id: |"+id+"|");
 		if (id==null)
 		{
 			int retry=Integer.parseInt(userSession.get("retry"));
 			if(retry>=3)
 			{
 				//email block
-				System.out.println("Wrong 3 times");
 				userSession.put("retry", "0");//reset counter
 			}
 			retry=retry+1;
-			System.out.println("Out of if   retry :"+retry);
 			userSession.put("retry",String.valueOf(retry));
 			theModel.addAttribute("message","Incorrect Email or Password");
 			return "redirect:/home/userLogin?role="+role;
-			
 		}
 		
 		 if(role.equals("student"))
@@ -65,10 +60,8 @@ public class Authentication {
 			if(retry>=3)
 			{
 				//email block
-				System.out.println("Wrong 3 times");
 			}
 			retry=retry+1;
-			System.out.println("Out of if   retry :"+retry);
 			userSession.put("retry",String.valueOf(retry));
 			theModel.addAttribute("message","Incorrect Email or Password");
 			return "redirect:/home/userLogin?role="+role;
