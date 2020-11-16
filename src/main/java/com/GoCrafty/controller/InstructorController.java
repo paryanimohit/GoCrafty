@@ -22,34 +22,34 @@ public class InstructorController {
 	@Autowired
 	private InstructorService instructorService;
 	
-	@PostMapping("/login")
-	public String userLogin(@ModelAttribute("theUser") Instructor instructor, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) 
-		{
-		
-		String email = instructor.getEmail();
-		String password = instructor.getPassword();
-		
-		//checking for null input values
-		
-		if (email.isEmpty() || password.isEmpty())
-		{
-			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/instructorLogin";
-		}
-	 
-		String id = instructorService.instructorLogin(email,password);
-		
-		if(id == null)
-		{	
-			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/instructorLogin";
-		}
-		else {
-			instructorSession.put("id", id);
-			return "redirect:/home/instructor/viewProfile";
-			}
-		}
-	
+//	@PostMapping("/login")
+//	public String userLogin(@ModelAttribute("theUser") Instructor instructor, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) 
+//		{
+//		
+//		String email = instructor.getEmail();
+//		String password = instructor.getPassword();
+//		
+//		//checking for null input values
+//		
+//		if (email.isEmpty() || password.isEmpty())
+//		{
+//			m.addAttribute("message","Incorrect Email or Password");
+//			return "redirect:/home/instructorLogin";
+//		}
+//	 
+//		String id = instructorService.instructorLogin(email,password);
+//		
+//		if(id == null)
+//		{	
+//			m.addAttribute("message","Incorrect Email or Password");
+//			return "redirect:/home/instructorLogin";
+//		}
+//		else {
+//			instructorSession.put("id", id);
+//			return "redirect:/home/instructor/viewProfile";
+//			}
+//		}
+//	
 	@GetMapping("/viewProfile")
 	String viewProfile(Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession)
 	{

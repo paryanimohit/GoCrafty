@@ -1,5 +1,7 @@
 package com.GoCrafty.entity;
 
+import javax.persistence.Entity;
+
 public class User {
 	private int id;
 	private String firstName;
@@ -7,7 +9,7 @@ public class User {
 	private String email;
 	private String password;
 	
-	User(){}
+	public User(){}
 
 	public int getId() {
 		return id;

@@ -13,12 +13,12 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	private StudentDAO studentDAO;
 	
-	@Override
-	@Transactional
-	public String studentLogin(String email, String password) {
-	
-		return studentDAO.studentLogin(email, password);
-		}
+//	@Override
+//	@Transactional
+//	public String studentLogin(String email, String password) {
+//	
+//		return studentDAO.studentLogin(email, password);
+//		}
 
 	@Override
 	@Transactional

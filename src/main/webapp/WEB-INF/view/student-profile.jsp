@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -25,7 +26,8 @@
 	<div id="link"><a href="showEditProfile">Edit Profile</a></div>
 	<div id="link"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Profile</a></div>
 	<input class="buttonprofile"type="button" onclick="location.href ='${pageContext.request.contextPath}/home/barberShop/showBarberShops?city=${userlist.city}'; buttonAnimation();" value="Book a Reservation"/>
-	<div id="link"><a href="viewAppointments">View Appointments</a></div>
+	<div id="link">	<a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a>
+</div>
 	</div>
 	<div id="name">
 	Hello ${studentlist.firstName}
