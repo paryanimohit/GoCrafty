@@ -1,6 +1,9 @@
 package com.GoCrafty.dao;
 
+import com.GoCrafty.entity.User;
+
 public interface AuthenticationDAO {
-	public String studentLogin(Object theUser,String role);
+
+	public String login(User theUser, String role);
 
 }

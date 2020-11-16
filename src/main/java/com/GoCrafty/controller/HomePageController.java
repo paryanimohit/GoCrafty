@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
+
+import com.GoCrafty.entity.User;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -22,20 +25,13 @@ public class HomePageController {
 	public String UserLogin(Model theModel,@ModelAttribute("message")String message,@RequestParam("role") String role)
 	{
 			
-		if(role.equals("instructor")) {
+		if(role.equals("instructor") || role.equals("student")) {
 			theModel.addAttribute("message",message);
 			theModel.addAttribute("role",role);
-			Instructor instructor = new Instructor();
-			theModel.addAttribute("instructor",instructor);
-			return "instructor-login-form";
-		}
-		
-		else if (role.equals("student")) {
-			theModel.addAttribute("role",role);
-			theModel.addAttribute("message",message);
-			Student student = new Student();
-			theModel.addAttribute("student",student);
-			return "student-login-form";	
+			
+			User theUser = new User();
+			theModel.addAttribute("user",theUser);
+			return "login-form";
 		}
 		
 		else return "error-page";
@@ -71,4 +67,5 @@ public class HomePageController {
 		return "redirect:/";
 		}
 	}
+
 }

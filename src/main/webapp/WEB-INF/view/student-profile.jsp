@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -21,6 +22,18 @@
 		<a href="${pageContext.request.contextPath}/home/student/viewProfile">
 		<img class="logoprop"src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
 	</div> 
+<<<<<<< HEAD
+	<div id="pl">
+	<div id="link"><a href="logOut">Log Out</a></div>
+	<div id="link"><a href="showEditProfile">Edit Profile</a></div>
+	<div id="link"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Profile</a></div>
+	<input class="buttonprofile"type="button" onclick="location.href ='${pageContext.request.contextPath}/home/barberShop/showBarberShops?city=${userlist.city}'; buttonAnimation();" value="Book a Reservation"/>
+	<div id="link">	<a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a>
+</div>
+	</div>
+	<div id="name">
+	Hello ${studentlist.firstName}
+=======
 	<div id="header-links">
 		<div id="profilePic">
 			<c:if test="${img == 'failed'}">
@@ -30,6 +43,7 @@
    				<a href="#ppedit" onclick="showForm();"><img class="psize"src="data:image/jpg;base64,${img}"/>	</a>
 			</c:if>
 			Hello ${studentlist.firstName}
+>>>>>>> d2d1083471fedf795b4455414f0639c2054c6d69
 		</div>
 		<div id="headerLink"><a href="/GoCrafty/home/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>

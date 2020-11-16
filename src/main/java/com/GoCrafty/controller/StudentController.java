@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Student;
@@ -23,32 +22,6 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 
-	
-	@PostMapping("/login")
-	public String userLogin(@ModelAttribute("student") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@RequestParam("role") String role) 
-		{
-		
-		String email = student.getEmail();
-		String password = student.getPassword();
-	//checking for null input values
-		if (email.isEmpty() || password.isEmpty() && role.equals("student"))
-		{
-			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/showUserLogin?role="+role;
-		}
-	 
-		String id = studentService.studentLogin(email,password);
-		
-		if(id == null && role.equals("student"))
-		{
-			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/userLogin?role="+role;
-		}
-		else {
-			studentSession.put("id", id);
-			return "redirect:/home/student/viewProfile";
-			}
-		}
 	
 	@GetMapping("/viewProfile")
 	String viewProfile(Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
@@ -96,4 +69,7 @@ public class StudentController {
 				return "redirect:/home/userLogin?role=student";
 		}
 	}
+	
+	
+	
 }

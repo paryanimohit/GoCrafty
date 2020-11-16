@@ -1,8 +1,11 @@
 package com.GoCrafty.service;
 
+import com.GoCrafty.entity.User;
+
 public interface AuthenticationService {
 	
-	public String userLogin(Object theUser,String role);
+
+	public String login(User theUser, String role);
 
 
 }

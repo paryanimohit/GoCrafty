@@ -22,34 +22,6 @@ public class InstructorController {
 	@Autowired
 	private InstructorService instructorService;
 	
-	@PostMapping("/login")
-	public String userLogin(@ModelAttribute("instructor") Instructor instructor, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession, @RequestParam("role") String role) 
-		{
-		
-		String email = instructor.getEmail();
-		String password = instructor.getPassword();
-		
-		//checking for null input values
-		
-		if (email.isEmpty() || password.isEmpty() && role.equals("instructor"))
-		{
-			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/userLogin?role="+role;
-		}
-	 
-		String id = instructorService.instructorLogin(email,password);
-		
-		if(id == null && role.equals("instructor"))
-		{	
-			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/userLogin?role="+role;
-		}
-		else {
-			instructorSession.put("id", id);
-			return "redirect:/home/instructor/viewProfile";
-			}
-		}
-	
 	@GetMapping("/viewProfile")
 	String viewProfile(Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession)
 	{

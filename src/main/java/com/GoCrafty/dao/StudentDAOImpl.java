@@ -24,29 +24,29 @@ public class StudentDAOImpl implements StudentDAO {
 	
 	
 
-	@Override
-	public String studentLogin(String email, String password) {
-		
-		Session  currentSession= sessionFactory.getCurrentSession();
-		try {
-			Query q= currentSession.createQuery("from Student s WHERE s.email= :email");
-			q.setParameter("email", email);
-			Student myStudent=(Student) q.getSingleResult();
-			String fetchPassword= myStudent.getPassword();
-			Encryption encr = new Encryption();
-			String decryptedPassword=encr.decrypt(fetchPassword);
-			String id=String.valueOf(myStudent.getId());
-			if(decryptedPassword.contentEquals(password)){
-				return id;
-				}
-			else 
-				return null;
-				}
-		catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-		}
+//	@Override
+//	public String studentLogin(String email, String password) {
+//		
+//		Session  currentSession= sessionFactory.getCurrentSession();
+//		try {
+//			Query q= currentSession.createQuery("from Student s WHERE s.email= :email");
+//			q.setParameter("email", email);
+//			Student myStudent=(Student) q.getSingleResult();
+//			String fetchPassword= myStudent.getPassword();
+//			Encryption encr = new Encryption();
+//			String decryptedPassword=encr.decrypt(fetchPassword);
+//			String id=String.valueOf(myStudent.getId());
+//			if(decryptedPassword.contentEquals(password)){
+//				return id;
+//				}
+//			else 
+//				return null;
+//				}
+//		catch (Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//		}
 
 
 
