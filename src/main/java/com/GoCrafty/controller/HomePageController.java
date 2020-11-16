@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
+
 import com.GoCrafty.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,8 +33,6 @@ public class HomePageController {
 			theModel.addAttribute("user",theUser);
 			return "login-form";
 		}
-		
-		
 		
 		else return "error-page";
 	}
@@ -68,4 +67,5 @@ public class HomePageController {
 		return "redirect:/";
 		}
 	}
+
 }

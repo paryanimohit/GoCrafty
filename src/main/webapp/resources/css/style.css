@@ -69,7 +69,6 @@ footer{
 	z-index: 1000;
 }
 
-
 .logoprop{
 	height: 100px;
 	width: 200px;
@@ -85,7 +84,6 @@ footer{
 #header-links{
 	display: inline-block;
 	text-align:right;
-	
 	width:55%;
 	position: relative; 
 }
@@ -805,26 +803,11 @@ html{
 /* 	right:20px; */
 /* } */
 
-/* #name{ */
-/* 	display: block; */
-/* 	position: absolute; */
-/* 	width:100%; */
-/* 	top: 67px; */
-/* 	text-align: right; */
-/* 	right: 10px; */
-/* 	right:70px; */
-/* 	font-size: 20px; */
-/* } */
-
-/* #pp{ */
-/* 	display: block; */
-/* 	position: absolute; */
-/* 	width:100%; */
-/* 	top: 50px; */
-/* 	text-align: right; */
-/* 	right:10px; */
-/* } */
-
+#profilePic{
+	display: block;
+	position: relative;
+	font-size: 30px;
+}
 
 /* #upload{ */
 /* 	display: block; */
@@ -900,12 +883,12 @@ html{
 /* 	text-align: left; */
 /* } */
 
-/* .psize{ */
+.psize{
 	
-/* 	width: 50px; */
-/* 	height: 50px; */
-/* 	border-radius: 50%; */
-/* } */
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
 
 /* #contactlgo{ */
 	

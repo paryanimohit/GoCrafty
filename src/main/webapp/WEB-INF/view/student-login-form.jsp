@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="text/css" rel="stylesheet" href = "${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
-<title>User Login</title>
+<title>Student Login</title>
 </head>
 <body>
 	<div id = "login-container">
@@ -23,7 +23,7 @@
 			${message}
 			</c:if>
 		</div>
-<form:form action="student/login" modelAttribute="theUser" method="POST">
+<form:form action="student/login?role=${role}" modelAttribute="student" method="POST">
 		<table id="lgtbl">
 			<tbody>
 				<tr>

@@ -23,37 +23,6 @@ public class StudentController {
 	private StudentService studentService;
 
 	
-//	@PostMapping("/login")
-//	public String userLogin(@ModelAttribute("theUser") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute("role") String role) 
-//		{
-//		
-//
-//		String email = student.getEmail();
-//		String password = student.getPassword();
-//	//checking for null input values
-//		if (email.isEmpty() || password.isEmpty())
-//		{
-//			m.addAttribute("message","Incorrect Email or Password");
-//			return "redirect:/home/showUserLogin";
-//		}
-//	 
-//		String id = studentService.studentLogin(email,password);
-//		
-//		if(id == null)
-//		{
-//			
-//			m.addAttribute("message","Incorrect Email or Password");
-//			return "redirect:/home/studentLogin";
-//		}
-//		else {
-//			studentSession.put("id", id);
-//			return "redirect:/home/student/viewProfile";
-//			}
-//			
-//
-//			
-//		}
-	
 	@GetMapping("/viewProfile")
 	String viewProfile(Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
 	{
@@ -75,15 +44,12 @@ public class StudentController {
 			{
 			return "errorPage";
 			}
-		
 	}
 	String sendToHeader(Model m) 
 	{
 		return "user-header";
 	}
-	
-	
-	
+		
 	@PostMapping("/createAccount")
 	public String createAccount(@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute(name="student") Student theStudent,Model theModel) {
 		
@@ -91,7 +57,7 @@ public class StudentController {
 		if (message.equals("Cannot create user! Please try again"))
 		{
 			theModel.addAttribute("message", message);
-			return "user-form";
+			return "student-login-form?role=student";
 		}
 		else
 		{
@@ -100,7 +66,7 @@ public class StudentController {
 				return "redirect:/home/admin/getUsers";
 			}
 			else
-				return "redirect:/home/showUserLogin?role=student";
+				return "redirect:/home/userLogin?role=student";
 		}
 	}
 	

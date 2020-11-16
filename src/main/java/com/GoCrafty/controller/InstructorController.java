@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Instructor;
-import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.InstructorService;
 
 
@@ -22,34 +22,6 @@ public class InstructorController {
 	@Autowired
 	private InstructorService instructorService;
 	
-//	@PostMapping("/login")
-//	public String userLogin(@ModelAttribute("theUser") Instructor instructor, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) 
-//		{
-//		
-//		String email = instructor.getEmail();
-//		String password = instructor.getPassword();
-//		
-//		//checking for null input values
-//		
-//		if (email.isEmpty() || password.isEmpty())
-//		{
-//			m.addAttribute("message","Incorrect Email or Password");
-//			return "redirect:/home/instructorLogin";
-//		}
-//	 
-//		String id = instructorService.instructorLogin(email,password);
-//		
-//		if(id == null)
-//		{	
-//			m.addAttribute("message","Incorrect Email or Password");
-//			return "redirect:/home/instructorLogin";
-//		}
-//		else {
-//			instructorSession.put("id", id);
-//			return "redirect:/home/instructor/viewProfile";
-//			}
-//		}
-//	
 	@GetMapping("/viewProfile")
 	String viewProfile(Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession)
 	{
@@ -78,13 +50,13 @@ public class InstructorController {
 	}
 	
 	@PostMapping("/createAccount")
-	public String createAcount(@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,@ModelAttribute(name="instructor") Instructor theInstructor,Model theModel) {
+	public String createAcount(@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,@ModelAttribute(name="instructor") Instructor theInstructor,Model theModel,@RequestParam("role") String role) {
 		
 		String message= instructorService.createAccount(theInstructor);
 		if (message.equals("Cannot create user! Please try again"))
 		{
 			theModel.addAttribute("message", message);
-			return "user-form";
+			return "instructor-login-form?role=instructor";
 		}
 		else
 		{
@@ -93,7 +65,7 @@ public class InstructorController {
 				return "redirect:/home/admin/getUsers";
 			}
 			else
-				return "redirect:/home/showUserLogin?role=student";
+				return "redirect:/home/userLogin?role=instructor";
 		}
 	}
 }
