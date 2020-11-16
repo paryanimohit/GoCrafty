@@ -5,11 +5,12 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.Encryption;
-
+@Repository
 public class AuthenticationDAOImpl implements AuthenticationDAO {
 
 	@Autowired
@@ -23,6 +24,8 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 			String id = null;
 			String decryptedPassword=null;
 			Encryption encr = new Encryption();
+			System.out.println("inside try");
+			System.out.println("role"+role);
 			if(role.equals("student"))
 			{
 				Student theStudent=(Student)theUser;//from login

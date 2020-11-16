@@ -21,39 +21,38 @@ import com.GoCrafty.service.StudentService;
 public class StudentController {
 	@Autowired
 	private StudentService studentService;
-//	@Autowired
-//	private AuthenticationService authenticationService;
+
 	
-//	@PostMapping("/login")
-//	public String userLogin(@ModelAttribute("theUser") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute("role") String role) 
-//		{
-//		
-//
-//		String email = student.getEmail();
-//		String password = student.getPassword();
-//	//checking for null input values
-//		if (email.isEmpty() || password.isEmpty())
-//		{
-//			m.addAttribute("message","Incorrect Email or Password");
-//			return "redirect:/home/showUserLogin";
-//		}
-//	 
-//		String id = authenticationService.userLogin(email,password,role);
-//		
-//		if(id == null)
-//		{
-//			
-//			m.addAttribute("message","Incorrect Email or Password");
-//			return "redirect:/home/showUserLogin";
-//		}
-//		else {
-//			studentSession.put("id", id);
-//			return "redirect:/home/student/viewProfile";
-//			}
-//			
-//
-//			
-//		}
+	@PostMapping("/login")
+	public String userLogin(@ModelAttribute("theUser") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute("role") String role) 
+		{
+		
+
+		String email = student.getEmail();
+		String password = student.getPassword();
+	//checking for null input values
+		if (email.isEmpty() || password.isEmpty())
+		{
+			m.addAttribute("message","Incorrect Email or Password");
+			return "redirect:/home/showUserLogin";
+		}
+	 
+		String id = studentService.studentLogin(email,password);
+		
+		if(id == null)
+		{
+			
+			m.addAttribute("message","Incorrect Email or Password");
+			return "redirect:/home/studentLogin";
+		}
+		else {
+			studentSession.put("id", id);
+			return "redirect:/home/student/viewProfile";
+			}
+			
+
+			
+		}
 	
 	@GetMapping("/viewProfile")
 	String viewProfile(Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)

@@ -34,7 +34,7 @@ public class InstructorController {
 		if (email.isEmpty() || password.isEmpty())
 		{
 			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/showUserLogin";
+			return "redirect:/home/instructorLogin";
 		}
 	 
 		String id = instructorService.instructorLogin(email,password);
@@ -42,7 +42,7 @@ public class InstructorController {
 		if(id == null)
 		{	
 			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/showUserLogin";
+			return "redirect:/home/instructorLogin";
 		}
 		else {
 			instructorSession.put("id", id);

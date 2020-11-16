@@ -2,6 +2,7 @@ package com.GoCrafty.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -12,22 +13,27 @@ import com.GoCrafty.entity.Student;
 @RequestMapping("/home")
 public class HomePageController {
 	
-	@RequestMapping("/showUserLogin")
-	public String showUserLogin(@RequestParam("role") String role,Model theModel)
+	@RequestMapping("/studentLogin")
+	public String UserLogin(Model theModel,@ModelAttribute("message")String message)
 	{
-		theModel.addAttribute("role",role);
-		if (role.equals("student"))
-		{
+		theModel.addAttribute("message",message);
+
+		
 			Student theStudent = new Student();
 			theModel.addAttribute("theUser",theStudent);
-			
-		}
-		else if (role.equals("instructor"))
-		{
-			Instructor theInstructor = new Instructor();
-			theModel.addAttribute("theUser",theInstructor);
-		}
-		return "user-login-form";
+			return "student-login-form";
+
+	}
+	
+	@RequestMapping("/instructorLogin")
+	public String instructorLogin(Model theModel,@ModelAttribute("message")String message)
+	{
+		theModel.addAttribute("message",message);
+
+		Instructor theInstructor = new Instructor();
+		theModel.addAttribute("theUser",theInstructor);
+		return "instructor-login-form";
+		
 	}
 	
 	@RequestMapping("/createUser")
