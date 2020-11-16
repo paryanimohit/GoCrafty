@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Student;
@@ -24,34 +25,29 @@ public class StudentController {
 
 	
 	@PostMapping("/login")
-	public String userLogin(@ModelAttribute("theUser") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute("role") String role) 
+	public String userLogin(@ModelAttribute("student") Student student, Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@RequestParam("role") String role) 
 		{
 		
-
 		String email = student.getEmail();
 		String password = student.getPassword();
 	//checking for null input values
-		if (email.isEmpty() || password.isEmpty())
+		if (email.isEmpty() || password.isEmpty() && role.equals("student"))
 		{
 			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/showUserLogin";
+			return "redirect:/home/showUserLogin?role="+role;
 		}
 	 
 		String id = studentService.studentLogin(email,password);
 		
-		if(id == null)
+		if(id == null && role.equals("student"))
 		{
-			
 			m.addAttribute("message","Incorrect Email or Password");
-			return "redirect:/home/studentLogin";
+			return "redirect:/home/userLogin?role="+role;
 		}
 		else {
 			studentSession.put("id", id);
 			return "redirect:/home/student/viewProfile";
 			}
-			
-
-			
 		}
 	
 	@GetMapping("/viewProfile")
@@ -75,15 +71,12 @@ public class StudentController {
 			{
 			return "errorPage";
 			}
-		
 	}
 	String sendToHeader(Model m) 
 	{
 		return "user-header";
 	}
-	
-	
-	
+		
 	@PostMapping("/createAccount")
 	public String createAccount(@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,@ModelAttribute(name="student") Student theStudent,Model theModel) {
 		
@@ -91,7 +84,7 @@ public class StudentController {
 		if (message.equals("Cannot create user! Please try again"))
 		{
 			theModel.addAttribute("message", message);
-			return "user-form";
+			return "student-login-form?role=student";
 		}
 		else
 		{
@@ -100,7 +93,7 @@ public class StudentController {
 				return "redirect:/home/admin/getUsers";
 			}
 			else
-				return "redirect:/home/showUserLogin?role=student";
+				return "redirect:/home/userLogin?role=student";
 		}
 	}
 }

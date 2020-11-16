@@ -14,8 +14,8 @@
 <body>
 	<div class = content>
 		<div class="button">
-			<input class="button-student" type = "button" value = "For Students" onclick="location.href = 'home/studentLogin';"/> 
-			<input class="button-instructor" type = "button" value = "For Instructors" onclick="location.href = 'home/instructorLogin';"/>
+			<input class="button-student" type = "button" value = "For Students" onclick="location.href = 'home/userLogin?role=student';"/> 
+			<input class="button-instructor" type = "button" value = "For Instructors" onclick="location.href = 'home/userLogin?role=instructor';"/>
 		</div>
 		<div id="about">
 			<h2> About</h2>

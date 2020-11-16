@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="text/css" rel="stylesheet" href = "${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
-<title>User Login</title>
+<title>Instructor Login</title>
 </head>
 <body>
 	<div id = "login-container">
@@ -23,12 +23,15 @@
 			${message}
 			</c:if>
 		</div>
-<form:form action="instructor/login" modelAttribute="theUser" method="POST">
+<form:form action="instructor/login" modelAttribute="instructor" method="POST">
 		<table id="lgtbl">
 			<tbody>
 				<tr>
 					<td class="email"><label>Email</label></td>
 					<td><form:input  path="email" name="email" placeholder="Enter your e-mail" class="emailbox" required="required"/></td>
+				</tr>
+				<tr>
+					<td><input type="hidden" name = "role" value = "${role}"></td>
 				</tr>
 				<tr>	
 					<td class="password"><label>Password</label></td>
