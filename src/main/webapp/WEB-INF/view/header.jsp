@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">

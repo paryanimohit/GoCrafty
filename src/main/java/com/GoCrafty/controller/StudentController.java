@@ -1,5 +1,6 @@
 package com.GoCrafty.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Student;
-//import com.GoCrafty.service.AuthenticationService;
 import com.GoCrafty.service.StudentService;
+import com.GoCrafty.service.Encryption;
 
 
 @Controller
@@ -26,28 +28,28 @@ public class StudentController {
 	@GetMapping("/viewProfile")
 	String viewProfile(Model m,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
 	{
-		int id=Integer.parseInt(studentSession.get("id"));
 		try {
-			Student studentList= studentService.getStudent(id);
+
+			int id=Integer.parseInt(studentSession.get("id"));
+			Student student= studentService.getStudent(id);
 			String image = studentService.getImage(id);
-			studentSession.put("firstName",studentList.getFirstName());
-			studentSession.put("lastName",studentList.getLastName());
-			studentSession.put("email",studentList.getEmail());
+			studentSession.put("firstName",student.getFirstName());
+			studentSession.put("lastName",student.getLastName());
+			studentSession.put("email",student.getEmail());
 			
 			m.addAttribute("img",image);
-			m.addAttribute("studentlist",studentList);
+			m.addAttribute("student",student);
 			sendToHeader(m);
-			System.out.println("login success");
 			return "student-profile";
 			}
-		catch (NullPointerException e)
+		catch (Exception e)
 			{
 			return "errorPage";
 			}
 	}
 	String sendToHeader(Model m) 
 	{
-		return "user-header";
+		return "student-header";
 	}
 		
 	@PostMapping("/createAccount")
@@ -70,6 +72,59 @@ public class StudentController {
 		}
 	}
 	
+	@GetMapping("/showEditProfile")
+	public String showEditProfile(@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,Model theModel) {
+		String localId = studentSession.get("id");
+		if(!(localId.contentEquals("temp") || localId.equals(null))) {
+			int id = Integer.parseInt(localId);
+			Student student = studentService.getStudent(id);
+			Encryption encr= new Encryption();
+			String encryptedPass= student.getPassword();
+			String decryptedPass=encr.decrypt(encryptedPass);
+			student.setPassword(decryptedPass);
+			
+			theModel.addAttribute("student", student);
+			return "edit-profile-student";
+		}
+		else { 
+			theModel.addAttribute("Message", "Your Session was Expired! Please login again to continue");
+			return "redirect:/home/authentication/userLogin?role=student";
+		
+		}
+	}
 	
-	
+	@PostMapping("/editProfile")
+	public String editProfile(@SessionAttribute(name="tempSession") HashMap<String,String> studentSession,
+									@RequestParam("firstName") String firstName,
+									@RequestParam("lastName") String lastName,
+									@RequestParam("password") String password, 
+									Model model) {
+		
+
+		String localId = studentSession.get("id");
+		if(!(localId.contentEquals("temp") || localId.equals(null))) {
+			
+			ArrayList<String> updatedStudent = new ArrayList<>();
+			updatedStudent.add(firstName);
+			updatedStudent.add(lastName);
+			updatedStudent.add(password);
+			
+			Student student = studentService.editProfile(updatedStudent,localId);
+			if(updatedStudent == null || localId == null)
+			{
+				return "redirect:/home/student/viewProfile";
+			}
+			else {
+				model.addAttribute("student",student);
+				studentSession.put("firstName",student.getFirstName());
+				studentSession.put("lastName",student.getLastName());
+				studentSession.put("email",student.getEmail());
+				return "redirect:/home/student/viewProfile";
+				}		
+		}
+		else {
+			model.addAttribute("Message", "Your Session was Expired! Please login again to continue");
+			return "redirect:/home/authentication/userLogin?role=student";
+		}
+}
 }

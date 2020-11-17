@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,7 +12,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <meta charset="ISO-8859-1">
-<title>${studentlist.firstName} - Profile</title>
+<title>${student.firstName} - Profile</title>
 </head>
 <body>
 <c:if test="${tempSession.id != 'temp'}">	
@@ -25,23 +24,23 @@
 	<div id="header-links">
 		<div id="profilePic">
 			<c:if test="${img == 'failed'}">
-    			<a href="#ppedit" onclick="showForm();"><img class="psize" src = "${pageContext.request.contextPath}/resources/images/profile-picture.jpg"></a>
+    			<a href="#ppedit" onclick="showForm();"><img class="profilePicProps" src = "${pageContext.request.contextPath}/resources/images/profile-picture.jpg"></a>
 			</c:if>
 			<c:if test="${img != 'failed'}">
-   				<a href="#ppedit" onclick="showForm();"><img class="psize"src="data:image/jpg;base64,${img}"/>	</a>
+   				<a href="#ppedit" onclick="showForm();"><img class="profilePicProps"src="data:image/jpg;base64,${img}"/>	</a>
 			</c:if>
-			Hello ${studentlist.firstName}
+			Hello ${student.firstName}
 		</div>
-		<div id="headerLink"><a href="/GoCrafty/home/logOut">Log Out</a></div>
+		<div id="headerLink"><a href="/GoCrafty/home/authentication/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>
 		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Profile</a></div>
 		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a></div>
 		<div id="headerLink"><a href="viewAppointments">View Appointments</a></div>
 	</div>
 </header>
-<div class = "content">
-		<div id = "ppedit" style="visibility: hidden;">
-        		<form method="post" action="${pageContext.request.contextPath}/home/user/doUpload" enctype="multipart/form-data" >
+<div class = "content" onclick="hideForm();">
+<div id = "ppedit" style="visibility: hidden;">
+        		<form method="post" action="${pageContext.request.contextPath}/home/student/doUpload" enctype="multipart/form-data" >
           		  <table id="upload">
                 <tr>
                     <td><input type="file" name="fileUpload" accept='image/*'  /></td>
@@ -51,24 +50,19 @@
                 </tr>
             </table>
         	</form>
-    		</div>			
-
-			<div id = "deleteForm" style="visibility: hidden">
-				<form action="deleteProfile" method="get">
-					<label>Password</label>
-					<input id="formd" type="password" name = "password">
-					<input class="genericbutton" type="submit" value="Confirm">
-				</form>
-			</div>
-				
-<div id="bd" onclick="hideForm();">
-			<div id="Profile">
-				<div id="namelgo">User Name:&nbsp;&nbsp;&nbsp;&nbsp;&emsp;${studentlist.firstName} ${studentlist.lastName} </div>
- 				<div id="emaillgo">Email Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;${studentlist.email} </div>
- 				<div id="birthlgo">Birth Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&emsp;${studentlist.birthDate} </div>
- 				
- 			</div>
- 			
+    	</div>			
+		<div id = "deleteForm" style="visibility: hidden">
+			<form action="deleteProfile" method="get">
+				<label>Password</label>
+				<input id="formd" type="password" name = "password">
+				<input class="genericbutton" type="submit" value="Confirm">
+			</form>
+		</div>
+		
+	<div id="profileContainer">
+				<div id="namelgo">Hello ${student.firstName} ${student.lastName}, Welcome back!</div>
+ 				<div id="emaillgo">Your registered email address is: ${student.email} </div>
+ 				<div id="birthlgo">We will wish you Birthday on: ${student.birthDate}.<br> <i>Be patient, there is lot more than just wishing. Enjoy gifts from us as a Thank You token for being a member of our community.</i></div>
  		</div>
  </div>
 </c:if>

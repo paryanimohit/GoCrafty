@@ -3,16 +3,13 @@ package com.GoCrafty.dao;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Base64;
-
 import javax.imageio.ImageIO;
-import javax.persistence.Query;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.Encryption;
 
@@ -22,42 +19,12 @@ public class StudentDAOImpl implements StudentDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	
-
-//	@Override
-//	public String studentLogin(String email, String password) {
-//		
-//		Session  currentSession= sessionFactory.getCurrentSession();
-//		try {
-//			Query q= currentSession.createQuery("from Student s WHERE s.email= :email");
-//			q.setParameter("email", email);
-//			Student myStudent=(Student) q.getSingleResult();
-//			String fetchPassword= myStudent.getPassword();
-//			Encryption encr = new Encryption();
-//			String decryptedPassword=encr.decrypt(fetchPassword);
-//			String id=String.valueOf(myStudent.getId());
-//			if(decryptedPassword.contentEquals(password)){
-//				return id;
-//				}
-//			else 
-//				return null;
-//				}
-//		catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//		}
-
-
-
 	@Override
-	public Student getUser(int id) {
+	public Student getStudent(int id) {
 		Session  currentSession= sessionFactory.getCurrentSession();
 		Student myStudent= currentSession.get(Student.class, id);
 		return myStudent;
 	}
-
-
 
 	@Override
 	public String getImage(int id) {
@@ -80,8 +47,6 @@ public class StudentDAOImpl implements StudentDAO {
 			
 		}
 	}
-
-
 
 	@Override
 	public String createAccount(Student theStudent) {
@@ -107,4 +72,27 @@ public class StudentDAOImpl implements StudentDAO {
 			return "Success! User created, Please login to continue";
 	}
 
+	@Override
+	public Student editProfile(ArrayList<String> updatedStudent, String localId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		
+		String firstName = updatedStudent.get(0);
+		String lastName = updatedStudent.get(1);
+		String password = updatedStudent.get(2);
+		
+		Encryption encr = new Encryption();
+		String encryptedPassword=encr.encrypt(password);
+		
+		int id = Integer.parseInt(localId);
+		
+		Student student = currentSession.get(Student.class, id);
+		
+		student.setFirstName(firstName);
+		student.setLastName(lastName);
+		student.setPassword(encryptedPassword);
+		
+		Student updatedStudent1 = currentSession.get(Student.class, id);
+       return updatedStudent1;
+	}
 }

@@ -55,17 +55,4 @@ public class HomePageController {
 		else return "error-page";
 	}
 
-	@RequestMapping("/logOut")
-	public String logOut(@SessionAttribute(name="tempSession") HashMap<String,String> userSession, HttpServletRequest request) {
-	try {
-		HttpSession session = request.getSession();
-		session.invalidate();
-		return "redirect:/";
-		}
-	catch (Exception e) {
-		
-		return "redirect:/";
-		}
-	}
-
 }
