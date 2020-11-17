@@ -37,7 +37,7 @@
 					<td class="password"><label>Password</label></td>
 					<td><form:password maxlength="20" path="password" name="password" placeholder="Enter your password" class="passwordbox" required="required"/></td>
 				</tr>
-					<tr>	
+				<tr>	
 					<td><input class="loginbutton" type="Submit" value= "Log In"/></td>
 					<td class="linklog"><a href = "createUser?role=${role}">Create an account</a></td>
 				</tr>

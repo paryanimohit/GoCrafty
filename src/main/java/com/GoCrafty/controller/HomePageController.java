@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.GoCrafty.entity.Admin;
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
 
@@ -53,6 +54,16 @@ public class HomePageController {
 		}
 		
 		else return "error-page";
+	}
+	
+	@RequestMapping("/showAdminLogin")
+	public String showAdminLogin(Model theModel,@ModelAttribute("message")String message)
+	{
+		Admin theAdmin=new Admin();
+		theModel.addAttribute("admin", theAdmin);
+		theModel.addAttribute("message",message);
+		return "admin-form";
+		
 	}
 
 }

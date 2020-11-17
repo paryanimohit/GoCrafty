@@ -39,9 +39,9 @@
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://10.0.0.189:3306/goCrafty?useSSL=false&amp;serverTimezone=UTC" />
-        <property name="user" value="GoCraftyAdmin" />
-        <property name="password" value="GoCraftyAdmin" /> 
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/goCrafty?useSSL=false&amp;serverTimezone=UTC" />
+        <property name="user" value="root" />
+        <property name="password" value="password" /> 
 
         <!-- these are connection pool properties for C3P0 -->
 		<property name="initialPoolSize" value="5"/>
