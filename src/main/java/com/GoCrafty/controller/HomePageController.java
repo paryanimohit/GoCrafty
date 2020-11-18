@@ -1,21 +1,17 @@
 package com.GoCrafty.controller;
 
-import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
 
 import com.GoCrafty.entity.User;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/home")

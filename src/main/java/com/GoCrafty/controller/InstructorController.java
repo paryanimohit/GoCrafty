@@ -50,7 +50,7 @@ public class InstructorController {
 	}
 	
 	@PostMapping("/createAccount")
-	public String createAcount(@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,@ModelAttribute(name="instructor") Instructor theInstructor,Model theModel,@RequestParam("role") String role) {
+	public String createAcount(@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,@ModelAttribute(name="instructor") Instructor theInstructor,Model theModel) {
 		
 		String message= instructorService.createAccount(theInstructor);
 		if (message.equals("Cannot create user! Please try again"))

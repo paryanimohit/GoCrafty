@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="text/css" rel="stylesheet" href = "${pageContext.request.contextPath}/resources/css/style.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
-<title>Student Login</title>
+<title>Login</title>
 </head>
 <body>
 	<div id = "login-container">

@@ -33,6 +33,9 @@ public class StudentController {
 			int id=Integer.parseInt(studentSession.get("id"));
 			Student student= studentService.getStudent(id);
 			String image = studentService.getImage(id);
+				
+			studentService.setCurrentLogin(id);
+			
 			studentSession.put("firstName",student.getFirstName());
 			studentSession.put("lastName",student.getLastName());
 			studentSession.put("email",student.getEmail());
@@ -47,6 +50,7 @@ public class StudentController {
 			return "errorPage";
 			}
 	}
+	
 	String sendToHeader(Model m) 
 	{
 		return "student-header";

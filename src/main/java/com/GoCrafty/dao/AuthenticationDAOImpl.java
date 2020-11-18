@@ -36,10 +36,12 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 					q.setParameter("email", theStudent.getEmail());
 					Student myStudent=(Student) q.getSingleResult();
 					String fetchPassword= myStudent.getPassword();
+//					String fetchLogs = myStudent.getLogs();
 					decryptedPassword=encr.decrypt(fetchPassword);
 					id=String.valueOf(myStudent.getId());
 					if(decryptedPassword.contentEquals(theStudent.getPassword()))
 						{
+							
 							return id;
 						}
 							else 

@@ -15,4 +15,6 @@ public interface StudentDAO {
 
 	public Student editProfile(ArrayList<String> updatedStudent, String localId);
 
+	public Student setCurrentLogin(int id);
+
 }
