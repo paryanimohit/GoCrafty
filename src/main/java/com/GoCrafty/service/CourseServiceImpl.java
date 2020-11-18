@@ -1,5 +1,6 @@
 package com.GoCrafty.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,24 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	@Transactional
 	public List<Course> showCourse(String category) {
-		// TODO Auto-generated method stub
 		return courseDAO.showCourse(category);
+	}
+
+	@Override
+	@Transactional
+	public HashMap<String, String> getInstructorNames(List<Course> course) {
+		return courseDAO.getInstructorNames(course);	}
+
+	@Override
+	@Transactional
+	public Course getCourseById(String id) {
+		return courseDAO.getCourseById(id);	
+		}
+
+	@Override
+	@Transactional
+	public String enroll(String useId, String courseId) {
+		return courseDAO.enroll(useId,courseId );	
 	}
 
 }

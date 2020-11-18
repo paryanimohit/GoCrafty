@@ -68,13 +68,13 @@ public class CourseEnrolled {
 		this.progress = progress;
 	}
 
-	public CourseEnrolled(int courseId, int studentId, String grades, String progress) {
-		
+	public CourseEnrolled(int courseId, int studentId) {
 		this.courseId = courseId;
 		this.studentId = studentId;
-		this.grades = grades;
-		this.progress = progress;
 	}
+
+	
+	
 	
 	
 	
