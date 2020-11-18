@@ -5,6 +5,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
+
 import javax.imageio.ImageIO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.Encryption;
+import com.ibm.icu.util.Calendar;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO {
@@ -54,7 +57,6 @@ public class StudentDAOImpl implements StudentDAO {
 		try {
 			Encryption encr = new Encryption();
 			String encryptedPassword=encr.encrypt(theStudent.getPassword());
-			System.out.println("StuDAO, apply for job: |"+theStudent.getApplyForJob()+"|");
 			Student newStudent;
 			if(theStudent.getApplyForJob()==null)
 			{
@@ -94,5 +96,18 @@ public class StudentDAOImpl implements StudentDAO {
 		
 		Student updatedStudent1 = currentSession.get(Student.class, id);
        return updatedStudent1;
+	}
+
+	@Override
+	public Student setCurrentLogin(int id) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		Student myStudent = currentSession.get(Student.class, id);
+
+		Date currentDate = Calendar.getInstance().getTime();
+		String lastLogin = currentDate.toString();
+		myStudent.setLogs(lastLogin);
+		currentSession.save(myStudent);
+		return null;
 	}
 }

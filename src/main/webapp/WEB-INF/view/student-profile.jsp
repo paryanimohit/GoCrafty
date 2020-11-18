@@ -35,7 +35,6 @@
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>
 		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Profile</a></div>
 		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a></div>
-		<div id="headerLink"><a href="viewAppointments">View Appointments</a></div>
 	</div>
 </header>
 <div class = "content" onclick="hideForm();">
@@ -59,10 +58,19 @@
 			</form>
 		</div>
 		
-	<div id="profileContainer">
+	<div id="profileContainer" onclick="hideForm();">
 				<div id="namelgo">Hello ${student.firstName} ${student.lastName}, Welcome back!</div>
- 				<div id="emaillgo">Your registered email address is: ${student.email} </div>
- 				<div id="birthlgo">We will wish you Birthday on: ${student.birthDate}.<br> <i>Be patient, there is lot more than just wishing. Enjoy gifts from us as a Thank You token for being a member of our community.</i></div>
+ 				<div id="emaillgo">Your registered email address is: <b>${student.email}</b> </div>
+ 				<c:if test="${student.applyForJob =='1'}">
+ 					<div id="jobslgo">Your Active Services: 
+ 						<ol>
+ 							<li>Apply For Jobs: <b>Active</b> </li>
+ 						</ol>
+ 					</div>
+ 				</c:if>
+ 				<div id="birthlgo">Birthday: <b>${student.birthDate}.</b><br> 
+ 				<i>Get exciting offers from team GoCrafty on your Birthday! </i></div>
+ 				<div id="logslgo">Last Login: ${student.logs}</div>
  		</div>
  </div>
 </c:if>
