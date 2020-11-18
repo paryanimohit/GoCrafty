@@ -2,22 +2,18 @@ package com.GoCrafty.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
-
-import com.GoCrafty.dao.AuthenticationDAO;
-import com.GoCrafty.entity.Instructor;
-import com.GoCrafty.entity.Student;
 import com.GoCrafty.entity.User;
 import com.GoCrafty.service.AuthenticationService;
-import com.GoCrafty.service.Wrapper;
 
 @Controller
 @RequestMapping("home/authentication")
@@ -65,6 +61,19 @@ public class Authentication {
 			userSession.put("retry",String.valueOf(retry));
 			theModel.addAttribute("message","Incorrect Email or Password");
 			return "redirect:/home/userLogin?role="+role;
+		}
+	}
+	
+	@RequestMapping("/logOut")
+	public String logOut(@SessionAttribute(name="tempSession") HashMap<String,String> userSession, HttpServletRequest request) {
+	try {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "redirect:/";
+		}
+	catch (Exception e) {
+		
+		return "redirect:/";
 		}
 	}
 

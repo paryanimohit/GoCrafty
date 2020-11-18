@@ -1,5 +1,7 @@
 package com.GoCrafty.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional
 	public Student getStudent(int id) {
-		return studentDAO.getUser(id);
+		return studentDAO.getStudent(id);
 		}
 
 	@Override
@@ -35,8 +37,13 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional
 	public String createAccount(Student theStudent) {
-		// TODO Auto-generated method stub
 		return studentDAO.createAccount(theStudent);
+	}
+
+	@Override
+	@Transactional
+	public Student editProfile(ArrayList<String> updatedStudent, String localId) {
+		return studentDAO.editProfile(updatedStudent, localId);
 	}
 
 }

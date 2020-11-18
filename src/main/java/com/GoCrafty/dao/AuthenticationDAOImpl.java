@@ -32,22 +32,18 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 				if(role.equals("student"))
 				{
 					 theStudent=Wrapper.studentWrapper(theUser);
-					 System.out.println("aut dao name: |"+theStudent.getEmail()+"|");
 					 q= currentSession.createQuery("from Student s WHERE s.email= :email");
-						q.setParameter("email", theStudent.getEmail());
-									Student myStudent=(Student) q.getSingleResult();
-									System.out.println("my student: |"+myStudent.getEmail()+"|");
-									String fetchPassword= myStudent.getPassword();
-									decryptedPassword=encr.decrypt(fetchPassword);
-									 id=String.valueOf(myStudent.getId());
-									if(decryptedPassword.contentEquals(theStudent.getPassword()))
-									{
-										System.out.println("email and password match \nand id: |"+myStudent.getId()+"|");
-										return id;
-										}
-									else 
-										return null;
-					 
+					q.setParameter("email", theStudent.getEmail());
+					Student myStudent=(Student) q.getSingleResult();
+					String fetchPassword= myStudent.getPassword();
+					decryptedPassword=encr.decrypt(fetchPassword);
+					id=String.valueOf(myStudent.getId());
+					if(decryptedPassword.contentEquals(theStudent.getPassword()))
+						{
+							return id;
+						}
+							else 
+							return null;
 				}
 				
 				else if(role.equals("instructor"))
@@ -65,7 +61,6 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 						}
 					else 
 						return null;
-						
 				}
 		}
 		catch (Exception e) {

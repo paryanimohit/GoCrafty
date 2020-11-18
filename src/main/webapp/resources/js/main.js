@@ -23,3 +23,24 @@ window.scrollSmooth = function(target) {
     // start scrolling
     scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
 }
+
+function showForm(){
+	
+	var deleteButton = document.getElementById("ppedit");
+	if(deleteButton.style.visibility == "hidden"){
+		deleteButton.style.visibility = "visible";
+	}
+}
+
+function hideForm(){
+	
+	var deleteButton = document.getElementById("ppedit");
+	if(deleteButton.style.visibility == "visible"){
+		deleteButton.style.visibility = "hidden";
+	}
+	
+	var hide = document.getElementById("deleteForm");
+	if(hide.style.visibility == "visible"){
+		hide.style.visibility = "hidden";
+	}
+}

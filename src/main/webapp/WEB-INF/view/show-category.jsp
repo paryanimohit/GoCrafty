@@ -15,7 +15,7 @@
 <%@ include file="header.jsp" %>
 </c:if>
 <c:if test="${tempSession.id != 'temp'}">
-<%@ include file="user-header.jsp"%>
+<%@ include file="student-header.jsp"%>
 </c:if>
 
 

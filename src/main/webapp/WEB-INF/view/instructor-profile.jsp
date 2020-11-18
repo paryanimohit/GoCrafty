@@ -21,14 +21,14 @@
 	<div id="header-links">
 	<div id="profilePic">
 			<c:if test="${img == 'failed'}">
-    			<a href="#ppedit" onclick="showForm();"><img class="psize" src = "${pageContext.request.contextPath}/resources/images/profile-picture.jpg"></a>
+    			<a href="#ppedit" onclick="showForm();"><img class="profilePicProps" src = "${pageContext.request.contextPath}/resources/images/profile-picture.jpg"></a>
 			</c:if>
 			<c:if test="${img != 'failed'}">
-   				<a href="#ppedit" onclick="showForm();"><img class="psize"src="data:image/jpg;base64,${img}"/>	</a>
+   				<a href="#ppedit" onclick="showForm();"><img class="profilePicProps"src="data:image/jpg;base64,${img}"/>	</a>
 			</c:if>
 			Hello ${instructorlist.firstName}
 		</div>
-		<div id="headerLink"><a href="/GoCrafty/home/logOut">Log Out</a></div>
+		<div id="headerLink"><a href="/GoCrafty/home/authentication/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>	
 		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Profile</a></div>
 		<div id="headerLink"><a href="addCourse">Add Course</a></div>

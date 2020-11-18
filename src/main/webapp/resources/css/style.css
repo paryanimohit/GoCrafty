@@ -152,7 +152,6 @@ html{
 	display:block;
 	position: relative;
 	margin: 0 auto;
-  	top: 500px;
   	width: 80%;
 	opacity: 100%;
 	background-color: transparent;  
@@ -809,18 +808,16 @@ html{
 	font-size: 30px;
 }
 
-/* #upload{ */
-/* 	display: block; */
-/* 	position: absolute; */
-/* 	width: 250px; */
-/* 	height:90px; */
-/* 	top:120px; */
-/* 	padding:10px; */
-/* 	left:1100px; */
-/* 	color:black; */
-/* 	background: white; */
-/* 	border-radius: 30px;	 */
-/* } */
+#upload{
+	display: block;
+	position: relative;
+	width: 35%;
+	color:black;
+	padding:2%;
+	z-index:100000000;
+	background: brown;
+	border-radius: 30px;	
+}
 
 /* #Profile{ */
 /* 	color: white; */
@@ -847,57 +844,39 @@ html{
 	border-radius: 30px;
 }
 
-/* #namelgo{ */
+#namelgo{
 	
-/* 	display: inline-block; */
-/* 	position: absolute; */
-/* 	padding: 20px; */
-/* 	top:20px; */
-/* 	text-align: left; */
-/*  } 
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	margin: 0 auto;
+	top:15px;
+	width:100%;
+ } 
 
-/* #emaillgo{ */
+#emaillgo{
 	
-/* 	display: inline-block; */
-/* 	position: absolute; */
-/* 	padding: 20px; */
-/* 	top:60px; */
-/* 	text-align: left; */
-/* } */
+	display: inline-block;
+	position: relative;
+	top:30px;
+	text-align: left;
+}
 
-/* #birthlgo{ */
+#birthlgo{
 	
-/* 	display: inline-block; */
-/* 	position: absolute; */
-/* 	padding: 20px; */
-/* 	top:100px; */
-/* 	text-align: left; */
-/* } */
+	display: inline-block;
+	position: relative;
+	top:50px;
+	text-align: left;
+}
 
-/* #genderlgo{ */
+.profilePicProps{
 	
-/* 	display: inline-block; */
-/* 	position: absolute; */
-/* 	padding: 20px; */
-/* 	top:140px; */
-/* 	text-align: left; */
-/* } */
-
-.psize{
-	
-	width: 50px;
-	height: 50px;
+	width: 45px;
+	height: 45px;
 	border-radius: 50%;
 }
 
-/* #contactlgo{ */
-	
-/* 	display: inline-block; */
-/* 	position: absolute; */
-/* 	padding: 20px; */
-/* 	top:180px; */
-/* 	text-align: left; */
-/* } */
 
 /* #categorylgo{ */
 	
@@ -1109,11 +1088,21 @@ html{
   cursor: pointer;
 }
 
-/* #bd{ */
+#profileContainer{
 	
-/* 	width:70%; */
-/* 	left:0; */
-/* } */
+	width:47%;
+	display: block;
+	position: relative;
+}
+
+.edit-profile-form{
+	
+	width:50%;
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	top: 120px;
+}
 
 /* #formd{ */
 /* 	width: 250px; */
