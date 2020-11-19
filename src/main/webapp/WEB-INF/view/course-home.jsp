@@ -44,7 +44,12 @@
 		<div id="courseContainer" onclick="hideForm();">
 			<div id="courseHead">Welcome to the ${course.name}</div>
 			<div id="leftContainer">
+				<div id="course-analytics">
 				COURSE ANALYTICS
+					<div>Course Description: ${course.description}</div>
+					<div>Course Duration: ${course.estimatedTimeToComplete}</div>
+					<div>Category: ${course.category}</div>
+ 				</div>
  			</div>
  			<div id="rightContainer">
  				Number of Students Enrolled

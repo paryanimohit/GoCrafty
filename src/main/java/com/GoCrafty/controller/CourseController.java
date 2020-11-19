@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
+import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.service.CourseService;
 
 @Controller
@@ -92,9 +93,25 @@ public class CourseController {
 		else {	
 			Course myCourse = courseService.addCourse(course);
 			int newId = myCourse.getId();
-			Course newCourse = courseService.getCourseById(String.valueOf(newId));
+			instructorSession.put("newCourseId", String.valueOf(newId));
+			return "redirect:/home/course/showCourseHomeToInstructor";
+		}
+	}
+	
+	@RequestMapping("/showCourseHomeToInstructor")
+	public String showCourseHomeToInstructor(@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,Model theModel) {
+		
+		String userId=instructorSession.get("id");
+		
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {
+			String newCourseId = instructorSession.get("newCourseId");
+			Course newCourse = courseService.getCourseById(String.valueOf(newCourseId));
 			theModel.addAttribute("course",newCourse);
-			return "redirect:/home/course/showCourseHome";
+			return "course-home";
 		}
 	}
 }
