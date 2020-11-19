@@ -72,6 +72,15 @@
  				<i>Get exciting offers from team GoCrafty on your Birthday! </i></div>
  				<div id="logslgo">Last Login: ${student.logs}</div>
  		</div>
+
+			<c:forEach var="theCourse" items="${enrolledCourses}">
+			<br>Course Name: ${theCourse.getName()}<br>
+				Estimated time to complete:  ${theCourse.getEstimatedTimeToComplete()}<br>
+				Instructor name: ${instructorName.get(String.valueOf(theCourse.getInstructor_id()))}<br>
+				Category: ${theCourse.getCategory()}
+				
+			
+			</c:forEach> 		
  </div>
 </c:if>
 </body>

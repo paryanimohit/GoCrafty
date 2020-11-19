@@ -10,11 +10,13 @@ public interface CourseService {
 
 	public List<String> showCategories();
 
-	public List<Course> showCourse(String category);
+	public List<Course> showCoursesByCategory(String category);
 
 	public HashMap<String, String> getInstructorNames(List<Course> course);
 	
 	public Course getCourseById(String id);
 
 	public String enroll(String useId, String courseId);
+
+	public List<Course> getEnrolledCourses(int id);
 }

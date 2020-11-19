@@ -25,8 +25,8 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	@Transactional
-	public List<Course> showCourse(String category) {
-		return courseDAO.showCourse(category);
+	public List<Course> showCoursesByCategory(String category) {
+		return courseDAO.showCoursesByCategory(category);
 	}
 
 	@Override
@@ -44,6 +44,12 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public String enroll(String useId, String courseId) {
 		return courseDAO.enroll(useId,courseId );	
+	}
+
+	@Override
+	@Transactional
+	public List<Course> getEnrolledCourses(int id) {
+		return courseDAO.getEnrolledCourses(id);
 	}
 
 }
