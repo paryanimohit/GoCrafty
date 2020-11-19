@@ -1,5 +1,6 @@
 package com.GoCrafty.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public List<Course> showCourse(String category) {
+	public List<Course> showCoursesByCategory(String category) {
 		Session  currentSession= sessionFactory.getCurrentSession();
 		Query query = currentSession.createQuery("from Course c WHERE c.category= :category");
 		query.setParameter("category", category);
@@ -102,5 +103,34 @@ public class CourseDAOImpl implements CourseDAO {
 		catch (Exception e) {
 			return null;
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Course> getEnrolledCourses(int id) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		ArrayList<CourseEnrolled> courseEnrolled=new ArrayList<CourseEnrolled>();
+		ArrayList<Course> courseList=new ArrayList<Course>();
+
+		try 
+		{
+			Query query=currentSession.createQuery("from CourseEnrolled c WHERE c.studentId= :id");
+			query.setParameter("id", id);
+			courseEnrolled=(ArrayList<CourseEnrolled>)query.getResultList();
+			
+			for(CourseEnrolled theCourseEnrolled: courseEnrolled)
+			{
+				int courseId=theCourseEnrolled.getCourseId();
+				Course theCourse=getCourseById(String.valueOf(courseId));
+				courseList.add(theCourse);
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return courseList;
 	}
 }

@@ -32,19 +32,19 @@ public class CourseController {
 		return "show-category";
 	}
 
-	@PostMapping("/showCourse")
-	public String showCourse(Model theModel,@RequestParam("category") String category)
+	@PostMapping("/showCoursesByCategory")
+	public String showCoursesByCategory(Model theModel,@RequestParam("category") String category)
 	{
-		List<Course> course=courseService.showCourse(category);
+		List<Course> course=courseService.showCoursesByCategory(category);
 		 HashMap<String, String> hmap=courseService.getInstructorNames(course);
 		 theModel.addAttribute("instructor", hmap);
 		theModel.addAttribute("course", course);
 		
-		return "course";
+		return "courses-by-category";
 	}
 
 	@RequestMapping("/viewCourse")
-	public String viewCourse(@RequestParam("id")String courseId,Model theModel)
+	public String viewCourse(@RequestParam("id")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
 	{
 		Course theCourse=courseService.getCourseById(courseId);
 		List<Course> course =new ArrayList<Course>();
@@ -53,21 +53,23 @@ public class CourseController {
 		
 		theModel.addAttribute("theCourse",theCourse);
 		theModel.addAttribute("instructorName",instructorName);
+		
+		//if(studentSession.get(""))
 		return "view-course";
 	}
 	
 	@RequestMapping("/enrollCourse")
 	public String enrollCourse(@RequestParam("id")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
 	{
-		String useId=studentSession.get("id");
+		String userId=studentSession.get("id");
 		studentSession.put("courseId", courseId);
-		if (useId==null || useId.equals("temp"))
+		if (userId==null || userId.equals("temp"))
 		{
 			return "redirect:/home/userLogin?role=student";
 		}
 		else
 		{
-			String msg= courseService.enroll(useId,courseId);
+			String msg= courseService.enroll(userId,courseId);
 			if(!(msg.equals("Enrolled")))
 					{
 						return "error-page";

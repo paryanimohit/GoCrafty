@@ -2,6 +2,7 @@ package com.GoCrafty.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.StudentService;
+import com.GoCrafty.service.CourseService;
 import com.GoCrafty.service.Encryption;
 
 
@@ -23,6 +26,9 @@ import com.GoCrafty.service.Encryption;
 public class StudentController {
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private CourseService courseService;
 
 	
 	@GetMapping("/viewProfile")
@@ -42,6 +48,14 @@ public class StudentController {
 			
 			m.addAttribute("img",image);
 			m.addAttribute("student",student);
+			
+			
+			//show Enrolled course block start
+			List<Course> enrolledCourses=courseService.getEnrolledCourses(id);
+			m.addAttribute("enrolledCourses", enrolledCourses);
+			HashMap<String, String> instructorName=courseService.getInstructorNames(enrolledCourses);
+			m.addAttribute("instructorName", instructorName);
+			//show Enrolled course block end
 			sendToHeader(m);
 			return "student-profile";
 			}
