@@ -3,12 +3,12 @@ package com.GoCrafty.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.service.CourseService;
-import com.GoCrafty.service.StudentService;
 
 @Controller
 @RequestMapping("home/course")
@@ -77,5 +76,23 @@ public class CourseController {
 		
 		return "redirect:/home/student/viewProfile";
 
+	}
+	
+	@RequestMapping("/addCourse")
+	public String addCourse(@ModelAttribute(name="course") Course course,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
+		
+		String userId=instructorSession.get("id");
+		
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {	
+			Course myCourse = courseService.addCourse(course);
+			int newId = myCourse.getId();
+			Course newCourse = courseService.getCourseById(String.valueOf(newId));
+			theModel.addAttribute("course",newCourse);
+			return "redirect:/home/course/showCourseHome";
+		}
 	}
 }

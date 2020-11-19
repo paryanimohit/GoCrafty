@@ -91,4 +91,16 @@ public class CourseDAOImpl implements CourseDAO {
 		return "Enrolled";
 	}
 
+	@Override
+	public Course addCourse(Course course) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			Course theCourse = new Course(course.getName(), course.getDescription(),course.getEstimatedTimeToComplete(),course.getCategory(),course.getInstructor_id());	
+			currentSession.save(theCourse);
+			return theCourse;
+		}
+		catch (Exception e) {
+			return null;
+		}
+	}
 }

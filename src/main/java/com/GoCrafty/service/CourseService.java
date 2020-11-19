@@ -2,7 +2,6 @@ package com.GoCrafty.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.GoCrafty.entity.Course;
 
@@ -17,4 +16,6 @@ public interface CourseService {
 	public Course getCourseById(String id);
 
 	public String enroll(String useId, String courseId);
+
+	public Course addCourse(Course course);
 }

@@ -1,5 +1,7 @@
 package com.GoCrafty.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +38,20 @@ public class InstructorServiceImpl implements InstructorService {
 	@Transactional
 	public String createAccount(Instructor theInstructor) {
 		return instructorDAO.createAccount(theInstructor);
+	}
+
+	@Override
+	@Transactional
+	public Instructor setCurrentLogin(int id) {
+		return instructorDAO.setCurrentLogin(id);
+		
+	}
+
+	@Override
+	@Transactional
+	public Instructor editProfile(ArrayList<String> updatedInstructor, String localId) {
+		// TODO Auto-generated method stub
+		return instructorDAO.editProfile(updatedInstructor,localId);
 	}
 
 }
