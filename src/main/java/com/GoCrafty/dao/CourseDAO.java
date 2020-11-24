@@ -16,6 +16,7 @@ public interface CourseDAO {
 
 	public String enroll(String useId, String courseId);
 
+	public Course addCourse(Course course);
 	public List<Course> getEnrolledCourses(int id);
 
 

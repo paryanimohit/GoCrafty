@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.GoCrafty.dao.CourseDAO;
-import com.GoCrafty.dao.StudentDAO;
 import com.GoCrafty.entity.Course;
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -48,8 +47,15 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	@Transactional
+	public Course addCourse(Course course) {
+		return courseDAO.addCourse(course);
+	}
+
+	@Override
+	@Transactional
 	public List<Course> getEnrolledCourses(int id) {
 		return courseDAO.getEnrolledCourses(id);
+
 	}
 
 }

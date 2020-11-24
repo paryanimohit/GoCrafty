@@ -3,7 +3,9 @@ package com.GoCrafty.dao;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 
 import javax.imageio.ImageIO;
 import javax.persistence.Query;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.service.Encryption;
+import com.ibm.icu.util.Calendar;
 
 @Repository
 public class InstructorDAOImpl implements InstructorDAO {
@@ -96,4 +99,39 @@ public class InstructorDAOImpl implements InstructorDAO {
 				return "Success! Instructor created, Please login to continue";
 		}
 
+	@Override
+	public Instructor setCurrentLogin(int id) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		Instructor myInstructor = currentSession.get(Instructor.class, id);
+
+		Date currentDate = Calendar.getInstance().getTime();
+		String lastLogin = currentDate.toString();
+		myInstructor.setLogs(lastLogin);
+		currentSession.save(myInstructor);
+		return null;
+	}
+
+	@Override
+	public Instructor editProfile(ArrayList<String> updatedInstructor, String localId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		
+		String firstName = updatedInstructor.get(0);
+		String lastName = updatedInstructor.get(1);
+		String password = updatedInstructor.get(2);
+		
+		Encryption encr = new Encryption();
+		String encryptedPassword=encr.encrypt(password);
+		
+		int id = Integer.parseInt(localId);
+		
+		Instructor instructor = currentSession.get(Instructor.class, id);
+		
+		instructor.setFirstName(firstName);
+		instructor.setLastName(lastName);
+		instructor.setPassword(encryptedPassword);
+		
+		Instructor updatedInstructor1 = currentSession.get(Instructor.class, id);
+       return updatedInstructor1;
+	}
 }

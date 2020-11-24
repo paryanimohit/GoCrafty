@@ -1,5 +1,4 @@
 package com.GoCrafty.controller;
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.GoCrafty.entity.Student;
 import com.GoCrafty.entity.User;
 import com.GoCrafty.service.AuthenticationService;
-import com.ibm.icu.util.Calendar;
 
 @Controller
 @RequestMapping("home/authentication")

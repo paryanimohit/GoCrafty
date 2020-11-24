@@ -1127,6 +1127,38 @@ html{
 	top: 120px;
 }
 
+#courseHead{
+	font-size: 20px;
+	font-weight: bold;
+	display: block;
+	width: 50%;
+	margin: 0 auto;
+}
+
+#leftContainer{
+	display: block;
+	float: left;
+	width:60%;
+	border:1px solid white;
+}
+
+#rightContainer{
+	display: block;
+	float: right;
+	width:38%;
+	border:1px solid white;
+}
+
+#courseContainer{
+	
+	width:90% ;
+	padding-top: 100px;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	background-color: #181818;
+}
+
 /* #formd{ */
 /* 	width: 250px; */
 /* 	border: 0.5px solid black; */

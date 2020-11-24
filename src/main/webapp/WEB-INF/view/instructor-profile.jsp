@@ -34,7 +34,7 @@
 		<div id="headerLink"><a href="/GoCrafty/home/authentication/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>	
 		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Profile</a></div>
-		<div id="headerLink"><a href="addCourse">Add Course</a></div>
+		<div id="headerLink"><a href="showAddCourse">Add Course</a></div>
 	</div>
 </header>
 <div class ="content">
@@ -61,8 +61,16 @@
 				
 <div id="profileContainer" onclick="hideForm();">
 	<div id="Profile">
-		<div id="namelgo">User Name:${instructorist.firstName} ${instructorlist.lastName} </div>
- 		<div id="emaillgo">Email Id:${instructorlist.email} </div>
+		<div id="namelgo">Hello ${instructor.firstName} ${instructor.lastName}, Welcome back!</div>
+ 		<div id="emaillgo">Your registered email address is: <b>${instructor.email}</b></div>
+ 		<c:if test="${instructor.recruiter =='1'}">
+ 			<div id="jobslgo">Your Active Services: 
+ 				<ol>
+ 					<li>Your are Recruiting: <b>Active</b> </li>
+ 				</ol>
+ 			</div>
+ 		</c:if>
+ 		<div id="logslgo">Last Login: ${instructor.logs}</div>		
 	</div>
 </div>
 </div>
