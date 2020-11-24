@@ -16,7 +16,6 @@
 <title>Add New Course</title>
 </head>
 <body>
-
 	<div id="signup_form">
 		<div id="form-content">
 	<form:form action="${pageContext.request.contextPath}/home/course/addCourse" modelAttribute="course" method="post">
