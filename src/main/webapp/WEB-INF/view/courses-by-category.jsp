@@ -16,7 +16,7 @@
 	Estimated time to complete:  ${theCourse.getEstimatedTimeToComplete()}
 	<br>
 	Instructor name: ${instructor.get(String.valueOf(theCourse.getInstructor_id()))}
-	<input type="button" id="sbutton" value="View Course" onclick="location.href = '${pageContext.request.contextPath}/home/course/viewCourse?id=${theCourse.getId()}';">
+	<input type="button" id="sbutton" value="View Course" onclick="location.href = '${pageContext.request.contextPath}/home/course/viewCourseDescription?id=${theCourse.getId()}';">
 	</c:forEach>
 
 

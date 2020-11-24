@@ -114,4 +114,22 @@ public class CourseController {
 			return "course-home";
 		}
 	}
+	
+	@RequestMapping("/course-home-student")
+	public String course_home_student(@RequestParam("id")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
+	{
+		Course theCourse=courseService.getCourseById(courseId);
+		List<Course> course =new ArrayList<Course>();
+		course.add(theCourse);
+		HashMap<String, String> instructorName=courseService.getInstructorNames(course);
+		
+		//getVideoLinks
+		
+		
+		theModel.addAttribute("theCourse",theCourse);
+		theModel.addAttribute("instructorName",instructorName);
+		
+		return "course-home-student";
+	}
+	
 }

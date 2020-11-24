@@ -31,6 +31,12 @@ public class Course {
 	@Column(name = "instructor_id")
 	private int instructor_id;
 	
+	@Column(name = "video_link")
+	private String videoLink;
+	
+	@Column(name = "quiz_link")
+	private String quizLink;
+	
 	public Course() {}
 
 	public int getId() {
@@ -80,6 +86,24 @@ public class Course {
 	public void setInstructor_id(int instructor_id) {
 		this.instructor_id = instructor_id;
 	}
+	
+	
+
+	public String getVideoLink() {
+		return videoLink;
+	}
+
+	public void setVideoLink(String videoLink) {
+		this.videoLink = videoLink;
+	}
+
+	public String getQuizLink() {
+		return quizLink;
+	}
+
+	public void setQuizLink(String quizLink) {
+		this.quizLink = quizLink;
+	}
 
 	public Course(String name, String description, String estimatedTimeToComplete, String category,
 			int instructor_id) {
@@ -90,6 +114,20 @@ public class Course {
 		this.category = category;
 		this.instructor_id = instructor_id;
 	}
+
+	public Course(String name, String description, String estimatedTimeToComplete, String category, int instructor_id,
+			String videoLink, String quizLink) {
+		
+		this.name = name;
+		this.description = description;
+		this.estimatedTimeToComplete = estimatedTimeToComplete;
+		this.category = category;
+		this.instructor_id = instructor_id;
+		this.videoLink = videoLink;
+		this.quizLink = quizLink;
+	}
+	
+	
 	
 	
 }

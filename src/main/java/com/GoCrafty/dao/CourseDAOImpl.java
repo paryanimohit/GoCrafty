@@ -47,7 +47,6 @@ public class CourseDAOImpl implements CourseDAO {
 	@Override
 	public HashMap<String, String> getInstructorNames(List<Course> course) {
 		Session  currentSession= sessionFactory.getCurrentSession();
-		System.out.println("Course dao impl theCourse.getInstructor_id()"+course.size());
 
 		HashMap<String, String> courseId_InstructorName = new HashMap<String, String>();
 		Query query =null;
