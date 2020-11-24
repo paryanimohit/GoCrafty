@@ -61,6 +61,7 @@ public class StudentController {
 			}
 		catch (Exception e)
 			{
+			e.printStackTrace();
 			return "errorPage";
 			}
 	}

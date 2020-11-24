@@ -44,8 +44,8 @@ public class CourseController {
 		return "courses-by-category";
 	}
 
-	@RequestMapping("/viewCourse")
-	public String viewCourse(@RequestParam("id")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
+	@RequestMapping("/viewCourseDescription")
+	public String viewCourseDescription(@RequestParam("id")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
 	{
 		Course theCourse=courseService.getCourseById(courseId);
 		List<Course> course =new ArrayList<Course>();
@@ -56,7 +56,7 @@ public class CourseController {
 		theModel.addAttribute("instructorName",instructorName);
 		
 		//if(studentSession.get(""))
-		return "view-course";
+		return "view-course-description";
 	}
 	
 	@RequestMapping("/enrollCourse")
