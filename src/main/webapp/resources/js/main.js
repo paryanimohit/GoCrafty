@@ -47,5 +47,6 @@ function hideForm(){
 
 function showVideoUploadForm(){
 	
-	var id = document.getElementById("uploadVideoButton")
+	var id = document.getElementById("uploadVideoButton");
+	
 }
