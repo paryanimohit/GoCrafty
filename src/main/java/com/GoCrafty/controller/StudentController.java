@@ -65,7 +65,7 @@ public class StudentController {
 		{
 			theModel.addAttribute("message", message);
 			if(studentSession.containsKey("status")){
-				return "redirect:/home/admin/getUsers";
+				return "redirect:/home/admin/getStudent";
 			}
 			else
 				return "redirect:/home/userLogin?role=student";
