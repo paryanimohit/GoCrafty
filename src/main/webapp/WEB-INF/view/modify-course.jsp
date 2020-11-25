@@ -58,20 +58,25 @@
 		</form:form>
 	</div>
 	
-	<c:if test="${videoListSize} == '0'">
+	<div id="uploadVideoButton">
+	<button onClick="showVideoUploadForm();" value="addVideos">Add Video</button>
+	</div>
+	
+	<c:if test="${videoListSize == '0'}">
 	<div class="modifyVideos">
-		You Do not have any videos uploaded. Do you want to add videos? 
-		</div>
+		Get started and upload your first video to unlock more of the GoCrafty!
+	</div>
 	</c:if>
 	
-	<c:if test="${videoListSize} != '0'">
+	<c:if test="${videoListSize != '0'}">
 	<div class="modifyVideos">
 			<form action = "modifyVideos" method = "post">
-				LOOP:
+				<c:forEach items="${videoList}" var="video">
 				<label>Video Name</label>
-				<input type="text" name="videoName" value="${videoList.videoName}"/>
+				<input type="text" name="videoName" value="${videoList.key}"/>
 				<label>Video URL</label>
-				<input type="text" name="videoURL" value="${videoList.videoURL}"/>
+				<input type="text" name="videoURL" value="${videoList.value}"/>
+				</c:forEach>
 			</form>
 	 </div>
 	 </c:if>

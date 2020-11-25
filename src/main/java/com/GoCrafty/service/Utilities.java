@@ -15,14 +15,15 @@ public class Utilities {
 		}
 		}
 		catch (Exception e) {
-				e.printStackTrace();
-				return null;
+				
+				videos.put("null", null);
+				return videos;
 		}
 		return videos;
 	}
 
 	public static String getEmbededLink(String videoURL) {
-		System.out.println("video url: "+videoURL);
+//		System.out.println("video url: "+videoURL);
 		String[] temp=videoURL.split("\\?v=");
 		String[] temp2=temp[1].split("&");
 		
