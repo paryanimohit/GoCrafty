@@ -58,4 +58,10 @@ public class CourseServiceImpl implements CourseService {
 
 	}
 
+	@Override
+	@Transactional
+	public Course modifyCourse(Course course, String courseId) {
+		return courseDAO.modifyCourse(course,courseId);
+	}
+
 }

@@ -44,3 +44,9 @@ function hideForm(){
 		hide.style.visibility = "hidden";
 	}
 }
+
+function showVideoUploadForm(){
+	
+	var id = document.getElementById("uploadVideoButton");
+	
+}

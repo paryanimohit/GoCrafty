@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.CourseEnrolled;
 import com.GoCrafty.entity.Instructor;
+
 @Repository
 public class CourseDAOImpl implements CourseDAO {
 	
@@ -133,5 +134,24 @@ public class CourseDAOImpl implements CourseDAO {
 		}
 		
 		return courseList;
+	}
+
+	@Override
+	public Course modifyCourse(Course course, String courseId) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(courseId);
+			Course myCourse = currentSession.get(Course.class,id);
+			myCourse.setName(course.getName());
+			myCourse.setDescription(course.getDescription());
+			myCourse.setEstimatedTimeToComplete(course.getEstimatedTimeToComplete());
+			myCourse.setCategory(course.getCategory());
+			Course myUpdatedCourse = currentSession.get(Course.class, id);
+			//System.out.println("HIIIIIIIIII"+myCourse.getId()+""+myCourse.getName());
+			return myUpdatedCourse;
+		}
+		catch (Exception e) {
+			return null;
+		}
 	}
 }

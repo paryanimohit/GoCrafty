@@ -159,13 +159,40 @@ public class CourseController {
 			if(!(courseId.equals(null))) {
 			
 				Course course = courseService.getCourseById(courseId);
-				theModel.addAttribute(course);
+				theModel.addAttribute("course",course);
+				
+				HashMap<String, String> myVideos = Utilities.getVideoLinks(course.getVideoLink());
+				if(myVideos.containsKey("null")) {
+					theModel.addAttribute("videoListSize", 0);
+				}
+				else {
+					theModel.addAttribute("videoList",myVideos);
+				}
+				
 				return "modify-course";
 			}
 			
 			else {
 				return "error-page";
 			}
+		}
+	}
+	
+	@RequestMapping("/modifyCourse")
+	public String modifyCourse(@ModelAttribute(name="course") Course course,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
+		
+		String courseId = instructorSession.get("newCourseId");
+		String userId=instructorSession.get("id");
+		
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {	
+			Course myCourse = courseService.modifyCourse(course, courseId);
+			int newId = myCourse.getId();
+			instructorSession.put("newCourseId", String.valueOf(newId));
+			return "redirect:/home/course/showCourseHomeToInstructor";
 		}
 	}
 }
