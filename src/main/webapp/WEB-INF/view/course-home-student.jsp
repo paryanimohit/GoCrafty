@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +16,16 @@
 	Category: ${theCourse.getCategory()}<br>
 	Description: ${theCourse.getDescription() }<br>
 
+
+<h2>Videos</h2>
+<br>
+<c:forEach items="${videos}" var="theVideo">
+  <a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}">
+  Title: ${theVideo.key}</a><br>
+</c:forEach>
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/${embededLink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 </body>
 </html>
