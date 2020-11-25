@@ -152,7 +152,7 @@ html{
 	display:block;
 	position: relative;
 	margin: 0 auto;
-  	width: 80%;
+  	width: 90%;
 	opacity: 100%;
 	background-color: transparent;  
 }
@@ -846,30 +846,46 @@ html{
 
 #namelgo{
 	
-	display: inline-block;
+	display: block;
 	position: relative;
 	text-align: center;
 	margin: 0 auto;
-	top:15px;
 	width:100%;
+	padding-bottom: 20px;
+	font-weight: bold;
  } 
 
 #emaillgo{
 	
-	display: inline-block;
+	display:block;
 	position: relative;
-	top:30px;
 	text-align: left;
+	padding-bottom: 10px;
 }
 
+#jobslgo{
+	
+	display: block;
+	position: relative;
+	text-align: left;
+	padding-bottom: 10px;
+}
+ 
 #birthlgo{
 	
-	display: inline-block;
+	display: block;
 	position: relative;
-	top:50px;
 	text-align: left;
+	padding-bottom: 10px;
 }
 
+#logslgo{
+	
+	display: block;
+	position: relative;
+	text-align: left;
+	padding-bottom: 10px;
+}
 .profilePicProps{
 	
 	width: 45px;
@@ -1090,9 +1106,16 @@ html{
 
 #profileContainer{
 	
-	width:47%;
+	width:45% !important;
+	padding-bottom: 40px;
+	padding-top: 30px;
+	padding-left: 25px;
+	padding-right:25px;
 	display: block;
+	float:left;
 	position: relative;
+	border:2px solid white;
+	background-color: #262882;
 }
 
 .edit-profile-form{
@@ -1102,6 +1125,38 @@ html{
 	display: block;
 	position: relative;
 	top: 120px;
+}
+
+#courseHead{
+	font-size: 20px;
+	font-weight: bold;
+	display: block;
+	width: 90%;
+	margin: 0 auto;
+}
+
+#leftContainer{
+	display: block;
+	float: left;
+	width:60%;
+	border:1px solid white;
+}
+
+#rightContainer{
+	display: block;
+	float: right;
+	width:38%;
+	border:1px solid white;
+}
+
+#courseContainer{
+	
+	width:90% ;
+	padding-top: 100px;
+	display: block;
+	margin: 0 auto;
+	position: relative;
+	background-color: #181818;
 }
 
 /* #formd{ */

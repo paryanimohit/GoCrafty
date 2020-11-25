@@ -13,7 +13,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
 <meta charset="UTF-8">
-<title>Student Signup</title>
+<title>Create Account : Student</title>
 </head>
 <body>
 

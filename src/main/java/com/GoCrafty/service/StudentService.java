@@ -10,6 +10,7 @@ public interface StudentService {
 	public String getImage(int id);
 	public String createAccount(Student theStudent);
 	public Student editProfile(ArrayList<String> updatedStudent, String localId);
+	public Student setCurrentLogin(int id);
 
 
 }

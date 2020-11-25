@@ -46,4 +46,11 @@ public class StudentServiceImpl implements StudentService {
 		return studentDAO.editProfile(updatedStudent, localId);
 	}
 
+	@Override
+	@Transactional
+	public Student setCurrentLogin(int id) {
+		// TODO Auto-generated method stub
+		return studentDAO.setCurrentLogin(id);
+	}
+
 }

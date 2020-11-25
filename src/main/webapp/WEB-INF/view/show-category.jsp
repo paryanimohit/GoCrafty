@@ -25,7 +25,7 @@
 	<c:forEach var="cat" items="${category}">
 	<br>
 		<div id="shop"> 
-			<form action = "${pageContext.request.contextPath}/home/course/showCourse" method = "post">
+			<form action = "${pageContext.request.contextPath}/home/course/showCoursesByCategory" method = "post">
 			<input type="hidden" value="${cat}" name="category">
 			<div id="butt"><input type="submit" value="${cat}" id="sbutton" ></div></form>
 		</div>

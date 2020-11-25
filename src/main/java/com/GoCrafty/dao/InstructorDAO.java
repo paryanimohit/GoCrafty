@@ -1,5 +1,7 @@
 package com.GoCrafty.dao;
 
+import java.util.ArrayList;
+
 import com.GoCrafty.entity.Instructor;
 
 public interface InstructorDAO {
@@ -10,5 +12,9 @@ public interface InstructorDAO {
 	public String getImage(int id);
 
 	public String createAccount(Instructor theInstructor);
+
+	public Instructor setCurrentLogin(int id);
+
+	public Instructor editProfile(ArrayList<String> updatedInstructor, String localId);
 
 }
