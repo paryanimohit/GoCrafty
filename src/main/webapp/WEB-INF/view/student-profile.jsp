@@ -74,7 +74,7 @@
  		</div>
 
 			<c:forEach var="theCourse" items="${enrolledCourses}">
-				<a href="${pageContext.request.contextPath}/course/course-home-student?id=${theCourse.getId()}">
+				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${theCourse.getId()}&vId=1">
 					<br>Course Name: ${theCourse.getName()}<br>
 						Estimated time to complete:  ${theCourse.getEstimatedTimeToComplete()}<br>
 						Instructor name: ${instructorName.get(String.valueOf(theCourse.getInstructor_id()))}<br>

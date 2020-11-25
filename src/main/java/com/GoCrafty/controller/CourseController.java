@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.service.CourseService;
+import com.GoCrafty.service.Utilities;
 
 @Controller
 @RequestMapping("home/course")
@@ -116,7 +117,8 @@ public class CourseController {
 	
 
 	@RequestMapping("/course-home-student")
-	public String course_home_student(@RequestParam("id")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
+	public String course_home_student(@RequestParam("courseId")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession
+							,@RequestParam("vId")String videoId)
 	{
 		Course theCourse=courseService.getCourseById(courseId);
 		List<Course> course =new ArrayList<Course>();
@@ -124,10 +126,20 @@ public class CourseController {
 		HashMap<String, String> instructorName=courseService.getInstructorNames(course);
 		
 		//getVideoLinks
+		HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink());
 		
 		
+		//convert youtube url to embeded url
+		if(!(videoId.equals("1"))) {
+		System.out.println("Course controll , video id:"+videos.get(videoId));
+		String embededLink=Utilities.getEmbededLink(videos.get(videoId));
+		
+		theModel.addAttribute("embededLink",embededLink);
+		}
+		theModel.addAttribute("courseId",courseId);
 		theModel.addAttribute("theCourse",theCourse);
 		theModel.addAttribute("instructorName",instructorName);
+		theModel.addAttribute("videos",videos);
 		
 		return "course-home-student";
 	}
