@@ -189,7 +189,7 @@ public class CourseController {
 				theModel.addAttribute("course",course);
 				
 				HashMap<String, String> myVideos = Utilities.getVideoLinks(course.getVideoLink());
-				if(myVideos.isEmpty()) {
+				if(myVideos.containsKey("null")) {
 					theModel.addAttribute("videoListSize", 0);
 				}
 				else {

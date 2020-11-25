@@ -17,8 +17,9 @@ public class Utilities {
 		}
 		}
 		catch (Exception e) {
-				e.printStackTrace();
-				return null;
+				
+				videos.put("null", null);
+				return videos;
 		}
 		return videos;
 	}
