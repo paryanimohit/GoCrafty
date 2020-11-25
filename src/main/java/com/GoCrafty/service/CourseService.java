@@ -21,4 +21,6 @@ public interface CourseService {
 
 	public List<Course> getEnrolledCourses(int id);
 
+	public Course modifyCourse(Course course, String courseId);
+
 }

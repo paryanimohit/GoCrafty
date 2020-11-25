@@ -26,7 +26,7 @@
 		Hello ${tempSession.firstName}
 	</div>
 		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Course</a></div>
-		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/instructor/showModifyCourse">Modify Course</a></div>
+		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showModifyCourse">Modify Course</a></div>
 	</div>
 </header>
 <div class = "content">

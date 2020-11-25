@@ -115,19 +115,15 @@ public class Course {
 		this.instructor_id = instructor_id;
 	}
 
-	public Course(String name, String description, String estimatedTimeToComplete, String category, int instructor_id,
+	public Course(String name, String description, String estimatedTimeToComplete, String category,
 			String videoLink, String quizLink) {
 		
 		this.name = name;
 		this.description = description;
 		this.estimatedTimeToComplete = estimatedTimeToComplete;
 		this.category = category;
-		this.instructor_id = instructor_id;
 		this.videoLink = videoLink;
 		this.quizLink = quizLink;
 	}
-	
-	
-	
 	
 }

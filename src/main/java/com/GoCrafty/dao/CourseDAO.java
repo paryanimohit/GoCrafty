@@ -19,5 +19,7 @@ public interface CourseDAO {
 	public Course addCourse(Course course);
 	public List<Course> getEnrolledCourses(int id);
 
+	public Course modifyCourse(Course course, String courseId);
+
 
 }
