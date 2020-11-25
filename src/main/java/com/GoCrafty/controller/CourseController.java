@@ -131,7 +131,6 @@ public class CourseController {
 		
 		//convert youtube url to embeded url
 		if(!(videoId.equals("1"))) {
-		System.out.println("Course controll , video id:"+videos.get(videoId));
 		String embededLink=Utilities.getEmbededLink(videos.get(videoId));
 		
 		theModel.addAttribute("embededLink",embededLink);
