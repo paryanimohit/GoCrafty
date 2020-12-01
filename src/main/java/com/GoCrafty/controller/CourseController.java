@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
+import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.service.CourseService;
 import com.GoCrafty.service.Utilities;
 
@@ -120,27 +121,37 @@ public class CourseController {
 	public String course_home_student(@RequestParam("courseId")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession
 							,@RequestParam("vId")String videoId)
 	{
-		Course theCourse=courseService.getCourseById(courseId);
-		List<Course> course =new ArrayList<Course>();
-		course.add(theCourse);
-		HashMap<String, String> instructorName=courseService.getInstructorNames(course);
+		String userId=studentSession.get("id");
 		
-		//getVideoLinks
-		HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink());
-		
-		
-		//convert youtube url to embeded url
-		if(!(videoId.equals("1"))) {
-		String embededLink=Utilities.getEmbededLink(videos.get(videoId));
-		
-		theModel.addAttribute("embededLink",embededLink);
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=student";
 		}
-		theModel.addAttribute("courseId",courseId);
-		theModel.addAttribute("theCourse",theCourse);
-		theModel.addAttribute("instructorName",instructorName);
-		theModel.addAttribute("videos",videos);
-		
-		return "course-home-student";
+		else 
+		{
+			Course theCourse=courseService.getCourseById(courseId);
+			List<Course> course =new ArrayList<Course>();
+			course.add(theCourse);
+			HashMap<String, String> instructorName=courseService.getInstructorNames(course);
+			
+			//getVideoLinks
+			HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink());
+			
+			
+			//convert youtube url to embeded url
+				if(!(videoId.equals("1"))) 
+				{
+				String embededLink=Utilities.getEmbededLink(videos.get(videoId));
+				
+				theModel.addAttribute("embededLink",embededLink);
+				}
+			theModel.addAttribute("courseId",courseId);
+			theModel.addAttribute("theCourse",theCourse);
+			theModel.addAttribute("instructorName",instructorName);
+			theModel.addAttribute("videos",videos);
+			
+			return "course-home-student";
+		}
 	}
 	
 
