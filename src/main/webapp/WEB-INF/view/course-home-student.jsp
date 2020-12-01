@@ -21,11 +21,11 @@
 
 <h2>Videos</h2>
 <br>
-size=${videos.size()}
-<c:if test="${videos.size() == 0}">
+
+<c:if test="${videos.containsKey('null')}">
 Seems like Instructor has not added videos yet!
 </c:if>
-<c:if test="${ videos.size() != 0}">
+<c:if test="${ !videos.containsKey('null')}">
 <c:forEach items="${videos}" var="theVideo">
   <a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}">
   Title: ${theVideo.key}</a><br>

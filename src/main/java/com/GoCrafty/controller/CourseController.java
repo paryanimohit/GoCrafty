@@ -165,7 +165,7 @@ public class CourseController {
 			//getVideoLinks
 			HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink()+","+theCourse.getQuizLink());
 			
-			
+		
 			//convert youtube url to embeded url
 				if(!(videoId.equals("1"))) 
 				{
