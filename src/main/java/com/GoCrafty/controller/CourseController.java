@@ -85,15 +85,21 @@ public class CourseController {
 	public String addCourse(@ModelAttribute(name="course") Course course,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
 		
 		String userId=instructorSession.get("id");
-		
+		System.out.println(userId);
 		if (userId==null || userId.equals("temp"))
 		{
+			if(instructorSession.containsKey("status")){
+				return "redirect:/home/admin/showAdminLogin";
+			}
 			return "redirect:/home/userLogin?role=instructor";
 		}
 		else {	
 			Course myCourse = courseService.addCourse(course);
 			int newId = myCourse.getId();
 			instructorSession.put("newCourseId", String.valueOf(newId));
+			if(instructorSession.containsKey("status")){
+				return "redirect:/home/admin/getCourse";
+			}
 			return "redirect:/home/course/showCourseHomeToInstructor";
 		}
 	}
@@ -126,14 +132,13 @@ public class CourseController {
 		HashMap<String, String> instructorName=courseService.getInstructorNames(course);
 		
 		//getVideoLinks
-		HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink());
+		HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink()+","+theCourse.getQuizLink());
 		
 		
 		//convert youtube url to embeded url
 		if(!(videoId.equals("1"))) {
-		System.out.println("Course controll , video id:"+videos.get(videoId));
 		String embededLink=Utilities.getEmbededLink(videos.get(videoId));
-		
+		System.out.println(embededLink);
 		theModel.addAttribute("embededLink",embededLink);
 		}
 		theModel.addAttribute("courseId",courseId);

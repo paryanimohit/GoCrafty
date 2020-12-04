@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.GoCrafty.dao.AdminDAO;
 import com.GoCrafty.entity.Admin;
+import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
 
@@ -52,20 +53,20 @@ public class AdminServiceImpl implements AdminService{
 //		// TODO Auto-generated method stub
 //		return adminDAO.deleteUser(userId);
 //	}
-//
-//	@Override
-//	@Transactional
-//	public List<BarberShops> getShops() {
-//		// TODO Auto-generated method stub
-//		return adminDAO.getShops();
-//	}
-//
-//	@Override
-//	@Transactional
-//	public String deletebarberShop(int shopId) {
-//		return adminDAO.deletebarberShop(shopId);
-//	}
-//
+
+	@Override
+	@Transactional
+	public List<Course> getCourse() {
+		// TODO Auto-generated method stub
+		return adminDAO.getCourse();
+	}
+
+	@Override
+	@Transactional
+	public String deleteCourse(int courseId) {
+		return adminDAO.deleteCourse(courseId);
+	}
+
 //	@Override
 //	@Transactional
 //	public String addBarberShop(BarberShops theShop, String finalDays, String hour,double[] lati_longi) {

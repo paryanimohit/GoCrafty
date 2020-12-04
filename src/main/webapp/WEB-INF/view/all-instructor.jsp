@@ -22,7 +22,12 @@
 			First Name: ${instructor.getFirstName()}<br>
 			Last name: ${instructor.getLastName()}<br>
 			E-Mail: ${instructor.getEmail()}<br>
-			Recruiter: ${instructor.getRecruiter()}<br>
+			<c:if test="${instructor.getRecruiter() == 1}">
+			Recruiter: True<br>
+			</c:if>
+			<c:if test="${instructor.getRecruiter() != 1}">
+			Recruiter: False<br>
+			</c:if>
 			<input type="button" onclick="location.href ='${pageContext.request.contextPath}/home/admin/deleteInstructor?instructorId=${instructor.getId()}'; buttonAnimation();" value="Delete Instructor"/>
 		</c:forEach>
 </body>

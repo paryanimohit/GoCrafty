@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Admin;
+import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.AdminService;
@@ -91,20 +92,20 @@ public class AdminController {
 		}
 	}
 
-//	@RequestMapping("/getShops")
-//	public String getShops(@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m) {
-//		if(!(adminSession.get("id").equals("temp")) || (adminSession.get("id").equals(null))) {
-//			List<BarberShops> shops = adminService.getShops();
-//			m.addAttribute("shopList", shops);
-//			return "all-shops";
-//		}
-//		
-//		else {
-//			m.addAttribute("Message", "Something Went wrong! Please Login again");
-//			return "redirect:/home/showAdminLogin";
-//		}
-//	}
-//	
+	@RequestMapping("/getCourse")
+	public String getCourse(@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m) {
+		if(!(adminSession.get("id").equals("temp")) || (adminSession.get("id").equals(null))) {
+			List<Course> courses = adminService.getCourse();
+			m.addAttribute("courseList", courses);
+			return "all-course";
+		}
+		
+		else {
+			m.addAttribute("Message", "Something Went wrong! Please Login again");
+			return "redirect:/home/showAdminLogin";
+		}
+	}
+	
 	@RequestMapping("/deleteInstructor")
 	public String deleteInstructor(@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m,@RequestParam("instructorId") int instructorId)
 	{
@@ -144,41 +145,41 @@ public class AdminController {
 //			return "redirect:/home/showAdminLogin";
 //		}
 //	}
-//	
-//	
-//	
-//	@GetMapping("/deleteBarberShop")
-//	public String deletebarberShop(@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m,@RequestParam("shopId") int shopId)
-//	{
-//		if(!(adminSession.get("id").equals("temp")) || (adminSession.get("id").equals(null)))
-//		{
-//			@SuppressWarnings("unused")
-//			String message = adminService.deletebarberShop(shopId); 
-//			return "redirect:/home/admin/getShops";
-//		}
-//		else {
-//			m.addAttribute("Message", "Something Went wrong! Please Login again");
-//			return "redirect:/home/showAdminLogin";
-//		}
-//	}
-//	
-//	@GetMapping("/showBarberShopForm")
-//	public String showBarberShopform(@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m)
-//	{
-//		
-//		if(!(adminSession.get("id").equals("temp")) || (adminSession.get("id").equals(null)))
-//		{
-//			BarberShops theBarberShop=new BarberShops();
-//			m.addAttribute("theBarberShop",theBarberShop);
-//			return "barberShop-form";
-//		}
-//		else {
-//			m.addAttribute("Message", "Something Went wrong! Please Login again");
-//			return "redirect:/home/showAdminLogin";
-//		}
-//
-//	}
-//	
+	
+	
+	
+	@GetMapping("/deleteCourse")
+	public String deletebarberShop(@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m,@RequestParam("courseId") int courseId)
+	{
+		if(!(adminSession.get("id").equals("temp")) || (adminSession.get("id").equals(null)))
+		{
+			@SuppressWarnings("unused")
+			String message = adminService.deleteCourse(courseId); 
+			return "redirect:/home/admin/getCourse";
+		}
+		else {
+			m.addAttribute("Message", "Something Went wrong! Please Login again");
+			return "redirect:/home/showAdminLogin";
+		}
+	}
+	
+	@GetMapping("/showCourseForm")
+	public String showCourseForm(@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m)
+	{
+		
+		if(!(adminSession.get("id").equals("temp")) || (adminSession.get("id").equals(null)))
+		{
+			Course course=new Course();
+			adminSession.put("status", "admin");
+			m.addAttribute("course",course);
+			return "add-course";
+		}
+		else {
+			m.addAttribute("Message", "Something Went wrong! Please Login again");
+			return "redirect:/home/showAdminLogin";
+		}
+	}
+	
 //	@PostMapping("/addBarberShop")
 //	public String addbarberShop(@ModelAttribute(name="theBarberShop")BarberShops theShop
 //			,@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m,

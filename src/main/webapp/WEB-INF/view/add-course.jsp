@@ -46,7 +46,16 @@
 		</div>
 		<br>
 		<div id="leftSgn"><label>Instructor ID </label></div>
-		<div id="rightSgn"><form:input id="forminputbox" value="${userId}" path="instructor_id" readonly="true" required="required"/></div>
+		<c:if test="${tempSession.status != 'admin'}">
+			<div id="rightSgn"><form:input id="forminputbox" value="${userId}" path="instructor_id" readonly="true" required="required"/></div>
+		</c:if>
+		<c:if test="${tempSession.status == 'admin'}">
+			<div id="rightSgn"><form:input id="forminputbox" value="${userId}" path="instructor_id" readonly="false" required="required"/></div>
+		</c:if>
+		<div id="leftSgn"><label>Video Link </label></div>
+		<div id="rightSgn"><form:input id="forminputbox" path="videoLink" required="required"/></div>
+		<div id="leftSgn"><label>Quiz Link </label></div>
+		<div id="rightSgn"><form:input id="forminputbox" path="quizLink" required="required"/></div>
 		<div id="leftSgn"><input class="signupbutton" type="submit" value="Create Course"></div>
 	</form:form> 
 		</div>

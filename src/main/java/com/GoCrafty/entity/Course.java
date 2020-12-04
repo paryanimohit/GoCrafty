@@ -106,22 +106,13 @@ public class Course {
 	}
 
 	public Course(String name, String description, String estimatedTimeToComplete, String category,
-			int instructor_id) {
+			int instructor_id, String videoLink, String quizLink) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.estimatedTimeToComplete = estimatedTimeToComplete;
 		this.category = category;
 		this.instructor_id = instructor_id;
-	}
-
-	public Course(String name, String description, String estimatedTimeToComplete, String category,
-			String videoLink, String quizLink) {
-		
-		this.name = name;
-		this.description = description;
-		this.estimatedTimeToComplete = estimatedTimeToComplete;
-		this.category = category;
 		this.videoLink = videoLink;
 		this.quizLink = quizLink;
 	}

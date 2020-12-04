@@ -139,7 +139,7 @@ public class StudentController {
 				studentSession.put("lastName",student.getLastName());
 				studentSession.put("email",student.getEmail());
 				return "redirect:/home/student/viewProfile";
-				}		
+				}
 		}
 		else {
 			model.addAttribute("Message", "Your Session was Expired! Please login again to continue");

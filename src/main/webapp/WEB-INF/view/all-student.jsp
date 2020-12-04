@@ -22,7 +22,12 @@
 	<br>ID: ${student.getId()}
 	<br>Name: ${student.getFirstName()} &nbsp; ${student.getLastName()}
 	<br>Email: ${student.getEmail()}
-	<br>Apply for Job: ${student.getApplyForJob()}
+	<c:if test="${student.getApplyForJob() == 1}">
+	<br>Apply for Job: True
+	</c:if>
+	<c:if test="${student.getApplyForJob() != 1}">
+	<br>Apply for Job: False
+	</c:if>
 	<br>Birth Date: ${student.getBirthDate()}
 	<br><input type="button" value="Delete Student" onclick="location.href = '${pageContext.request.contextPath}/home/admin/deleteStudent?studentId=${student.getId()}'; buttonAnimation();">
 	<hr>

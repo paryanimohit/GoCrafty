@@ -2,6 +2,10 @@ package com.GoCrafty.dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -9,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.GoCrafty.entity.Admin;
+import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.Encryption;
@@ -96,51 +101,48 @@ public class AdminDAOImpl implements AdminDAO{
 //				return "An error has occured! Please try again.";
 //			}
 //	}
-//
-//	@Override
-//	public List<BarberShops> getShops() {
-//		try {
-//			Session currentSession = sessionFactory.getCurrentSession();
-////			Query q=currentSession.createQuery("from BarberShops");
-////			//System.out.println("Query: "+q);
-////			@SuppressWarnings("unchecked")
-////			List<BarberShops> shopList = q.getResultList();
-//			
-//			//2n approach
-//			 CriteriaBuilder builder = currentSession.getCriteriaBuilder();
-//			 CriteriaQuery<BarberShops> criteria = builder.createQuery(BarberShops.class);
-//			 Root<BarberShops> root=criteria.from(BarberShops.class);
-//			 criteria.select(root);
-//			 Query query= currentSession.createQuery(criteria);
-//			 @SuppressWarnings("unchecked")
-//			List<BarberShops> data = query.getResultList();
-//			System.out.println(data);
-//			return data;
-//		}
-//		catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
-//
-//	@Override
-//	public String deletebarberShop(int shopId) {
-//		
-//		try {
-//			Session currentSession = sessionFactory.getCurrentSession();
-//			
-//			Query query=currentSession.createSQLQuery("Set foreign_key_checks = 0");
-//			query.executeUpdate();
-//			BarberShops myBarberShop = currentSession.get(BarberShops.class, shopId);
-//			currentSession.delete(myBarberShop);
-//			return "Shop Deleted Successfully";
-//			}
-//			catch (Exception e) {
-//				e.printStackTrace();
-//				return "An error has occured! Please try again.";
-//			}
-//	}
-//
+
+	@Override
+	public List<Course> getCourse() {
+		try {
+			Session currentSession = sessionFactory.getCurrentSession();
+//			Query q=currentSession.createQuery("from BarberShops");
+//			//System.out.println("Query: "+q);
+//			@SuppressWarnings("unchecked")
+//			List<BarberShops> shopList = q.getResultList();
+			
+			//2n approach
+			 CriteriaBuilder builder = currentSession.getCriteriaBuilder();
+			 CriteriaQuery<Course> criteria = builder.createQuery(Course.class);
+			 Root<Course> root=criteria.from(Course.class);
+			 criteria.select(root);
+			 Query query= currentSession.createQuery(criteria);
+			 @SuppressWarnings("unchecked")
+			List<Course> data = query.getResultList();
+			return data;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public String deleteCourse(int courseId) {
+		
+		try {
+			Session currentSession = sessionFactory.getCurrentSession();
+			
+			Course myCourse = currentSession.get(Course.class, courseId);
+			currentSession.delete(myCourse);
+			return "Shop Deleted Successfully";
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+				return "An error has occured! Please try again.";
+			}
+	}
+
 //	@Override
 //	public String addBarberShop(BarberShops theShop, String finalDays, String hour,double[] lati_longi) {
 //		try {

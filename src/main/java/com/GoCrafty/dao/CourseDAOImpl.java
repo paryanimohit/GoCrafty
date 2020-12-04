@@ -98,7 +98,7 @@ public class CourseDAOImpl implements CourseDAO {
 	public Course addCourse(Course course) {
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
-			Course theCourse = new Course(course.getName(), course.getDescription(),course.getEstimatedTimeToComplete(),course.getCategory(),course.getInstructor_id());	
+			Course theCourse = new Course(course.getName(), course.getDescription(),course.getEstimatedTimeToComplete(),course.getCategory(),course.getInstructor_id(), course.getVideoLink(), course.getQuizLink());	
 			currentSession.save(theCourse);
 			return theCourse;
 		}

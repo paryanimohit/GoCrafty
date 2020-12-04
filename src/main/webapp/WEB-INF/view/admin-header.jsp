@@ -10,9 +10,9 @@
 <body>
 <br><br>
 	<input type="button" onclick="location.href ='${pageContext.request.contextPath}/home/admin/logOut'; buttonAnimation();" value="Logout"/>
-	<input type="button" onclick="location.href ='${pageContext.request.contextPath}/home/admin/getStudent'; buttonAnimation();" value="View Students"/>	
+	<input type="button" onclick="location.href ='${pageContext.request.contextPath}/home/admin/getStudent'; buttonAnimation();" value="View Students"/>
 	<input type="button" onclick="location.href ='${pageContext.request.contextPath}/home/admin/getInstructor'; buttonAnimation();" value="View Instructors"/>
-	<input type="button" onclick="location.href ='${pageContext.request.contextPath}/home/admin/getShops'; buttonAnimation();" value="View Barber Shops"/>
+	<input type="button" onclick="location.href ='${pageContext.request.contextPath}/home/admin/getCourse'; buttonAnimation();" value="View Courses"/>
 	<input type="button" onclick="location.href ='${pageContext.request.contextPath}/home/admin/showChangePassword'; buttonAnimation();" value="Change Password"/>
 </body>
 </html>
