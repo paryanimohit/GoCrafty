@@ -1139,6 +1139,20 @@ html{
 	border: black solid 2px;
 }
 
+#courseContainer-student{
+	
+	width:45% !important;
+	padding-bottom: 40px;
+	padding-top: 30px;
+	padding-left: 25px;
+	padding-right:25px;
+	display: block;
+	float:left;
+	position: relative;
+	border:2px solid white;
+	background-color: #262882;
+	overflow: scroll;
+}
 .edit-profile-form{
 	
 	width:50%;

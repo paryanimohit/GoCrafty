@@ -14,9 +14,11 @@
 <body>
 	<div class = content>
 		<div class="button">
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 			<input class="button-student" type = "button" value = "For Students" onclick="location.href = 'home/userLogin?role=student';"/> 
 			<input class="button-instructor" type = "button" value = "For Instructors" onclick="location.href = 'home/userLogin?role=instructor';"/>
 		</div>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div id="about">
 			<h2> About</h2>
 			<h4>We Provide a world where the learning is beyond any age and time restrictions. Explore our courses for free now!</h4>

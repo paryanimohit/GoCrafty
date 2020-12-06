@@ -72,16 +72,17 @@
  				<i>Get exciting offers from team GoCrafty on your Birthday! </i></div>
  				<div id="logslgo">Last Login: ${student.logs}</div>
  		</div>
-
+		<div id="courseContainer-student">
 			<c:forEach var="theCourse" items="${enrolledCourses}">
 				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${theCourse.getId()}&vId=1">
 					<br>Course Name: ${theCourse.getName()}<br>
 						Estimated time to complete:  ${theCourse.getEstimatedTimeToComplete()}<br>
 						Instructor name: ${instructorName.get(String.valueOf(theCourse.getInstructor_id()))}<br>
-						Category: ${theCourse.getCategory()}
+						Category: ${theCourse.getCategory()}<hr>
 						
 				</a>
-			</c:forEach> 		
+			</c:forEach> 	
+		</div>	
  </div>
 </c:if>
 </body>
