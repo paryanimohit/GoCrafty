@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.persistence.Query;
@@ -15,6 +16,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.service.Encryption;
 import com.ibm.icu.util.Calendar;
@@ -133,5 +135,24 @@ public class InstructorDAOImpl implements InstructorDAO {
 		
 		Instructor updatedInstructor1 = currentSession.get(Instructor.class, id);
        return updatedInstructor1;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Course> getCourseByInstructorId(int id) {
+		// TODO Auto-generated method stub
+		Session  currentSession= sessionFactory.getCurrentSession();
+		ArrayList<Course> courses = new ArrayList<Course>(); 
+		try {
+			Query query=currentSession.createQuery("from Course c WHERE c.instructor_id= :id");
+			query.setParameter("id", id);
+			courses= (ArrayList<Course>) query.getResultList();
+			System.out.println("Course"+courses.get(0).getName());
+			return courses;
+		}
+		catch (Exception e) {
+			return null;
+		}
+		
 	}
 }

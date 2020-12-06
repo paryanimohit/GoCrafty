@@ -23,6 +23,24 @@ public class Utilities {
 		}
 		return videos;
 	}
+	
+	public static HashMap<String, String> getQuizLinks(String quizLink) {
+		HashMap<String, String> quiz=new HashMap<String, String>();
+		try {
+		String[] quizLinks=quizLink.split(",");  //split videos by , 
+		for(String video:quizLinks)
+		{
+			String[] nameAndLink=video.split("@");//split link by : to get name and link
+			quiz.put(nameAndLink[0], nameAndLink[1]);
+		}
+		}
+		catch (Exception e) {
+
+				quiz.put("null", null);
+				return quiz;
+		}
+		return quiz;
+	}
 
 	public static String getEmbededLink(String videoURL) {
 		String embededLink;

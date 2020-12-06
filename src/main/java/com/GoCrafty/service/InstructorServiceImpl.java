@@ -1,12 +1,14 @@
 package com.GoCrafty.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.GoCrafty.dao.InstructorDAO;
+import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
 
 @Service
@@ -54,4 +56,10 @@ public class InstructorServiceImpl implements InstructorService {
 		return instructorDAO.editProfile(updatedInstructor,localId);
 	}
 
+	@Override
+	@Transactional
+	public List<Course> getCourseByInstructorId(int id) {
+		// TODO Auto-generated method stub
+		return instructorDAO.getCourseByInstructorId(id);
+	}
 }

@@ -23,5 +23,9 @@ public interface CourseDAO {
 
 	public String uploadVideo(String uploadVideo, String courseId);
 
+	public String uploadQuiz(String uploadQuiz, String courseId);
+
+	
+
 
 }
