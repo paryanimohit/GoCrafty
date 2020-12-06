@@ -130,7 +130,7 @@ public class CourseDAOImpl implements CourseDAO {
 			
 		}catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			
 		}
 		
 		return courseList;
@@ -147,7 +147,6 @@ public class CourseDAOImpl implements CourseDAO {
 			myCourse.setEstimatedTimeToComplete(course.getEstimatedTimeToComplete());
 			myCourse.setCategory(course.getCategory());
 			Course myUpdatedCourse = currentSession.get(Course.class, id);
-			//System.out.println("HIIIIIIIIII"+myCourse.getId()+""+myCourse.getName());
 			return myUpdatedCourse;
 		}
 		catch (Exception e) {

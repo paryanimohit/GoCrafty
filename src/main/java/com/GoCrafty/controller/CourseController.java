@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
-import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.service.CourseService;
 import com.GoCrafty.service.Utilities;
 
