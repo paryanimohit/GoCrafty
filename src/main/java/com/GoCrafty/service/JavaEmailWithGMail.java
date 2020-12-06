@@ -61,8 +61,8 @@ public class JavaEmailWithGMail
         /**
          * Sender's credentials
          * */
-        String fromUser = "thebarbershop.us.2020@gmail.com";
-        String fromUserEmailPassword = "ABC123@098";
+        String fromUser = "Enter email here";
+        String fromUserEmailPassword = "Enter password here";
 
         String emailHost = "smtp.gmail.com";
         Transport transport = mailSession.getTransport("smtp");
