@@ -161,6 +161,7 @@ html{
 	display: block;
 	position: relative;
 	height:80px;
+	top: 100px;
 	text-align:center;
 	width:100%;
 	margin:0 auto;
@@ -1106,7 +1107,7 @@ html{
 
 #profileContainer{
 	
-	width:45% !important;
+	width:45%;
 	padding-bottom: 40px;
 	padding-top: 30px;
 	padding-left: 25px;
@@ -1115,7 +1116,27 @@ html{
 	float:left;
 	position: relative;
 	border:2px solid white;
-	background-color: #262882;
+	background-color: brown;
+}
+
+#courses{
+	
+	width:43% ;
+	padding-bottom: 40px;
+	padding-top: 30px;
+	padding-left: 25px;
+	padding-right:25px;
+	display: block;
+	float:right;
+	position: relative;
+	border:2px solid white;
+	background-color: brown;
+}
+
+#coursedet{
+	display: block;
+	position: relative;
+	border: black solid 2px;
 }
 
 .edit-profile-form{

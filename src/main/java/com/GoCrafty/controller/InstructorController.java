@@ -2,6 +2,7 @@ package com.GoCrafty.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
+import com.GoCrafty.service.CourseService;
 import com.GoCrafty.service.Encryption;
 import com.GoCrafty.service.InstructorService;
 
@@ -24,6 +26,7 @@ import com.GoCrafty.service.InstructorService;
 public class InstructorController {
 	@Autowired
 	private InstructorService instructorService;
+	private CourseService courseService;
 	
 	@GetMapping("/viewProfile")
 	String viewProfile(Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession)
@@ -34,6 +37,9 @@ public class InstructorController {
 			String image = instructorService.getImage(id);
 			
 			instructorService.setCurrentLogin(id);
+			
+			List<Course> course = instructorService.getCourseByInstructorId(id);
+			m.addAttribute("course",course);
 			
 			instructorSession.put("firstName",instructor.getFirstName());
 			instructorSession.put("lastName",instructor.getLastName());
@@ -46,6 +52,7 @@ public class InstructorController {
 			}
 		catch (NullPointerException e)
 			{
+			e.printStackTrace();
 			return "errorPage";
 			}
 	}
