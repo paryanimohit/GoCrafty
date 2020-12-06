@@ -15,6 +15,8 @@ public class Utilities {
 		}
 		}
 		catch (Exception e) {
+
+			
 				
 				videos.put("null", null);
 				return videos;
@@ -23,11 +25,17 @@ public class Utilities {
 	}
 
 	public static String getEmbededLink(String videoURL) {
-//		System.out.println("video url: "+videoURL);
+		String embededLink;
+		try {
 		String[] temp=videoURL.split("\\?v=");
 		String[] temp2=temp[1].split("&");
+		embededLink=temp2[0];
+		}
+		catch (Exception e) {
+			return null;
+		}
 		
-		return temp2[0];
+		return embededLink;
 	}
 	
 	
