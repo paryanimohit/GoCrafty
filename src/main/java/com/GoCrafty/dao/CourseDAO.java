@@ -21,5 +21,7 @@ public interface CourseDAO {
 
 	public Course modifyCourse(Course course, String courseId);
 
+	public String uploadVideo(String uploadVideo, String courseId);
+
 
 }
