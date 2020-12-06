@@ -1,7 +1,9 @@
 package com.GoCrafty.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
 
 public interface InstructorService {
@@ -11,4 +13,5 @@ public interface InstructorService {
 	public String createAccount(Instructor theInstructor);
 	public Instructor setCurrentLogin(int id);
 	public Instructor editProfile(ArrayList<String> updatedInstructor, String localId);
+	public List<Course> getCourseByInstructorId(int id);
 }

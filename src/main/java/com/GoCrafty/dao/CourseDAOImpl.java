@@ -153,4 +153,61 @@ public class CourseDAOImpl implements CourseDAO {
 			return null;
 		}
 	}
+
+	@Override
+	public String uploadVideo(String uploadVideo, String courseId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(courseId);
+			Query query=currentSession.createQuery("select c.videoLink from Course c WHERE c.id= :id");
+			query.setParameter("id", id);
+			String videoLink = null;
+			videoLink = (String)query.getSingleResult();
+			if(videoLink ==null) {
+				videoLink = uploadVideo;
+			}
+			else {
+			videoLink = videoLink+","+uploadVideo;
+			}
+			query = currentSession.createQuery("update Course c set c.videoLink= :link where c.id= :id");
+			query.setParameter("id", id);
+			query.setParameter("link", videoLink);
+			query.executeUpdate();
+			return "ok";
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return "notok";
+		}
+	}
+
+	@Override
+	public String uploadQuiz(String uploadQuiz, String courseId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(courseId);
+			Query query=currentSession.createQuery("select c.quizLink from Course c WHERE c.id= :id");
+			query.setParameter("id", id);
+			String quizLink = null;
+			quizLink = (String)query.getSingleResult();
+			if(quizLink ==null) {
+				quizLink = uploadQuiz;
+			}
+			else {
+			quizLink = quizLink+","+uploadQuiz;
+			}
+			query = currentSession.createQuery("update Course c set c.quizLink= :link where c.id= :id");
+			query.setParameter("id", id);
+			query.setParameter("link", quizLink);
+			query.executeUpdate();
+			return "ok";
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return "notok";
+		}
+	}
+
 }

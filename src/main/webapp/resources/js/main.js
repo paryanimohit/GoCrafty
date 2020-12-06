@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 window.scrollSmooth = function(target) {
     var scrollContainer = target;
     do { //find scroll container
@@ -45,8 +43,83 @@ function hideForm(){
 	}
 }
 
-function showVideoUploadForm(){
+var id = document.getElementById("uploadVideoButton");
+var clicks = 0;
+
+function showVideoUploadForm(){	
 	
-	var id = document.getElementById("uploadVideoButton");
+	clicks +=1;
+	if(clicks==1){
+		
+		var form = document.createElement("form");
+		form.setAttribute("method", "post"); 
+		form.setAttribute("action", "modifyVideos");
+    
+		var vidName = document.createElement("input");
+		vidName.setAttribute("type", "text"); 
+		vidName.setAttribute("name", "videoName"); 
+		vidName.setAttribute("placeholder", "Enter Video Name");
+		vidName.setAttribute("required","true");
+		
+		var youtubeLink = document.createElement("input");
+		youtubeLink.setAttribute("type", "text"); 
+		youtubeLink.setAttribute("name", "youtubeLink"); 
+		youtubeLink.setAttribute("placeholder", "Enter your Youtube link here");
+		youtubeLink.setAttribute("required","true");
+    
+		var s = document.createElement("input"); 
+		s.setAttribute("type", "submit"); 
+		s.setAttribute("value", "Upload"); 
+    
+		form.appendChild(youtubeLink);
+		form.appendChild(vidName);
+		form.appendChild(s);
+    
+		document.getElementsByTagName("body")[0] 
+		.appendChild(form); 
+	}
+	else{
+		var h = document.createElement("H1")                
+		var t = document.createTextNode("Hello World");     
+		h.appendChild(t); 
+	}
+}
+
+function showQuizUploadForm(){	
 	
+	clicks +=1;
+	if(clicks==1){
+		
+		var form = document.createElement("form");
+		form.setAttribute("method", "post"); 
+		form.setAttribute("action", "modifyQuiz");
+    
+		var quizName = document.createElement("input");
+		quizName.setAttribute("type", "text"); 
+		quizName.setAttribute("name", "quizName"); 
+		quizName.setAttribute("placeholder", "Enter Quiz Name");
+		quizName.setAttribute("required","true");
+		
+		var docsLink = document.createElement("input");
+		docsLink.setAttribute("type", "text"); 
+		docsLink.setAttribute("name", "docsLink"); 
+		docsLink.setAttribute("placeholder", "Enter your quiz link here");
+		docsLink.setAttribute("required","true");
+    
+		var s = document.createElement("input"); 
+		s.setAttribute("type", "submit"); 
+		s.setAttribute("value", "Upload"); 
+    
+		form.appendChild(docsLink);
+		form.appendChild(quizName);
+		form.appendChild(s);
+    
+		document.getElementsByTagName("body")[0] 
+		.appendChild(form); 
+	}
+	else{
+		var h = document.createElement("H1")                
+		var t = document.createTextNode("Hello World");     
+		h.appendChild(t); 
+	}
 }
