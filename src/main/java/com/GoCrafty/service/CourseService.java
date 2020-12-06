@@ -25,4 +25,6 @@ public interface CourseService {
 	
 	public float getScore(String userEmail, List<String> reponselink);
 
+	public String uploadVideo(String uploadVideo, String courseId);
+
 }

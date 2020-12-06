@@ -70,4 +70,11 @@ public class CourseServiceImpl implements CourseService {
 		return courseDAO.getScore(email, repsonseLink);
 	}
 
+	@Override
+	@Transactional
+	public String uploadVideo(String uploadVideo, String courseId) {
+		// TODO Auto-generated method stub
+		return courseDAO.uploadVideo(uploadVideo,courseId);
+	}
+
 }

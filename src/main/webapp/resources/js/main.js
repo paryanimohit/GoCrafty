@@ -45,8 +45,44 @@ function hideForm(){
 	}
 }
 
-function showVideoUploadForm(){
+var id = document.getElementById("uploadVideoButton");
+var clicks = 0;
+
+function showVideoUploadForm(){	
 	
-	var id = document.getElementById("uploadVideoButton");
-	
+	clicks +=1;
+	if(clicks==1){
+		
+		var form = document.createElement("form");
+		form.setAttribute("method", "post"); 
+		form.setAttribute("action", "modifyVideos");
+    
+		var vidName = document.createElement("input");
+		vidName.setAttribute("type", "text"); 
+		vidName.setAttribute("name", "videoName"); 
+		vidName.setAttribute("placeholder", "Enter Video Name");
+		vidName.setAttribute("required","true");
+		
+		var youtubeLink = document.createElement("input");
+		youtubeLink.setAttribute("type", "text"); 
+		youtubeLink.setAttribute("name", "youtubeLink"); 
+		youtubeLink.setAttribute("placeholder", "Enter your Youtube link here");
+		youtubeLink.setAttribute("required","true");
+    
+		var s = document.createElement("input"); 
+		s.setAttribute("type", "submit"); 
+		s.setAttribute("value", "Upload"); 
+    
+		form.appendChild(youtubeLink);
+		form.appendChild(vidName);
+		form.appendChild(s);
+    
+		document.getElementsByTagName("body")[0] 
+		.appendChild(form); 
+	}
+	else{
+		var h = document.createElement("H1")                
+		var t = document.createTextNode("Hello World");     
+		h.appendChild(t); 
+	}
 }

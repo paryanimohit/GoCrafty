@@ -234,4 +234,20 @@ public class CourseController {
 			return "redirect:/home/course/showCourseHomeToInstructor";
 		}
 	}
+	
+	@RequestMapping("/modifyVideos")
+	public String modifyVideos(@RequestParam("videoName")String videoName, @RequestParam("youtubeLink")String youtubeLink, Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
+		
+		String courseId = instructorSession.get("newCourseId");
+		String userId=instructorSession.get("id");
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {	
+			String uploadVideo = videoName+"@"+youtubeLink;
+			String uploadedVideo = courseService.uploadVideo(uploadVideo,courseId);
+		return null;
+		}
+	}
 }

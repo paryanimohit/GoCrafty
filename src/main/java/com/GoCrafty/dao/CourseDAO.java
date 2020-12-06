@@ -23,5 +23,7 @@ public interface CourseDAO {
 	
 	public float getScore(String email, List<String> ResponseLink);
 
+	public String uploadVideo(String uploadVideo, String courseId);
+
 
 }

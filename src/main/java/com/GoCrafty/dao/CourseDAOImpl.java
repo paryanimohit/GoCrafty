@@ -174,4 +174,30 @@ public class CourseDAOImpl implements CourseDAO {
 		}
 		return percentage;
 	}
+	
+	public String uploadVideo(String uploadVideo, String courseId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(courseId);
+			Query query=currentSession.createQuery("select c.videoLink from Course c WHERE c.id= :id");
+			query.setParameter("id", id);
+			String videoLink = (String)query.getSingleResult();
+			if(videoLink.isEmpty()) {
+				videoLink = uploadVideo;
+			}
+			else {
+			videoLink = videoLink+","+uploadVideo;
+			}
+			query = currentSession.createQuery("update Course c set c.videoLink= :link where c.id= :id");
+			query.setParameter("id", id);
+			query.setParameter("link", videoLink);
+			query.executeUpdate();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+>>>>>>> Version dec 6
+	}
 }
