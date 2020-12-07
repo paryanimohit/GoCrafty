@@ -122,6 +122,27 @@ public class CourseController {
 	}
 	
 
+	@RequestMapping("/generateCertificate")
+	public String generateCert(@RequestParam("courseId")String courseId, @SessionAttribute(name="tempSession") HashMap<String,String> studentSession, Model theModel) {
+		
+		String userId=studentSession.get("id");
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=student";
+		}
+		else {
+			String userEmail = studentSession.get("email");
+			Course theCourse = courseService.getCourseById(courseId);
+			List<String> responses = Utilities.getResponseLink(theCourse.getResponseLink());
+			theModel.addAttribute("name",studentSession.get("firstName")+" "+studentSession.get("lastName"));
+			theModel.addAttribute("course",theCourse.getName());
+			theModel.addAttribute("email",studentSession.get("email"));
+			theModel.addAttribute("percentage",String.valueOf(Math.round(courseService.getScore(userEmail, responses))));
+			theModel.addAttribute("theCourse", theCourse);
+			return "course-home-student";
+		}
+	}
+	
 	@RequestMapping("/course-home-student")
 	public String course_home_student(@RequestParam("courseId")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession
 							,@RequestParam("vId")String videoId)

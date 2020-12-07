@@ -56,6 +56,8 @@
 		<div id="rightSgn"><form:input id="forminputbox" path="videoLink" required="required"/></div>
 		<div id="leftSgn"><label>Quiz Link </label></div>
 		<div id="rightSgn"><form:input id="forminputbox" path="quizLink" required="required"/></div>
+		<div id="leftSgn"><label>Response Link </label></div>
+		<div id="rightSgn"><form:input id="forminputbox" path="responseLink" required="required"/></div>
 		<div id="leftSgn"><input class="signupbutton" type="submit" value="Create Course"></div>
 	</form:form> 
 		</div>

@@ -20,6 +20,8 @@ public interface CourseDAO {
 	public List<Course> getEnrolledCourses(int id);
 
 	public Course modifyCourse(Course course, String courseId);
+	
+	public float getScore(String email, List<String> ResponseLink);
 
 
 }

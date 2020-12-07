@@ -32,5 +32,11 @@
 <c:if test="${fn:containsIgnoreCase(param.vId, 'Quiz')}">
 <iframe src="https://docs.google.com/forms/d/e/${embededLink}/viewform?embedded=true" width="560" height="315" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 </c:if>
+<br/><a href="${pageContext.request.contextPath}/home/course/generateCertificate?courseId=${courseId}">Complete and Generate Certificate</a>
+<br/>Certificate:<br/>
+Full Name: ${name}<br>
+Course Name: ${course}<br>
+Email ID: ${email}<br>
+Percentage: ${percentage}<br>
 </body>
 </html>

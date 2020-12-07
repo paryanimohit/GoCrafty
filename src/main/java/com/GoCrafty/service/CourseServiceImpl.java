@@ -63,5 +63,11 @@ public class CourseServiceImpl implements CourseService {
 	public Course modifyCourse(Course course, String courseId) {
 		return courseDAO.modifyCourse(course,courseId);
 	}
+	
+	@Override
+	@Transactional
+	public float getScore(String email, List<String> repsonseLink) {
+		return courseDAO.getScore(email, repsonseLink);
+	}
 
 }

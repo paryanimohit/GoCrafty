@@ -37,6 +37,9 @@ public class Course {
 	@Column(name = "quiz_link")
 	private String quizLink;
 	
+	@Column(name = "response_link")
+	private String responseLink;
+
 	public Course() {}
 
 	public int getId() {
@@ -87,7 +90,13 @@ public class Course {
 		this.instructor_id = instructor_id;
 	}
 	
-	
+	public String getResponseLink() {
+		return responseLink;
+	}
+
+	public void setResponseLink(String responseLink) {
+		this.responseLink = responseLink;
+	}
 
 	public String getVideoLink() {
 		return videoLink;
@@ -106,7 +115,7 @@ public class Course {
 	}
 
 	public Course(String name, String description, String estimatedTimeToComplete, String category,
-			int instructor_id, String videoLink, String quizLink) {
+			int instructor_id, String videoLink, String quizLink, String responseLink) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -115,6 +124,7 @@ public class Course {
 		this.instructor_id = instructor_id;
 		this.videoLink = videoLink;
 		this.quizLink = quizLink;
+		this.responseLink = responseLink;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.GoCrafty.dao;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.CourseEnrolled;
 import com.GoCrafty.entity.Instructor;
+import com.GoCrafty.service.SheetsAndJava;
 
 @Repository
 public class CourseDAOImpl implements CourseDAO {
@@ -98,7 +101,7 @@ public class CourseDAOImpl implements CourseDAO {
 	public Course addCourse(Course course) {
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
-			Course theCourse = new Course(course.getName(), course.getDescription(),course.getEstimatedTimeToComplete(),course.getCategory(),course.getInstructor_id(), course.getVideoLink(), course.getQuizLink());	
+			Course theCourse = new Course(course.getName(), course.getDescription(),course.getEstimatedTimeToComplete(),course.getCategory(),course.getInstructor_id(), course.getVideoLink(), course.getQuizLink(), course.getResponseLink());	
 			currentSession.save(theCourse);
 			return theCourse;
 		}
@@ -153,5 +156,22 @@ public class CourseDAOImpl implements CourseDAO {
 		catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public float getScore(String email, List<String> responseLink) {
+		System.out.println(email+ " "+responseLink);
+		float percentage = 0;
+		for(String response_ID : responseLink) {
+			try {
+				System.out.println(response_ID);
+				 percentage = SheetsAndJava.getGrades(email, response_ID);
+				System.out.println(percentage);
+			} catch (IOException | GeneralSecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return percentage;
 	}
 }
