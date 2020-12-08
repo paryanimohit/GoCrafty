@@ -1,9 +1,12 @@
 package com.GoCrafty.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.GoCrafty.entity.Course;
+import com.GoCrafty.entity.CourseEnrolled;
+import com.GoCrafty.entity.Student;
 
 public interface CourseService {
 
@@ -26,6 +29,8 @@ public interface CourseService {
 	public String uploadVideo(String uploadVideo, String courseId);
 
 	public String uploadQuiz(String uploadQuiz, String courseId);
+
+	public ArrayList<Student> getStudentsEnrolled(String newCourseId);
 
 
 }
