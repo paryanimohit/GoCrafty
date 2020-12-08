@@ -69,6 +69,7 @@ public class SheetsAndJava {
 			}
 		}
 		return total == 0 ? 0 : obtained*100/total;
+		
 	}
 
 	private static void getPercentage(String score) {
