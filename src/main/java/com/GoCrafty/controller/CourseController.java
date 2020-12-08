@@ -47,6 +47,7 @@ public class CourseController {
 		return "courses-by-category";
 	}
 
+	
 	@RequestMapping("/viewCourseDescription")
 	public String viewCourseDescription(@RequestParam("id")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
 	{
