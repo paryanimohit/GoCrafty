@@ -19,12 +19,12 @@
 <c:if test="${tempSession.id != 'temp'}">	
 <header>
 	<div id="leftHeader">
-		<a href="${pageContext.request.contextPath}/home/course/showCourseHomeToInstructor">
+		<a href="${pageContext.request.contextPath}/home/instructor/viewProfile">
 		<img class="logoprop"src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
 	</div>
 	<div id="header-links">
 		<div id="profilePic">
-			Hello ${tempSession.firstName}
+			<a href="${pageContext.request.contextPath}/home/instructor/viewProfile">Hello ${tempSession.firstName}</a>
 		</div>
 		<div id="headerLink"><a href="${pageContext.request.contextPath}/home/course/showCourseHomeToInstructor"></a></div>
 	</div>

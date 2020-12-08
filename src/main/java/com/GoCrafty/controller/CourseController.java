@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
+import com.GoCrafty.entity.CourseEnrolled;
+import com.GoCrafty.entity.Instructor;
+import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.CourseService;
 import com.GoCrafty.service.Utilities;
 
@@ -100,7 +103,7 @@ public class CourseController {
 			if(instructorSession.containsKey("status")){
 				return "redirect:/home/admin/getCourse";
 			}
-			return "redirect:/home/course/showCourseHomeToInstructor";
+			return "redirect:/home/course/showCourseHomeToInstructor?id="+newId;
 		}
 	}
 	
@@ -115,15 +118,20 @@ public class CourseController {
 		}
 		else {
 			String newCourseId = null;
-			if(instructorSession.containsKey("newCourseId")) {
-				newCourseId = instructorSession.get("newCourseId");
-			}
-			else {
+//			if(instructorSession.containsKey("newCourseId")) {
+//				newCourseId = instructorSession.get("newCourseId");
+//			}
+//			else {
 				newCourseId = String.valueOf(id);
 				instructorSession.put("newCourseId", String.valueOf(newCourseId));
 				
-			}
+//			}
 			Course newCourse = courseService.getCourseById(String.valueOf(newCourseId));
+			ArrayList<Student> studentsEnrolled = courseService.getStudentsEnrolled(newCourseId);
+//			System.out.println("ANSJHCasj"+studentsEnrolled.get(0).getFirstName());
+			int numberOfStudent = studentsEnrolled.size();
+			theModel.addAttribute("size",numberOfStudent);
+			theModel.addAttribute("students",studentsEnrolled);
 			theModel.addAttribute("course",newCourse);
 			return "course-home";
 		}

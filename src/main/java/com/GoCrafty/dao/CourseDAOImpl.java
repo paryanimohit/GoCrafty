@@ -17,6 +17,7 @@ import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.CourseEnrolled;
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.service.SheetsAndJava;
+import com.GoCrafty.entity.Student;
 
 @Repository
 public class CourseDAOImpl implements CourseDAO {
@@ -226,6 +227,36 @@ public class CourseDAOImpl implements CourseDAO {
 		catch (Exception e) {
 			e.printStackTrace();
 			return "notok";
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Student> getStudentsEnrolled(String newCourseId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(newCourseId);
+			Query query=currentSession.createQuery("select s.studentId from CourseEnrolled s WHERE s.courseId= :id");
+			query.setParameter("id", id);
+			ArrayList<Integer> students = new ArrayList<Integer>();
+			students = (ArrayList<Integer>) query.getResultList();
+//			System.out.println("fewbvbwuv"+students);
+//			System.out.println("fewbvbv"+newCourseId);
+			ArrayList<Student> s = new ArrayList<Student>();
+			Student tempStudent;
+			for(int student:students) {
+				tempStudent = currentSession.get(Student.class, student);
+				s.add(tempStudent);
+			}
+//			System.out.println("wdcwjhwww"+s.get(0).getFirstName());
+			return s;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			 ArrayList<Student> s = null;
+			 s.add(null);
+			 return s;
 		}
 	}
 
