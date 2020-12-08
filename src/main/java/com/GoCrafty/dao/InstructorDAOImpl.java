@@ -53,9 +53,18 @@ public class InstructorDAOImpl implements InstructorDAO {
 
 	@Override
 	public Instructor getUser(int id) {
-		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+		Session currentSession= sessionFactory.getCurrentSession();
+//		Query query=currentSession.createSQLQuery("Set foreign_key_checks =0");
+//		query.executeUpdate();
 		Instructor myInstructor= currentSession.get(Instructor.class, id);
 		return myInstructor;
+		}
+		catch (Exception e) {
+			System.out.println("HELLOOOOOOOO");
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
@@ -154,5 +163,22 @@ public class InstructorDAOImpl implements InstructorDAO {
 			return null;
 		}
 		
+	}
+
+	@Override
+	public String deleteProfile(String userId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(userId);
+			Instructor instructor = currentSession.get(Instructor.class, id);
+			currentSession.delete(instructor);
+			return "Instructor Deleted";
+		}
+		catch (Exception e) {
+			
+			e.printStackTrace();
+			return "Sorry for the inconvinience! Instructor can not be deleted. Please contact the website Administrator.";
+		}
 	}
 }

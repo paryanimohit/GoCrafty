@@ -20,4 +20,6 @@ public interface InstructorDAO {
 	public Instructor editProfile(ArrayList<String> updatedInstructor, String localId);
 
 	public List<Course> getCourseByInstructorId(int id);
+
+	public String deleteProfile(String userId);
 }

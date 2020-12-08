@@ -62,4 +62,12 @@ public class InstructorServiceImpl implements InstructorService {
 		// TODO Auto-generated method stub
 		return instructorDAO.getCourseByInstructorId(id);
 	}
+
+	@Override
+	@Transactional
+	public String deleteProfile(String userId) {
+		// TODO Auto-generated method stub
+		return instructorDAO.deleteProfile(userId);
+		
+	}
 }

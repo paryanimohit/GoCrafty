@@ -14,4 +14,5 @@ public interface InstructorService {
 	public Instructor setCurrentLogin(int id);
 	public Instructor editProfile(ArrayList<String> updatedInstructor, String localId);
 	public List<Course> getCourseByInstructorId(int id);
+	public String deleteProfile(String userId);
 }

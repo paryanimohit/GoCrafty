@@ -33,7 +33,7 @@
 		</div>
 		<div id="headerLink"><a href="/GoCrafty/home/authentication/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>
-		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Profile</a></div>
+		<div id="headerLink"><a href="deleteProfile?role=student" >Delete Profile</a></div>
 		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a></div>
 	</div>
 </header>
@@ -50,13 +50,6 @@
             </table>
         	</form>
     	</div>			
-		<div id = "deleteForm" style="visibility: hidden">
-			<form action="deleteProfile" method="get">
-				<label>Password</label>
-				<input id="formd" type="password" name = "password">
-				<input class="genericbutton" type="submit" value="Confirm">
-			</form>
-		</div>
 		
 	<div id="profileContainer" onclick="hideForm();">
 				<div id="namelgo">Hello ${student.firstName} ${student.lastName}, Welcome back!</div>

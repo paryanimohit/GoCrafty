@@ -1,11 +1,17 @@
 package com.GoCrafty.entity;
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,14 +41,22 @@ public class Instructor extends User{
 	@Column(name = "recruiter")
 	private String recruiter;
 	
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
 	@Column(name = "logs")
 	private String logs;
 	
+	@OneToMany(fetch = FetchType.LAZY,
+			cascade = {CascadeType.ALL})
+	@JoinColumn(name ="instructor_id")
+	private List<Course> courses;
 	
-	
-	
-
-
 	public Instructor() {}
 
 	public int getId() {

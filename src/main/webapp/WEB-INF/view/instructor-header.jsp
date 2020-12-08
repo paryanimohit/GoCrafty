@@ -8,7 +8,6 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
 <link href='https://fonts.googleapis.com/css?family=Fredericka the Great' rel='stylesheet'>
 <meta charset="ISO-8859-1">
-<title>instructor - Header</title>
 </head>
 <body>
 <header>	

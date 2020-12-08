@@ -1202,21 +1202,19 @@ html{
 	
 /* } */
 
-/* #deleteForm{ */
-/* 	background: white; */
-/* 	position: absolute; */
-/* 	z-index: 100000; */
-/* 	display: block; */
-/* 	border: black; */
-/* 	width: 250px; */
-/* 	height: 80px; */
-/* 	left: 730px; */
-/* 	top: 65px; */
-/* 	border-radius: 30px; */
-/* 	font-size: 15px; */
-/* 	color: black; */
-/* 	padding:12px; */
-/* } */
+#deleteForm{
+	background: green;
+	position: fixed;
+	z-index: 100000;
+	display: block;
+	border: black;
+	width: 20%;
+	height: 20%;
+	border-radius: 30px;
+	font-size: 15px;
+	color: black;
+	padding:12px;
+}
 
 /* #vabutt{ */
 	
@@ -1324,13 +1322,15 @@ html{
 #leftSgn{
 	display: inline-block;
 	position: relative;
-	width: 30%;
+	width: 40%;
+	margin: 0 auto;
 	
 }
 #rightSgn{
 	display: inline-block;
 	position: relative;
 	width: 55%;
+	margin: 0 auto;
 }
 
 /* #ANB */
@@ -1368,3 +1368,12 @@ html{
 /* 	text-align:left; */
 /* 	left:250px; */
 /*  }  */
+
+.modify-course{
+	
+	display: block;
+	position: relative;
+	width: 70%;
+	margin: 0 auto;
+	
+}

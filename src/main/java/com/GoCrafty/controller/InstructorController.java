@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
-import com.GoCrafty.service.CourseService;
 import com.GoCrafty.service.Encryption;
 import com.GoCrafty.service.InstructorService;
 
@@ -26,7 +25,6 @@ import com.GoCrafty.service.InstructorService;
 public class InstructorController {
 	@Autowired
 	private InstructorService instructorService;
-	private CourseService courseService;
 	
 	@GetMapping("/viewProfile")
 	String viewProfile(Model m,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession)
@@ -37,7 +35,7 @@ public class InstructorController {
 			String image = instructorService.getImage(id);
 			
 			instructorService.setCurrentLogin(id);
-			
+			System.out.println("HNJANJAN"+instructor);
 			List<Course> course = instructorService.getCourseByInstructorId(id);
 			m.addAttribute("course",course);
 			
@@ -53,7 +51,7 @@ public class InstructorController {
 		catch (NullPointerException e)
 			{
 			e.printStackTrace();
-			return "errorPage";
+			return "error-page";
 			}
 	}
 	
@@ -151,6 +149,22 @@ public class InstructorController {
 			Course course = new Course();
 			theModel.addAttribute("course",course);
 			return "add-course";
+		}
+	}
+	
+	@GetMapping("/deleteProfile")
+	public String deleteProfile(@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession, Model theModel) {
+		
+		String userId=instructorSession.get("id");
+		
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {
+			String message = instructorService.deleteProfile(userId);
+			theModel.addAttribute("message", message);
+			return "redirect:/home/userLogin?role=instructor";
 		}
 	}
 
