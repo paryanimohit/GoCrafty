@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
+<<<<<<< HEAD
 import com.GoCrafty.entity.CourseEnrolled;
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
+=======
+>>>>>>> cff1d4a9c0386c7e7fe4cb30d42470dc4392a6e1
 import com.GoCrafty.service.CourseService;
 import com.GoCrafty.service.Utilities;
 

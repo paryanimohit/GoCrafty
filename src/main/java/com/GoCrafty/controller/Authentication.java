@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.User;
 import com.GoCrafty.service.AuthenticationService;
+import com.GoCrafty.service.JavaEmailWithGMail;
 
 @Controller
 @RequestMapping("home/authentication")
@@ -33,7 +34,14 @@ public class Authentication {
 			if(retry>=3)
 			{
 				//email block
+				try {
+					JavaEmailWithGMail.Email(theUser.getEmail(), "You just tried login with 3 wrong password. Please review your account.");
+				} catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("Sending Email failed ");
+				}
 				userSession.put("retry", "0");//reset counter
+				theModel.addAttribute("message","You have entered wrong password 3 times! \n please try after some time");
 			}
 			retry=retry+1;
 			userSession.put("retry",String.valueOf(retry));
@@ -56,6 +64,7 @@ public class Authentication {
 			if(retry>=3)
 			{
 				//email block
+				theModel.addAttribute("message","You have entered wrong password 3 times! \n please try after some time");
 			}
 			retry=retry+1;
 			userSession.put("retry",String.valueOf(retry));
