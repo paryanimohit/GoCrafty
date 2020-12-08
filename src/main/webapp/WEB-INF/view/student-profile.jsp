@@ -33,7 +33,7 @@
 		</div>
 		<div id="headerLink"><a href="/GoCrafty/home/authentication/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>
-		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Profile</a></div>
+		<div id="headerLink"><a href="deleteProfile?role=student" >Delete Profile</a></div>
 		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a></div>
 	</div>
 </header>
@@ -50,13 +50,6 @@
             </table>
         	</form>
     	</div>			
-		<div id = "deleteForm" style="visibility: hidden">
-			<form action="deleteProfile" method="get">
-				<label>Password</label>
-				<input id="formd" type="password" name = "password">
-				<input class="genericbutton" type="submit" value="Confirm">
-			</form>
-		</div>
 		
 	<div id="profileContainer" onclick="hideForm();">
 				<div id="namelgo">Hello ${student.firstName} ${student.lastName}, Welcome back!</div>
@@ -72,16 +65,17 @@
  				<i>Get exciting offers from team GoCrafty on your Birthday! </i></div>
  				<div id="logslgo">Last Login: ${student.logs}</div>
  		</div>
-
+		<div id="courseContainer-student">
 			<c:forEach var="theCourse" items="${enrolledCourses}">
 				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${theCourse.getId()}&vId=1">
 					<br>Course Name: ${theCourse.getName()}<br>
 						Estimated time to complete:  ${theCourse.getEstimatedTimeToComplete()}<br>
 						Instructor name: ${instructorName.get(String.valueOf(theCourse.getInstructor_id()))}<br>
-						Category: ${theCourse.getCategory()}
+						Category: ${theCourse.getCategory()}<hr>
 						
 				</a>
-			</c:forEach> 		
+			</c:forEach> 	
+		</div>	
  </div>
 </c:if>
 </body>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
+import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.CourseService;
 import com.GoCrafty.service.Utilities;
 
@@ -100,12 +101,13 @@ public class CourseController {
 			if(instructorSession.containsKey("status")){
 				return "redirect:/home/admin/getCourse";
 			}
-			return "redirect:/home/course/showCourseHomeToInstructor";
+		
+			return "redirect:/home/course/showCourseHomeToInstructor?id="+newId;
 		}
 	}
 	
 	@RequestMapping("/showCourseHomeToInstructor")
-	public String showCourseHomeToInstructor(@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,Model theModel) {
+	public String showCourseHomeToInstructor(@RequestParam("id")int id,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,Model theModel) {
 		
 		String userId=instructorSession.get("id");
 		
@@ -114,8 +116,21 @@ public class CourseController {
 			return "redirect:/home/userLogin?role=instructor";
 		}
 		else {
-			String newCourseId = instructorSession.get("newCourseId");
+			String newCourseId = null;
+//			if(instructorSession.containsKey("newCourseId")) {
+//				newCourseId = instructorSession.get("newCourseId");
+//			}
+//			else {
+				newCourseId = String.valueOf(id);
+				instructorSession.put("newCourseId", String.valueOf(newCourseId));
+				
+//			}
 			Course newCourse = courseService.getCourseById(String.valueOf(newCourseId));
+			ArrayList<Student> studentsEnrolled = courseService.getStudentsEnrolled(newCourseId);
+//			System.out.println("ANSJHCasj"+studentsEnrolled.get(0).getFirstName());
+			int numberOfStudent = studentsEnrolled.size();
+			theModel.addAttribute("size",numberOfStudent);
+			theModel.addAttribute("students",studentsEnrolled);
 			theModel.addAttribute("course",newCourse);
 			return "course-home";
 		}
@@ -147,27 +162,38 @@ public class CourseController {
 	public String course_home_student(@RequestParam("courseId")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession
 							,@RequestParam("vId")String videoId)
 	{
-		Course theCourse=courseService.getCourseById(courseId);
-		List<Course> course =new ArrayList<Course>();
-		course.add(theCourse);
-		HashMap<String, String> instructorName=courseService.getInstructorNames(course);
 		
-		//getVideoLinks
-		HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink()+","+theCourse.getQuizLink());
+		String userId=studentSession.get("id");
 		
-		
-		//convert youtube url to embeded url
-		if(!(videoId.equals("1"))) {
-		String embededLink=Utilities.getEmbededLink(videos.get(videoId));
-		System.out.println(embededLink);
-		theModel.addAttribute("embededLink",embededLink);
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=student";
 		}
-		theModel.addAttribute("courseId",courseId);
-		theModel.addAttribute("theCourse",theCourse);
-		theModel.addAttribute("instructorName",instructorName);
-		theModel.addAttribute("videos",videos);
+		else 
+		{
+			Course theCourse=courseService.getCourseById(courseId);
+			List<Course> course =new ArrayList<Course>();
+			course.add(theCourse);
+			HashMap<String, String> instructorName=courseService.getInstructorNames(course);
+			
+			//getVideoLinks
+			HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink()+","+theCourse.getQuizLink());
+			
 		
-		return "course-home-student";
+			//convert youtube url to embeded url
+				if(!(videoId.equals("1"))) 
+				{
+				String embededLink=Utilities.getEmbededLink(videos.get(videoId));
+				
+				theModel.addAttribute("embededLink",embededLink);
+				}
+			theModel.addAttribute("courseId",courseId);
+			theModel.addAttribute("theCourse",theCourse);
+			theModel.addAttribute("instructorName",instructorName);
+			theModel.addAttribute("videos",videos);
+			
+			return "course-home-student";
+		}
 	}
 	
 
@@ -189,11 +215,20 @@ public class CourseController {
 				theModel.addAttribute("course",course);
 				
 				HashMap<String, String> myVideos = Utilities.getVideoLinks(course.getVideoLink());
-				if(myVideos.isEmpty()) {
+				HashMap<String, String> myQuizes = Utilities.getQuizLinks(course.getQuizLink());
+				
+				if(myVideos.containsKey("null") ) {
 					theModel.addAttribute("videoListSize", 0);
 				}
 				else {
 					theModel.addAttribute("videoList",myVideos);
+				}
+				
+				if(myQuizes.containsKey("null") ) {
+					theModel.addAttribute("quizListSize", 0);
+				}
+				else {
+					theModel.addAttribute("quizList",myQuizes);
 				}
 				
 				return "modify-course";
@@ -220,6 +255,38 @@ public class CourseController {
 			int newId = myCourse.getId();
 			instructorSession.put("newCourseId", String.valueOf(newId));
 			return "redirect:/home/course/showCourseHomeToInstructor";
+		}
+	}
+	
+	@RequestMapping("/modifyVideos")
+	public String modifyVideos(@RequestParam("videoName")String videoName, @RequestParam("youtubeLink")String youtubeLink, Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
+		
+		String courseId = instructorSession.get("newCourseId");
+		String userId=instructorSession.get("id");
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {	
+			String uploadVideo = videoName+"@"+youtubeLink;
+			courseService.uploadVideo(uploadVideo,courseId);
+		return "redirect:/home/course/showModifyCourse";
+		}
+	}
+	
+	@RequestMapping("/modifyQuiz")
+	public String modifyQuiz(@RequestParam("quizName")String quizName, @RequestParam("docsLink")String docsLink, Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
+		
+		String courseId = instructorSession.get("newCourseId");
+		String userId=instructorSession.get("id");
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {	
+			String uploadQuiz = quizName+"@"+docsLink;
+			courseService.uploadQuiz(uploadQuiz,courseId);
+		return "redirect:/home/course/showModifyCourse";
 		}
 	}
 }

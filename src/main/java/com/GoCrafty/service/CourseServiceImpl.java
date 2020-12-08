@@ -1,5 +1,6 @@
 package com.GoCrafty.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.GoCrafty.dao.CourseDAO;
 import com.GoCrafty.entity.Course;
+import com.GoCrafty.entity.CourseEnrolled;
+import com.GoCrafty.entity.Student;
 @Service
 public class CourseServiceImpl implements CourseService {
 
@@ -68,6 +71,27 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public float getScore(String email, List<String> repsonseLink) {
 		return courseDAO.getScore(email, repsonseLink);
+	}
+
+	@Override
+	@Transactional
+	public String uploadVideo(String uploadVideo, String courseId) {
+		// TODO Auto-generated method stub
+		return courseDAO.uploadVideo(uploadVideo,courseId);
+	}
+
+	@Override
+	@Transactional
+	public String uploadQuiz(String uploadQuiz, String courseId) {
+		// TODO Auto-generated method stub
+		return courseDAO.uploadQuiz(uploadQuiz,courseId);
+	}
+
+	@Override
+	@Transactional
+	public ArrayList<Student> getStudentsEnrolled(String newCourseId) {
+		// TODO Auto-generated method stub
+		return courseDAO.getStudentsEnrolled(newCourseId);
 	}
 
 }

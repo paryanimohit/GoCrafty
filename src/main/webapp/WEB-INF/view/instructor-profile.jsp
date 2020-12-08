@@ -33,7 +33,7 @@
 		</div>
 		<div id="headerLink"><a href="/GoCrafty/home/authentication/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>	
-		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Profile</a></div>
+		<div id="headerLink"><a href="deleteProfile">Delete Profile</a></div>
 		<div id="headerLink"><a href="showAddCourse">Add Course</a></div>
 	</div>
 </header>
@@ -49,18 +49,9 @@
             </tr>
          </table>
        	</form>
-    </div>			
-
-<div id = "deleteForm" style="visibility: hidden">
-	<form action="deleteProfile" method="get">
-		<label>Password</label>
-		<input id="formd" type="password" name = "password">
-		<input class="genericbutton" type="submit" value="Confirm">
-	</form>
-</div>
+    </div>				
 				
-<div id="profileContainer" onclick="hideForm();">
-	<div id="Profile">
+<div id="profileContainer" onclick="hideForm();"> 
 		<div id="namelgo">Hello ${instructor.firstName} ${instructor.lastName}, Welcome back!</div>
  		<div id="emaillgo">Your registered email address is: <b>${instructor.email}</b></div>
  		<c:if test="${instructor.recruiter =='1'}">
@@ -71,7 +62,19 @@
  			</div>
  		</c:if>
  		<div id="logslgo">Last Login: ${instructor.logs}</div>		
-	</div>
+</div>
+	
+<div id="courses">
+		<div id="courselgo">Your Courses:</div>
+		<c:forEach var="course" items="${course}">
+			<div id="coursedet">
+			<a href="${pageContext.request.contextPath}/home/course/showCourseHomeToInstructor?id=${course.getId()}">
+						Course Name: ${course.getName()}<br>
+						Course Duration:  ${course.getEstimatedTimeToComplete()}<br>
+						Category: ${course.getCategory()}
+			</a>
+			</div>
+		</c:forEach> 
 </div>
 </div>
 </c:if>

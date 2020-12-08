@@ -161,6 +161,7 @@ html{
 	display: block;
 	position: relative;
 	height:80px;
+	top: 100px;
 	text-align:center;
 	width:100%;
 	margin:0 auto;
@@ -1106,6 +1107,40 @@ html{
 
 #profileContainer{
 	
+	width:45%;
+	padding-bottom: 40px;
+	padding-top: 30px;
+	padding-left: 25px;
+	padding-right:25px;
+	display: block;
+	float:left;
+	position: relative;
+	border:2px solid white;
+	background-color: brown;
+}
+
+#courses{
+	
+	width:43% ;
+	padding-bottom: 40px;
+	padding-top: 30px;
+	padding-left: 25px;
+	padding-right:25px;
+	display: block;
+	float:right;
+	position: relative;
+	border:2px solid white;
+	background-color: brown;
+}
+
+#coursedet{
+	display: block;
+	position: relative;
+	border: black solid 2px;
+}
+
+#courseContainer-student{
+	
 	width:45% !important;
 	padding-bottom: 40px;
 	padding-top: 30px;
@@ -1116,8 +1151,8 @@ html{
 	position: relative;
 	border:2px solid white;
 	background-color: #262882;
+	overflow: scroll;
 }
-
 .edit-profile-form{
 	
 	width:50%;
@@ -1167,21 +1202,19 @@ html{
 	
 /* } */
 
-/* #deleteForm{ */
-/* 	background: white; */
-/* 	position: absolute; */
-/* 	z-index: 100000; */
-/* 	display: block; */
-/* 	border: black; */
-/* 	width: 250px; */
-/* 	height: 80px; */
-/* 	left: 730px; */
-/* 	top: 65px; */
-/* 	border-radius: 30px; */
-/* 	font-size: 15px; */
-/* 	color: black; */
-/* 	padding:12px; */
-/* } */
+#deleteForm{
+	background: green;
+	position: fixed;
+	z-index: 100000;
+	display: block;
+	border: black;
+	width: 20%;
+	height: 20%;
+	border-radius: 30px;
+	font-size: 15px;
+	color: black;
+	padding:12px;
+}
 
 /* #vabutt{ */
 	
@@ -1289,13 +1322,15 @@ html{
 #leftSgn{
 	display: inline-block;
 	position: relative;
-	width: 30%;
+	width: 40%;
+	margin: 0 auto;
 	
 }
 #rightSgn{
 	display: inline-block;
 	position: relative;
 	width: 55%;
+	margin: 0 auto;
 }
 
 /* #ANB */
@@ -1333,3 +1368,12 @@ html{
 /* 	text-align:left; */
 /* 	left:250px; */
 /*  }  */
+
+.modify-course{
+	
+	display: block;
+	position: relative;
+	width: 70%;
+	margin: 0 auto;
+	
+}

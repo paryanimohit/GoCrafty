@@ -19,12 +19,12 @@
 <c:if test="${tempSession.id != 'temp'}">	
 <header>
 	<div id="leftHeader">
-		<a href="${pageContext.request.contextPath}/home/course/showCourseHomeToInstructor">
+		<a href="${pageContext.request.contextPath}/home/instructor/viewProfile">
 		<img class="logoprop"src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
 	</div>
 	<div id="header-links">
 		<div id="profilePic">
-			Hello ${tempSession.firstName}
+			<a href="${pageContext.request.contextPath}/home/instructor/viewProfile">Hello ${tempSession.firstName}</a>
 		</div>
 		<div id="headerLink"><a href="${pageContext.request.contextPath}/home/course/showCourseHomeToInstructor"></a></div>
 	</div>
@@ -58,33 +58,53 @@
 		</form:form>
 	</div>
 	
-	<c:if test="${videoListSize} == '0'">
+	<div id="uploadVideoButton">
+	<button onClick="showVideoUploadForm();" value="addVideos">Add Video</button>
+	</div>
+	
+	<div id="uploadQuizButton">
+	<button onClick="showQuizUploadForm();" value="addQuiz">Add Quiz</button>
+	</div>
+	
+	<c:if test="${videoListSize == '0'}">
 	<div class="modifyVideos">
-		You Do not have any videos uploaded. Do you want to add videos? 
-		</div>
+		Get started and upload your first video to unlock more of the GoCrafty!
+	</div>
 	</c:if>
 	
-	<c:if test="${videoListSize} != '0'">
+	<c:if test="${videoListSize != '0'}">
 	<div class="modifyVideos">
 			<form action = "modifyVideos" method = "post">
-				LOOP:
+				<c:forEach items="${videoList}" var="video">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/${embededLink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				
 				<label>Video Name</label>
-				<input type="text" name="videoName" value="${videoList.videoName}"/>
+				<input type="text" name="videoName" value="${videoList.key}"/>
 				<label>Video URL</label>
-				<input type="text" name="videoURL" value="${videoList.videoURL}"/>
+				<input type="text" name="videoURL" value="${videoList.value}"/>
+				</c:forEach>
 			</form>
 	 </div>
 	 </c:if>
 	 
-	 <div class="modifyQuiz">
+	 <c:if test="${quizListSize == '0'}">
+	<div class="modifyQuiz">
+		Get started and upload your first Quiz to unlock more of the GoCrafty!
+	</div>
+	</c:if>
+	
+	<c:if test="${quizListSize != '0'}">
+	<div class="modifyQuiz">
 			<form action = "modifyQuiz" method = "post">
-				LOOP:
+				<c:forEach items="${quizList}" var="quiz">
 				<label>Quiz Name</label>
-				<input type="text" name="quizName" value="${quizList.quizName}"/>
+				<input type="text" name="quizName" value="${quizList.key}"/>
 				<label>Video URL</label>
-				<input type="text" name="quizURL" value="${quizList.quizURL}"/>
+				<input type="text" name="quizURL" value="${quizList.value}"/>
+				</c:forEach>
 			</form>
-	 </div>
+	</div>
+	</c:if>
 </div>
 </c:if>
 </body>

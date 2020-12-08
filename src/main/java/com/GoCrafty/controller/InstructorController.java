@@ -2,6 +2,7 @@ package com.GoCrafty.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,9 @@ public class InstructorController {
 			String image = instructorService.getImage(id);
 			
 			instructorService.setCurrentLogin(id);
+			System.out.println("HNJANJAN"+instructor);
+			List<Course> course = instructorService.getCourseByInstructorId(id);
+			m.addAttribute("course",course);
 			
 			instructorSession.put("firstName",instructor.getFirstName());
 			instructorSession.put("lastName",instructor.getLastName());
@@ -46,7 +50,8 @@ public class InstructorController {
 			}
 		catch (NullPointerException e)
 			{
-			return "errorPage";
+			e.printStackTrace();
+			return "error-page";
 			}
 	}
 	
@@ -144,6 +149,22 @@ public class InstructorController {
 			Course course = new Course();
 			theModel.addAttribute("course",course);
 			return "add-course";
+		}
+	}
+	
+	@GetMapping("/deleteProfile")
+	public String deleteProfile(@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession, Model theModel) {
+		
+		String userId=instructorSession.get("id");
+		
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {
+			String message = instructorService.deleteProfile(userId);
+			theModel.addAttribute("message", message);
+			return "redirect:/home/userLogin?role=instructor";
 		}
 	}
 

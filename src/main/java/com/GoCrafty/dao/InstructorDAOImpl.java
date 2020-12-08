@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.persistence.Query;
@@ -15,6 +16,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.service.Encryption;
 import com.ibm.icu.util.Calendar;
@@ -51,9 +53,18 @@ public class InstructorDAOImpl implements InstructorDAO {
 
 	@Override
 	public Instructor getUser(int id) {
-		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+		Session currentSession= sessionFactory.getCurrentSession();
+//		Query query=currentSession.createSQLQuery("Set foreign_key_checks =0");
+//		query.executeUpdate();
 		Instructor myInstructor= currentSession.get(Instructor.class, id);
 		return myInstructor;
+		}
+		catch (Exception e) {
+			System.out.println("HELLOOOOOOOO");
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
@@ -133,5 +144,41 @@ public class InstructorDAOImpl implements InstructorDAO {
 		
 		Instructor updatedInstructor1 = currentSession.get(Instructor.class, id);
        return updatedInstructor1;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Course> getCourseByInstructorId(int id) {
+		// TODO Auto-generated method stub
+		Session  currentSession= sessionFactory.getCurrentSession();
+		ArrayList<Course> courses = new ArrayList<Course>(); 
+		try {
+			Query query=currentSession.createQuery("from Course c WHERE c.instructor_id= :id");
+			query.setParameter("id", id);
+			courses= (ArrayList<Course>) query.getResultList();
+			System.out.println("Course"+courses.get(0).getName());
+			return courses;
+		}
+		catch (Exception e) {
+			return null;
+		}
+		
+	}
+
+	@Override
+	public String deleteProfile(String userId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(userId);
+			Instructor instructor = currentSession.get(Instructor.class, id);
+			currentSession.delete(instructor);
+			return "Instructor Deleted";
+		}
+		catch (Exception e) {
+			
+			e.printStackTrace();
+			return "Sorry for the inconvinience! Instructor can not be deleted. Please contact the website Administrator.";
+		}
 	}
 }

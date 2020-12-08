@@ -39,13 +39,12 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 //					String fetchLogs = myStudent.getLogs();
 					decryptedPassword=encr.decrypt(fetchPassword);
 					id=String.valueOf(myStudent.getId());
-					if(decryptedPassword.contentEquals(theStudent.getPassword()))
+					if(decryptedPassword.equals(theStudent.getPassword()))
 						{
-							
 							return id;
 						}
-							else 
-							return null;
+					else 
+						return null;
 				}
 				
 				else if(role.equals("instructor"))
@@ -57,7 +56,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 					String fetchPassword2= myInstructor.getPassword();
 					decryptedPassword=encr.decrypt(fetchPassword2);
 					id= String.valueOf(myInstructor.getId());
-					if(decryptedPassword.contentEquals(theInstructor.getPassword()))
+					if(decryptedPassword.equals(theInstructor.getPassword()))
 						{
 						return id;
 						}
@@ -66,6 +65,7 @@ public class AuthenticationDAOImpl implements AuthenticationDAO {
 				}
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 		return id;

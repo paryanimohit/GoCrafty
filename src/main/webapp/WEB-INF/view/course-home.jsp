@@ -23,7 +23,7 @@
 </div>
 	<div id="header-links">
 	<div id="profilePic">
-		Hello ${tempSession.firstName}
+		<a href="${pageContext.request.contextPath}/home/instructor/viewProfile">Hello ${tempSession.firstName}</a>
 	</div>
 		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Course</a></div>
 		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showModifyCourse">Modify Course</a></div>
@@ -49,7 +49,13 @@
  				</div>
  			</div>
  			<div id="rightContainer">
- 				Number of Students Enrolled
+ 				Number of Students Enrolled : ${size}
+ 				<c:forEach var="student" items="${students}">
+ 					<div>
+ 						${student.getFirstName()} ${student.getLastName()}
+ 					</div>
+ 				</c:forEach>
+ 				
  			</div>
  		</div>				
  </div>

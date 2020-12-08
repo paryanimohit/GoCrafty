@@ -17,6 +17,7 @@ import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.CourseEnrolled;
 import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.service.SheetsAndJava;
+import com.GoCrafty.entity.Student;
 
 @Repository
 public class CourseDAOImpl implements CourseDAO {
@@ -133,7 +134,7 @@ public class CourseDAOImpl implements CourseDAO {
 			
 		}catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			
 		}
 		
 		return courseList;
@@ -150,7 +151,6 @@ public class CourseDAOImpl implements CourseDAO {
 			myCourse.setEstimatedTimeToComplete(course.getEstimatedTimeToComplete());
 			myCourse.setCategory(course.getCategory());
 			Course myUpdatedCourse = currentSession.get(Course.class, id);
-			//System.out.println("HIIIIIIIIII"+myCourse.getId()+""+myCourse.getName());
 			return myUpdatedCourse;
 		}
 		catch (Exception e) {
@@ -174,4 +174,89 @@ public class CourseDAOImpl implements CourseDAO {
 		}
 		return percentage;
 	}
+	public String uploadVideo(String uploadVideo, String courseId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(courseId);
+			Query query=currentSession.createQuery("select c.videoLink from Course c WHERE c.id= :id");
+			query.setParameter("id", id);
+			String videoLink = null;
+			videoLink = (String)query.getSingleResult();
+			if(videoLink ==null) {
+				videoLink = uploadVideo;
+			}
+			else {
+			videoLink = videoLink+","+uploadVideo;
+			}
+			query = currentSession.createQuery("update Course c set c.videoLink= :link where c.id= :id");
+			query.setParameter("id", id);
+			query.setParameter("link", videoLink);
+			query.executeUpdate();
+			return "ok";
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return "notok";
+		}
+	}
+
+	@Override
+	public String uploadQuiz(String uploadQuiz, String courseId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(courseId);
+			Query query=currentSession.createQuery("select c.quizLink from Course c WHERE c.id= :id");
+			query.setParameter("id", id);
+			String quizLink = null;
+			quizLink = (String)query.getSingleResult();
+			if(quizLink ==null) {
+				quizLink = uploadQuiz;
+			}
+			else {
+			quizLink = quizLink+","+uploadQuiz;
+			}
+			query = currentSession.createQuery("update Course c set c.quizLink= :link where c.id= :id");
+			query.setParameter("id", id);
+			query.setParameter("link", quizLink);
+			query.executeUpdate();
+			return "ok";
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return "notok";
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Student> getStudentsEnrolled(String newCourseId) {
+		
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(newCourseId);
+			Query query=currentSession.createQuery("select s.studentId from CourseEnrolled s WHERE s.courseId= :id");
+			query.setParameter("id", id);
+			ArrayList<Integer> students = new ArrayList<Integer>();
+			students = (ArrayList<Integer>) query.getResultList();
+//			System.out.println("fewbvbwuv"+students);
+//			System.out.println("fewbvbv"+newCourseId);
+			ArrayList<Student> s = new ArrayList<Student>();
+			Student tempStudent;
+			for(int student:students) {
+				tempStudent = currentSession.get(Student.class, student);
+				s.add(tempStudent);
+			}
+//			System.out.println("wdcwjhwww"+s.get(0).getFirstName());
+			return s;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			 ArrayList<Student> s = null;
+			 s.add(null);
+			 return s;
+		}
+	}
+
 }

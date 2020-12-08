@@ -1,9 +1,12 @@
 package com.GoCrafty.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.GoCrafty.entity.Course;
+import com.GoCrafty.entity.CourseEnrolled;
+import com.GoCrafty.entity.Student;
 
 public interface CourseDAO {
 	public List<String> showCategories();
@@ -22,6 +25,14 @@ public interface CourseDAO {
 	public Course modifyCourse(Course course, String courseId);
 	
 	public float getScore(String email, List<String> ResponseLink);
+
+	public String uploadVideo(String uploadVideo, String courseId);
+
+	public String uploadQuiz(String uploadQuiz, String courseId);
+
+	public ArrayList<Student> getStudentsEnrolled(String newCourseId);
+
+	
 
 
 }

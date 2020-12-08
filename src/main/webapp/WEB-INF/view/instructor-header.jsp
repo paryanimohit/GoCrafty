@@ -8,18 +8,17 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
 <link href='https://fonts.googleapis.com/css?family=Fredericka the Great' rel='stylesheet'>
 <meta charset="ISO-8859-1">
-<title>instructor - Header</title>
 </head>
 <body>
 <header>	
 <div id="leftHeader">
-		<a href="${pageContext.request.contextPath}/home/user/viewProfile">
+		<a href="${pageContext.request.contextPath}/home/instructor/viewProfile">
 		<img class="logoprop"src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
 </div>
 <div id="header-links">
 	<div id="headerLink"><a href="${pageContext.request.contextPath}/home/instructor/viewProfile">Profile</a></div>
 	<div id="headerLink"><a href="${pageContext.request.contextPath}/home/authentication/logOut">Log Out</a></div>
-	<div id="headerLink"><a href="${pageContext.request.contextPath}/home/course/addCourse">Add Course</a></div>
+<%-- 	<div id="headerLink"><a href="${pageContext.request.contextPath}/home/course/addCourse">Add Course</a></div> --%>
 </div>
 </header>
 </body>
