@@ -12,6 +12,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.GoCrafty.entity.Instructor;
 import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.Encryption;
 import com.ibm.icu.util.Calendar;
@@ -109,5 +111,39 @@ public class StudentDAOImpl implements StudentDAO {
 		myStudent.setLogs(lastLogin);
 		currentSession.save(myStudent);
 		return null;
+	}
+
+	@Override
+	public String uploadImage(byte[] bytes, int studentId) {
+		try {
+			Session  currentSession= sessionFactory.getCurrentSession();
+			Student theStudent=currentSession.get(Student.class,studentId);
+			System.out.println("name: "+theStudent.getFirstName());
+			theStudent.setProfilePic(bytes);
+			return "ok";
+			
+			
+		}
+		catch (Exception e) {
+			
+			e.printStackTrace();	
+			return "not ok";
+			}
+		}
+
+	@Override
+	public String deleteProfile(String userId) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(userId);
+			Student student = currentSession.get(Student.class, id);
+			currentSession.delete(student);
+			return "Student Deleted";
+		}
+		catch (Exception e) {
+			
+			e.printStackTrace();
+			return "Sorry for the inconvinience! Student can not be deleted. Please contact the website Administrator.";
+		}
 	}
 }

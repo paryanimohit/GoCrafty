@@ -17,4 +17,8 @@ public interface StudentDAO {
 
 	public Student setCurrentLogin(int id);
 
+	public String uploadImage(byte[] bytes, int userId);
+
+	public String deleteProfile(String userId);
+
 }

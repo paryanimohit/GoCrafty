@@ -53,4 +53,18 @@ public class StudentServiceImpl implements StudentService {
 		return studentDAO.setCurrentLogin(id);
 	}
 
+	@Override
+	@Transactional
+	public String deleteProfile(String userId) {
+		// TODO Auto-generated method stub
+		return studentDAO.deleteProfile(userId);
+	}
+
+	@Override
+	@Transactional
+	public String uploadImage(byte[] bytes, int userId) {
+		// TODO Auto-generated method stub
+		return studentDAO.uploadImage(bytes, userId);
+	}
+
 }

@@ -93,4 +93,10 @@ public class CourseServiceImpl implements CourseService {
 		return courseDAO.getStudentsEnrolled(newCourseId);
 	}
 
+	@Override
+	@Transactional
+	public ArrayList<String> getGrades(List<Course> enrolledCourses, int id) {
+		return courseDAO.getGrades(enrolledCourses, id);
+	}
+
 }

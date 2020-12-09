@@ -1,5 +1,6 @@
 package com.GoCrafty.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Student;
@@ -52,11 +54,20 @@ public class StudentController {
 			
 			
 			//show Enrolled course block start
+			
 			List<Course> enrolledCourses=courseService.getEnrolledCourses(id);
 			m.addAttribute("enrolledCourses", enrolledCourses);
 			HashMap<String, String> instructorName=courseService.getInstructorNames(enrolledCourses);
 			m.addAttribute("instructorName", instructorName);
 			//show Enrolled course block end
+			
+			//getGradesFrom DB
+			
+			ArrayList<String> grades=courseService.getGrades(enrolledCourses,id);
+			
+			m.addAttribute("grades",grades);
+			//getGradesFrom DB
+			
 			sendToHeader(m);
 			return "student-profile";
 			}
@@ -148,4 +159,56 @@ public class StudentController {
 			return "redirect:/home/authentication/userLogin?role=student";
 		}
 }
+	
+	@PostMapping("/doUpload")
+	public String doUpload(Model theModel,@RequestParam("fileUpload") MultipartFile file,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession)
+	{
+		
+		String localId = studentSession.get("id");
+
+		if(!(localId.contentEquals("temp") || localId.equals(null))) 
+	{
+		byte[] bytes = null;
+		try {
+			bytes = file.getBytes();
+			} 
+		catch (IOException e) 
+			{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		int userId=Integer.parseInt(localId);
+
+		String message=studentService.uploadImage(bytes,userId);
+		if (message.equals("ok"))
+			{		
+			return "redirect:/home/student/viewProfile";
+			}
+		else {
+			theModel.addAttribute("message","An error has occured while uploading image\n Please login again");
+
+			return "redirect:/home/userLogin";
+			}
+	}
+		else {
+			theModel.addAttribute("message","Something went Wrong! Please login again");
+			return "redirect:/home/userLogin";	
+			}
+	}
+	
+	@GetMapping("/deleteProfile")
+	public String deleteProfile(@SessionAttribute(name="tempSession") HashMap<String,String> studenSession, Model theModel) {
+		
+		String userId=studenSession.get("id");
+		
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {
+			String message = studentService.deleteProfile(userId);
+			theModel.addAttribute("message", message);
+			return "redirect:/home/userLogin?role=instructor";
+		}
+	}
 }

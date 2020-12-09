@@ -17,9 +17,6 @@ public class Utilities {
 		}
 		}
 		catch (Exception e) {
-
-			
-				
 				videos.put("null", null);
 				return videos;
 		}

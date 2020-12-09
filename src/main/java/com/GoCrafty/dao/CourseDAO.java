@@ -31,6 +31,8 @@ public interface CourseDAO {
 
 	public ArrayList<Student> getStudentsEnrolled(String newCourseId);
 
+	public ArrayList<String> getGrades(List<Course> enrolledCourses, int id);
+
 	
 
 

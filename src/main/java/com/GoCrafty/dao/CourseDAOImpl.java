@@ -87,7 +87,7 @@ public class CourseDAOImpl implements CourseDAO {
 	public String enroll(String useId, String courseId) {
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
-			CourseEnrolled enroll= new CourseEnrolled(Integer.parseInt(courseId),Integer.parseInt(useId));
+			CourseEnrolled enroll= new CourseEnrolled(Integer.parseInt(courseId),Integer.parseInt(useId), "0");
 			currentSession.save(enroll);
 		}
 		catch (Exception e) {
@@ -271,6 +271,25 @@ public class CourseDAOImpl implements CourseDAO {
 			 ArrayList<Student> s = null;
 			 return s;
 		}
+	}
+
+	@Override
+	public ArrayList<String> getGrades(List<Course> enrolledCourses, int id) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		ArrayList<String> grades = new ArrayList<String>();
+		for (Course theCourse:enrolledCourses )
+		{
+			Query query=currentSession.createQuery("select c.grades from CourseEnrolled c WHERE c.studentId= :sid AND c.courseId= :cid");
+			query.setParameter("sid", id);
+			query.setParameter("cid", theCourse.getId());
+			String theGrade=(String) query.getSingleResult();
+			grades.add(theGrade);
+			
+		}
+		
+		
+		System.out.println("course dao impl size: "+grades.size());
+		return grades;
 	}
 
 }

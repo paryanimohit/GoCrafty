@@ -68,17 +68,24 @@
  				<div id="logslgo">Last Login: ${student.logs}</div>
  		</div>
 		<div id="courseContainer-student">
-			<h4>Your Enrolled Courses:</h4>
-			<c:forEach var="theCourse" items="${enrolledCourses}">
-			<div id = "coursebox">
-				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${theCourse.getId()}&vId=1">
-					Course Name: ${theCourse.getName()}<br>
-						Estimated time to complete:  ${theCourse.getEstimatedTimeToComplete()}<br>
-						Instructor name: ${instructorName.get(String.valueOf(theCourse.getInstructor_id()))}<br>
-						Category: ${theCourse.getCategory()}
+			<c:if test="${enrolledCourses.size()!=0 }">
+		<c:forEach var="i" begin="0" end="${enrolledCourses.size()-1}" >
+				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${enrolledCourses.get(i).getId()}&vId=1">
+					<br>Course Name: ${enrolledCourses.get(i).getName()}<br>
+						Estimated time to complete:  ${enrolledCourses.get(i).getEstimatedTimeToComplete()}<br>
+						Instructor name: ${instructorName.get(String.valueOf(enrolledCourses.get(i).getInstructor_id()))}<br>
+						Category: ${enrolledCourses.get(i).getCategory()}<br>
+						Grades: ${grades.get(i)}
+						
+						<hr>
 				</a>
 				</div><br>
 			</c:forEach> 	
+			</c:if>
+			<c:if test="${ enrolledCourses.size() == 0}">
+			You have't enrolled in any course.<br>
+			Visit Browse Course Catalog to enroll in the course
+			</c:if>
 		</div>	
  </div>
 </c:if><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

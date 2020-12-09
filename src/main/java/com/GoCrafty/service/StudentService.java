@@ -11,6 +11,8 @@ public interface StudentService {
 	public String createAccount(Student theStudent);
 	public Student editProfile(ArrayList<String> updatedStudent, String localId);
 	public Student setCurrentLogin(int id);
+	public String deleteProfile(String userId);
+	public String uploadImage(byte[] bytes, int userId);
 
 
 }
