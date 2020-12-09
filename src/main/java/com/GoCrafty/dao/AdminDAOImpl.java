@@ -30,6 +30,7 @@ public class AdminDAOImpl implements AdminDAO{
 		
 		try {
 			Session  currentSession= sessionFactory.getCurrentSession();
+//			System.out.println(id);
 			Admin admin = currentSession.get(Admin.class, id);
 			Encryption encr= new Encryption();
 			String decryptedPassword=encr.decrypt(admin.getPassword());

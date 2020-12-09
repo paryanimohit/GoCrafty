@@ -19,14 +19,13 @@
 
 <c:forEach var="course" items="${courseList}">
 <%-- 	${user.profilePic()} --%>
-	<br>ID: ${course.getId()}
 	<br>Name: ${course.getName()}
 	<br>Description: ${course.getDescription()}
 	<br>Estimated time to complete: ${course.getEstimatedTimeToComplete()}
 	<br>Category: ${course.getCategory()}
 	<br>Video Link: ${course.getVideoLink()}
 	<br>Quiz Link: ${course.getQuizLink()}
-	<br>Instructor ID: ${course.getInstructor_id()}
+	<br>Response Link: ${course.getResponseLink()}
 	<br><input type="button" value="Delete Course" onclick="location.href = '${pageContext.request.contextPath}/home/admin/deleteCourse?courseId=${course.getId()}'; buttonAnimation();">
 	<hr>
 </c:forEach>
