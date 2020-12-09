@@ -42,6 +42,9 @@
 				<form:option id="category" value="Illustrations" label="Illustrations"/>
 				<form:option id="category" value="Art for Kids" label="Art for Kids"/>
 				<form:option id="category" value="Crafting" label="Crafting"/>
+				<c:if test="${tempSession.recruitement == 1}">
+				<form:option id="category" value="Recruitment" label="Recruitment"/>
+				</c:if>
 		   	</form:select>
 		</div>
 		<br>

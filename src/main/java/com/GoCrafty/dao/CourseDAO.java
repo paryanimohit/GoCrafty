@@ -8,7 +8,7 @@ import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Student;
 
 public interface CourseDAO {
-	public List<String> showCategories();
+	public List<String> showCategories(String recruitment);
 
 	public List<Course> showCoursesByCategory(String category);
 

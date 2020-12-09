@@ -35,7 +35,7 @@
 		<div id="headerLink"><a href="/GoCrafty/home/authentication/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>
 		<div id="headerLink"><a href="deleteProfile?role=student" >Delete Profile</a></div>
-		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a></div>
+		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showCategories?recruitment=${tempSession.recruitment}">Browse Course Catalog</a></div>
 	</div>
 </div>
 </header>

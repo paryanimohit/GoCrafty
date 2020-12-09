@@ -22,7 +22,7 @@
 			<c:if test = "${exception != null}">
 			<h2>${message}</h2>
 			</c:if>
-
-Kuch to aega yahan	
+Kindly click on any of the buttons above to perform ADD/DELETE/VIEW - Student/Instructor/Course <br>
+You can also change password using Change Password button. We recommend you to do it for the first time.
 </body>
 </html>

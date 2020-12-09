@@ -26,12 +26,11 @@ public class CourseDAOImpl implements CourseDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<String> showCategories() {
-		
+	public List<String> showCategories(String recruitment) {
+		System.out.println(recruitment);
 		Session  currentSession= sessionFactory.getCurrentSession();
-		List<String> categories = currentSession.createQuery(
-			    "select distinct c.category " +
-			    "from Course c", String.class)
+		String query = Integer.parseInt(recruitment) == 1? "select distinct c.category from Course c":"select distinct c.category from Course c where c.category!='Recruitment'"; 
+		List<String> categories = currentSession.createQuery(query, String.class)
 			.getResultList();
 		
 		
