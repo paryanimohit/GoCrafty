@@ -35,13 +35,14 @@ public class InstructorController {
 			String image = instructorService.getImage(id);
 			
 			instructorService.setCurrentLogin(id);
-			System.out.println("HNJANJAN"+instructor);
+//			System.out.println("HNJANJAN"+instructor);
 			List<Course> course = instructorService.getCourseByInstructorId(id);
 			m.addAttribute("course",course);
 			
 			instructorSession.put("firstName",instructor.getFirstName());
 			instructorSession.put("lastName",instructor.getLastName());
 			instructorSession.put("email",instructor.getEmail());
+			instructorSession.put("recruitement", instructor.getRecruiter());
 			
 			m.addAttribute("img",image);
 			m.addAttribute("instructor",instructor);
@@ -126,6 +127,7 @@ public class InstructorController {
 				instructorSession.put("firstName",instructor.getFirstName());
 				instructorSession.put("lastName",instructor.getLastName());
 				instructorSession.put("email",instructor.getEmail());
+				instructorSession.put("recruitement", instructor.getRecruiter());
 				return "redirect:/home/instructor/viewProfile";
 				}		
 		}

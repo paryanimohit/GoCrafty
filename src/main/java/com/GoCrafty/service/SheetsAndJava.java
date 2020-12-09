@@ -19,6 +19,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.log.SysoCounter;
 
 public class SheetsAndJava {
@@ -76,7 +77,13 @@ public class SheetsAndJava {
 	public static void main(String[] args) {
 		try {
 			getGrades("harshshah0110@gmail.com", "1dXUrRTzQXVjuRohTgL9boUCOPdnU2V0KxKz0taKO0K8");
-		} catch (IOException e) {
+			PdfCreator.genrateCertificate("Harsh Shah", "course", "instructor", "45");
+		}
+		 catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
+		catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (GeneralSecurityException e) {

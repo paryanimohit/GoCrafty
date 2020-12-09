@@ -29,10 +29,10 @@ public class CourseController {
 	private CourseService courseService;
 	
 	@GetMapping("/showCategories")
-	public String showCategories(Model theModel)
+	public String showCategories(Model theModel, @RequestParam("recruitment")String recruitment)
 	{
 		
-		List<String> categories=courseService.showCategories();
+		List<String> categories=courseService.showCategories(recruitment);
 		theModel.addAttribute("category",categories);
 		return "show-category";
 	}

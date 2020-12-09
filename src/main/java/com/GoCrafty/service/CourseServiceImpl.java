@@ -20,8 +20,8 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Override
 	@Transactional
-	public List<String> showCategories() {
-		return courseDAO.showCategories();
+	public List<String> showCategories(String recruitment) {
+		return courseDAO.showCategories(recruitment);
 	}
 
 	@Override

@@ -45,6 +45,7 @@ public class StudentController {
 			studentSession.put("firstName",student.getFirstName());
 			studentSession.put("lastName",student.getLastName());
 			studentSession.put("email",student.getEmail());
+			studentSession.put("recruitment", student.getApplyForJob());
 			
 			m.addAttribute("img",image);
 			m.addAttribute("student",student);
@@ -138,6 +139,7 @@ public class StudentController {
 				studentSession.put("firstName",student.getFirstName());
 				studentSession.put("lastName",student.getLastName());
 				studentSession.put("email",student.getEmail());
+				studentSession.put("recruitment", student.getApplyForJob());
 				return "redirect:/home/student/viewProfile";
 				}
 		}
