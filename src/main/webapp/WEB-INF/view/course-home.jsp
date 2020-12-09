@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="footer.jsp" %> 
    
 <!DOCTYPE html>
 <html>
@@ -59,6 +58,6 @@
  			</div>
  		</div>				
  </div>
-</c:if><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</c:if><br><br><br><br><br>
 </body>
 </html>

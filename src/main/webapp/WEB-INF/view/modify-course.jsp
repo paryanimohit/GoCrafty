@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%-- <%@ include file="instructor-header.jsp"%> --%>
-<%@ include file="footer.jsp"%>
+<%-- <%@ include file="footer.jsp"%> --%>
 
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@
 	</div>
 	</div>
 </header>
-<div class="content" onclick="hideForm();">
+<div class="content" onclick="hideForm();"><br><br>
 	<div class="modify-course-left">
 		<form:form action="${pageContext.request.contextPath}/home/course/modifyCourse" modelAttribute="course" method="post">
 		<div id="leftSgn"><label>Course Name </label></div>
@@ -56,16 +56,13 @@
 				<form:option id="category" value="Crafting" label="Crafting"/>
 		   	</form:select>
 		</div>
-		<div id="leftSgn"><input class="signupbutton" type="submit" value="Modify Course"></div>
+		<div id="leftSgn"><input class="viewcourse" type="submit" value="Modify Course"></div>
 		</form:form>
-	</div>
+	</div><br><br>
 	
 	<div class="modify-course-center">
-	<button onClick="showVideoUploadForm();" value="addVideos">Add Video</button>
-	</div>
-	
-	<div class="modify-course-right">
-	<button onClick="showQuizUploadForm();" value="addQuiz">Add Quiz</button>
+	<button onClick="showVideoUploadForm();" value="addVideos" class="viewcourse">Add Video</button>
+		<button onClick="showQuizUploadForm();" value="addQuiz" class="viewcourse">Add Quiz</button>
 	</div>
 	
 	<c:if test="${videoListSize == '0'}">

@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="footer.jsp" %> 
 
 <!DOCTYPE html>
 <html>
@@ -67,7 +66,7 @@
 </div>
 	
 <div id="courses">
-		<div id="courselgo">Your Courses:</div>
+		<div id="courselgo"><h3 align = "center">Your Courses</h3></div>
 		<c:forEach var="course" items="${course}">
 			<div id="coursedet">
 			<a href="${pageContext.request.contextPath}/home/course/showCourseHomeToInstructor?id=${course.getId()}">
@@ -79,6 +78,6 @@
 		</c:forEach> 
 </div>
 </div>
-</c:if>
+</c:if><br><br><br>
 </body>
 </html>
