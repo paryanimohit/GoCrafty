@@ -75,12 +75,12 @@
 	<div class="modify-course-center">
 			<form action = "modifyVideos" method = "post">
 				<c:forEach items="${videoList}" var="video">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/${embededLink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<%-- <iframe width="560" height="315" src="https://www.youtube.com/embed/${embededLink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --%>
 				
 				<label>Video Name</label>
-				<input type="text" name="videoName" value="${videoList.key}"/>
+				<input type="text" name="videoName" value="${video.key}"/><br>
 				<label>Video URL</label>
-				<input type="text" name="videoURL" value="${videoList.value}"/>
+				<input type="text" name="videoURL" value="${video.value}"/><br>
 				</c:forEach>
 			</form>
 	 </div>
@@ -97,9 +97,9 @@
 			<form action = "modifyQuiz" method = "post">
 				<c:forEach items="${quizList}" var="quiz">
 				<label>Quiz Name</label>
-				<input type="text" name="quizName" value="${quizList.key}"/>
-				<label>Video URL</label>
-				<input type="text" name="quizURL" value="${quizList.value}"/>
+				<input type="text" name="quizName" value="${quiz.key}"/><br>
+				<label>Quiz URL </label>
+				<input type="text" name="quizURL" value="${quiz.value}"/><br>
 				</c:forEach>
 			</form>
 	</div>
