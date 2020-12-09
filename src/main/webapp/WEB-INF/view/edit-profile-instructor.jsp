@@ -13,7 +13,7 @@
 <title>Edit Profile</title>
 </head>
 <body>
-<div class="content" onclick="hideForm();">
+<div class="content" onclick="hideForm();"><br><br>
 	<div class="edit-profile-form">
 				<form action="editProfile" method="post"> 
 				<div id="fnamelgo"><label>First Name: </label></div>
@@ -22,7 +22,7 @@
 				<div id="lnamebox"><input id="formd"type="text" name="lastName" value="${instructor.lastName}"/></div>
 				<div id="passwordlgo"><label>Password: </label></div>
 				<div id="passwordbox"><input id="formd"type="password" name="password" value="${instructor.password}"/></div>
-				<div class="updatebutton"><input class="genericbutton" type="submit" value = "Update Profile"></div>
+				<div class="updatebutton"><input class="viewcourse" type="submit" value = "Update Profile"></div>
 				</form> 
 				</div>
 </div>

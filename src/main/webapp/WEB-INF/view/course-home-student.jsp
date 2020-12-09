@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="student-header.jsp"%>
+<%@ include file="footer.jsp" %>
 
 <!DOCTYPE html>
 <html>
@@ -11,17 +13,20 @@
 <title>${theCourse.getName()}</title>
 </head>
 <body>
+<div class = "coursecontent">
 
-<br>Course Name: ${theCourse.getName()}<br>
-	Estimated time to complete:  ${theCourse.getEstimatedTimeToComplete()}<br>
-	Instructor name: ${instructorName.get(String.valueOf(theCourse.getInstructor_id()))}<br>
-	Category: ${theCourse.getCategory()}<br>
-	Description: ${theCourse.getDescription() }<br>
+<h2 align="center">${theCourse.getName()}</h2>
 
+<div class = "leftCourse">
+<c:if test="${fn:containsIgnoreCase(param.vId, 'Video')}">
+<iframe width="800" height="480" src="https://www.youtube.com/embed/${embededLink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</c:if>
+<c:if test="${fn:containsIgnoreCase(param.vId, 'Quiz')}">
+<iframe src="https://docs.google.com/forms/d/e/${embededLink}/viewform?embedded=true" width="800" height="480" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+</c:if>
+</div>
 
-<h2>Videos</h2>
-<br>
-
+<div class = "rightCourse">
 <c:if test="${videos.containsKey('null')}">
 Seems like Instructor has not added videos yet!
 </c:if>
@@ -31,21 +36,29 @@ Seems like Instructor has not added videos yet!
   Title: ${theVideo.key}</a><br>
 </c:forEach>
 </c:if>
+</div><br>
 
-<c:if test="${fn:containsIgnoreCase(param.vId, 'Video')}">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/${embededLink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</c:if>
-<c:if test="${fn:containsIgnoreCase(param.vId, 'Quiz')}">
-<iframe src="https://docs.google.com/forms/d/e/${embededLink}/viewform?embedded=true" width="560" height="315" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-</c:if>
-<br/><a href="${pageContext.request.contextPath}/home/course/generateCertificate?courseId=${courseId}">Complete and Generate Certificate</a>
+<div class = "rightCourse">
+	Course Duration: ${theCourse.getEstimatedTimeToComplete()}<br>
+	Instructor: ${instructorName.get(String.valueOf(theCourse.getInstructor_id()))}<br>
+	Category: ${theCourse.getCategory()}<br>
+	Description: ${theCourse.getDescription() }<br>
+</div><br>
+
+<div class = "rightCourse">
+<a href="${pageContext.request.contextPath}/home/course/generateCertificate?courseId=${courseId}"><h3 align="center">Complete and Generate Certificate</h3></a>
 <br/>Certificate:<br/>
 Full Name: ${name}<br>
 Course Name: ${course}<br>
 Email ID: ${email}<br>
 Percentage: ${percentage}<br>
-<br>
+</div><br>
+
+<div class="rightCourse">
 Contact Professor!<br>
 <a href="mailto:name@rapidtables.com">Send mail</a>
+</div><br>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>

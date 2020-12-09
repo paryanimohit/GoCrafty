@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ include file="student-header.jsp"%>
-<%@ include file="footer.jsp"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -13,8 +13,8 @@
 <title>Edit Profile</title>
 </head>
 <body>
-<div class="content" onclick="hideForm();">
-	<div class="edit-profile-form">
+<div class="content" onclick="hideForm();"><br><br>
+	<div class="edit-profile-form"><h2 align="center">EDIT PROFILE</h2>
 				<form action="editProfile" method="post"> 
 				<div id="fnamelgo"><label>First Name: </label></div>
 				<div id="fnamebox"><input id="formd" type="text" name="firstName" value="${student.firstName}"/></div>
@@ -22,7 +22,7 @@
 				<div id="lnamebox"><input id="formd"type="text" name="lastName" value="${student.lastName}"/></div>
 				<div id="passwordlgo"><label>Password: </label></div>
 				<div id="passwordbox"><input id="formd"type="password" name="password" value="${student.password}"/></div>
-				<div class="updatebutton"><input class="genericbutton" type="submit" value = "Update Profile"></div>
+				<div class="updatebutton"><input class="viewcourse" type="submit" value = "Update Profile"></div>
 				</form> 
 				</div>
 </div>

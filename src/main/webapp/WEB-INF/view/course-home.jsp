@@ -17,6 +17,7 @@
 <body>
 <c:if test="${tempSession.id != 'temp'}">	
 <header>
+<div class="overlay">
 <div id="leftHeader">
 		<a href="${pageContext.request.contextPath}/home/course/showCourseHomeToInstructor">
 		<img class="logoprop"src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
@@ -28,25 +29,24 @@
 		<div id="headerLink"><a href="#deleteForm" onclick="showPasswordPrompt();"id="deleteButton">Delete Course</a></div>
 		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showModifyCourse">Modify Course</a></div>
 	</div>
+	</div>
 </header>
 <div class = "content">
 		<div id = "deleteForm" style="visibility: hidden">
 			<form action="deleteCourse" method="get">
 				<label>Password</label>
 				<input id="formd" type="password" name = "password">
-				<input class="genericbutton" type="submit" value="Confirm">
+				<input class="mycourse" type="submit" value="Confirm">
 			</form>
 		</div>
 	
 		<div id="courseContainer" onclick="hideForm();">
-			<div id="courseHead">Welcome to the ${course.name}</div>
-			<div id="leftContainer">
+			<h2 align = "center">Welcome to the ${course.name}</h2>
 				<div id="course-analytics">
-				COURSE ANALYTICS
-					<div>Course Description: ${course.description}</div>
-					<div>Course Duration: ${course.estimatedTimeToComplete}</div>
-					<div>Category: ${course.category}</div>
- 				</div>
+				<h3 align = "center">COURSE ANALYTICS</h3><br>
+					Course Description: ${course.description}<br>
+					Course Duration: ${course.estimatedTimeToComplete}<br>
+					Category: ${course.category}
  			</div>
  			<div id="rightContainer">
  				Number of Students Enrolled : ${size}
@@ -59,6 +59,6 @@
  			</div>
  		</div>				
  </div>
-</c:if>
+</c:if><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>

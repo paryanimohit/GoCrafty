@@ -35,9 +35,9 @@
 		<div id="rightSgn"><form:input type="date" path="birthDate" required="required"/></div>
 		<div id="leftSgn"><label>Apply for Job: </label></div>
 		<div id="rightSgn"><form:checkbox path="applyForJob" value="1" /></div>
-		<div id="leftSgn"><input class="signupbutton" type="submit" value="Create Account"></div>
+		<div id="leftSgn"><input class="viewcourse" type="submit" value="Create Account"></div>
 	</form:form> 
 		</div>
-	<br><br><br><br>
+	<br><br><br><br><br><br><br>	
 </body>
 </html>

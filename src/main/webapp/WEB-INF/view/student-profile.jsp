@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="footer.jsp" %> 
+<%-- <%@ include file="footer.jsp" %>  --%>
    
 <!DOCTYPE html>
 <html>
@@ -17,6 +17,7 @@
 <body>
 <c:if test="${tempSession.id != 'temp'}">	
 <header>
+<div class="overlay">
 	<div id="leftHeader">
 		<a href="${pageContext.request.contextPath}/home/student/viewProfile">
 		<img class="logoprop"src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
@@ -30,12 +31,13 @@
    				<a href="#ppedit" onclick="showForm();"><img class="profilePicProps"src="data:image/jpg;base64,${img}"/>	</a>
 			</c:if>
 			Hello ${student.firstName}
-		</div>
+		</div><br>
 		<div id="headerLink"><a href="/GoCrafty/home/authentication/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>
 		<div id="headerLink"><a href="deleteProfile?role=student" >Delete Profile</a></div>
 		<div id="headerLink"><a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a></div>
 	</div>
+</div>
 </header>
 <div class = "content" onclick="hideForm();">
 <div id = "ppedit" style="visibility: hidden;">
@@ -53,7 +55,7 @@
 		
 	<div id="profileContainer" onclick="hideForm();">
 				<div id="namelgo">Hello ${student.firstName} ${student.lastName}, Welcome back!</div>
- 				<div id="emaillgo">Your registered email address is: <b>${student.email}</b> </div>
+ 				<div id="emaillgo">Registered Email: <b>${student.email}</b> </div>
  				<c:if test="${student.applyForJob =='1'}">
  					<div id="jobslgo">Your Active Services: 
  						<ol>
@@ -66,17 +68,19 @@
  				<div id="logslgo">Last Login: ${student.logs}</div>
  		</div>
 		<div id="courseContainer-student">
+			<h4>Your Enrolled Courses:</h4>
 			<c:forEach var="theCourse" items="${enrolledCourses}">
+			<div id = "coursebox">
 				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${theCourse.getId()}&vId=1">
-					<br>Course Name: ${theCourse.getName()}<br>
+					Course Name: ${theCourse.getName()}<br>
 						Estimated time to complete:  ${theCourse.getEstimatedTimeToComplete()}<br>
 						Instructor name: ${instructorName.get(String.valueOf(theCourse.getInstructor_id()))}<br>
-						Category: ${theCourse.getCategory()}<hr>
-						
+						Category: ${theCourse.getCategory()}
 				</a>
+				</div><br>
 			</c:forEach> 	
 		</div>	
  </div>
-</c:if>
+</c:if><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>

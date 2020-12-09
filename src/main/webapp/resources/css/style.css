@@ -30,31 +30,24 @@ header .overlay{
 }
 
 #categories{
-	padding: 60px;
-	width: 80%;
-	background: #ffffe0;
-	color: #32CD32;
 	font-family: Marcellus, serif;
 	text-shadow: 0 2px #fff;
 	text-align: center;
-	display: block;	
-	margin: 0 auto;
+	display: inline-block;	
 	font-size: 22px;
 	text-align: center;
 	position:relative;
-	border:dashed;
-	border-color: #32CD32;
-	box-shadow: 0 0 0 3;
-	border-width: 6px;
+	padding: 50px;
 }
 
 footer{
 	display:block;
     width: 100%; 
     font-size: 18px;
+    margin: 0 auto;
     color: #32CD32;
-    left:0px;
-    bottom:0px;
+    left:0;
+    bottom:0;
     z-index:600;
 	background-color: black;
 	opacity:100%;
@@ -145,14 +138,13 @@ a:hover {
 body{
     display: block;
     font-size: 20px;
-/* 	background-color: #756213; */
-/* 	background-image: linear-gradient(-315deg, #756213 0%, #000000 74%); */
 	background: #563f0e;
 	font-family:  Marcellus, serif;
 	margin: 0;
 	color:#32CD32;
     width: 100%;
     position: relative;
+    min-height: 616px;
 }
 
 html{
@@ -160,6 +152,15 @@ html{
 }
 
 .content{
+	display:block;
+	position: relative;
+	margin: 0 auto;
+  	width: 90%;
+	opacity: 100%;
+	background-color: transparent;  
+}
+
+.coursecontent{
 	display:block;
 	position: relative;
 	margin: 0 auto;
@@ -857,7 +858,7 @@ html{
 	font-size: 22px;
 	position:relative;
 	width:60%;
-	height: 350px;
+/* 	height: 350px; */
 	border:dashed;
 	border-color: #32CD32;
 	box-shadow: 0 0 0 3;
@@ -1127,16 +1128,46 @@ html{
 
 #profileContainer{
 	
+	background: #ffffe0;
+	color: #32CD32;
+	float:left;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
+	display: block;	
+	font-size: 22px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 	width:45%;
-	padding-bottom: 40px;
-	padding-top: 30px;
+/* 	padding-bottom: 10px; */
+	padding-top: 20px;
 	padding-left: 25px;
 	padding-right:25px;
-	display: block;
+}
+
+#course-analytics{
+	
+	background: #ffffe0;
+	color: #32CD32;
 	float:left;
-	position: relative;
-	border:2px solid white;
-	background-color: brown;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
+	display: block;	
+	font-size: 22px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
+	width:50%;
+/* 	padding-bottom: 10px; */
+	padding-top: 20px;
+	padding-left: 25px;
+	padding-right:25px;
 }
 
 #mycourse{
@@ -1158,6 +1189,45 @@ html{
 	box-shadow: 0 0 0 3;
 	border-width: 6px;
 }
+
+#mycoursedesc{
+	padding: 10px;
+	width: 60%;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
+	display: block;	
+	margin: 0 auto;
+	font-size: 22px;
+	text-align: center;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
+}
+
+#coursebox{
+	padding: 10px;
+	width: 90%;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
+	display: block;	
+	margin: 0 auto;
+	font-size: 22px;
+	text-align: center;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
+}
+
 
 .viewcourse{
 	display:inline-block;
@@ -1182,21 +1252,31 @@ html{
   cursor: pointer;
 }
 	
-}
 
 #courses{
 	
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
+	display: block;	
+	margin: 0 auto;
+	font-size: 22px;
+	text-align: center;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 	width:43% ;
 	padding-bottom: 40px;
 	padding-top: 30px;
 	padding-left: 25px;
 	padding-right:25px;
-	display: block;
 	float:right;
 	position: relative;
-	border:2px solid white;
-	background-color: brown;
-}
+	}
 
 #coursedet{
 	display: block;
@@ -1206,57 +1286,137 @@ html{
 
 #courseContainer-student{
 	
-	width:45% !important;
-	padding-bottom: 40px;
-	padding-top: 30px;
-	padding-left: 25px;
-	padding-right:25px;
+	width:40%;
+	float:right;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right:10px;
 	display: block;
-	float:left;
-	position: relative;
-	border:2px solid white;
-	background-color: #262882;
-	overflow: scroll;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: left;	
+	margin: 0 auto;
+	font-size: 22px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 }
+
+.rightCourse{
+	
+	width:20%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right:10px;
+	display: block;
+	background: #ffffe0;
+	float:right;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: left;	
+	font-size: 18px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
+}
+
+.leftCourse{
+	
+	width:70%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right:10px;
+	float:left;
+	display: block;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: left;	
+	font-size: 18px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
+}
+
 .edit-profile-form{
 	
 	width:50%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right:10px;
 	margin: 0 auto;
 	display: block;
-	position: relative;
-	top: 120px;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: left;	
+	font-size: 18px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 }
 
-#courseHead{
-	font-size: 20px;
-	font-weight: bold;
-	display: block;
-	width: 90%;
-	margin: 0 auto;
-}
+/* #courseHead{ */
+/* 	font-size: 20px; */
+/* 	font-weight: bold; */
+/* 	display: block; */
+/* 	width: 90%; */
+/* 	margin: 0 auto; */
+/* } */
 
-#leftContainer{
-	display: block;
-	float: left;
-	width:60%;
-	border:1px solid white;
-}
+/* #leftContainer{ */
+/* 	display: block; */
+/* 	float: left; */
+/* 	width:60%; */
+/* 	border:1px solid white; */
+/* } */
 
 #rightContainer{
-	display: block;
-	float: right;
 	width:38%;
-	border:1px solid white;
+	float:right;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right:10px;
+	display: block;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: left;	
+	font-size: 18px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 }
 
 #courseContainer{
 	
 	width:90% ;
-	padding-top: 100px;
+	padding-top: 40px;
 	display: block;
 	margin: 0 auto;
 	position: relative;
-	background-color: #181818;
+/* 	background-color: #181818; */
 }
 
 /* #formd{ */
@@ -1435,26 +1595,65 @@ html{
 
 .modify-course-left{
 	
-	display: block;
-	position: relative;
+	width:30%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right:10px;
 	float:left;
-	width: 30%;
-	margin: 0 auto;
+	display: block;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: left;	
+	font-size: 18px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 }
 
 .modify-course-center{
 	
+	width:30%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right:10px;
 	display: block;
-	position: relative;
-	width: 30%;
-	margin: 0 auto;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: left;	
+	font-size: 18px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 }
 
 .modify-course-right{
 	
-	display: block;
+	width:70%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right:10px;
 	float:right;
-	position: relative;
-	width: 30%;
-	margin: 0 auto;
+	display: block;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: left;	
+	font-size: 18px;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 }

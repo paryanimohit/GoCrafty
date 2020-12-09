@@ -17,6 +17,7 @@
 <body>
 <c:if test="${tempSession.id != 'temp'}">
 <header>
+<div class="overlay">
 	<div id="leftHeader">
 		<a href="${pageContext.request.contextPath}/home/instructor/viewProfile">
 		<img class="logoprop"src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
@@ -30,11 +31,12 @@
    				<a href="#ppedit" onclick="showForm();"><img class="profilePicProps"src="data:image/jpg;base64,${img}"/>	</a>
 			</c:if>
 			Hello ${instructor.firstName}
-		</div>
+		</div><br>
 		<div id="headerLink"><a href="/GoCrafty/home/authentication/logOut">Log Out</a></div>
 		<div id="headerLink"><a href="showEditProfile">Edit Profile</a></div>	
 		<div id="headerLink"><a href="deleteProfile">Delete Profile</a></div>
 		<div id="headerLink"><a href="showAddCourse">Add Course</a></div>
+	</div>
 	</div>
 </header>
 <div class ="content">

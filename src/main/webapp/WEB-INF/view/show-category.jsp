@@ -19,15 +19,14 @@
 <c:if test="${tempSession.id != 'temp'}">
 <%@ include file="student-header.jsp"%>
 </c:if>
-<div class="content"><br><br><br>
+<div class="content"><br><br>
 	<c:forEach var="cat" items="${category}">
-	<br>
 		<div id="categories"> 
 			<form action = "${pageContext.request.contextPath}/home/course/showCoursesByCategory" method = "post">
 			<input type="hidden" value="${cat}" name="category">
 			<input type="submit" value="${cat}" class="button-student" ></form>
 		</div>
 	</c:forEach>
-</div><br><br><br><br><br>
+</div>
 </body>
 </html>

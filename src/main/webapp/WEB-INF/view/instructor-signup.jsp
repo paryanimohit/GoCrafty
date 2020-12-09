@@ -16,7 +16,7 @@
 <title>Create an account</title>
 </head>
 <body>
-	
+	<br><br>
 	<div id="signup_form">
 	<form:form action="${pageContext.request.contextPath}/home/instructor/createAccount" modelAttribute="instructor" method="post">
 		<div id="leftSgn"><label>First Name: </label></div>
@@ -34,8 +34,8 @@
 		<div id="leftSgn"><label>Recruiter </label></div>
 		<div id="rightSgn"><form:checkbox path="recruiter" value="1" /></div>
 		
-		<div id="leftSgn"><input class="signupbutton" type="submit" value="Create Account"></div>
+		<div id="leftSgn"><input class="viewcourse" type="submit" value="Create Account"></div>
 	</form:form> 
-	</div>
+	</div><br><br><br><br><br><br><br>
 </body>
 </html>

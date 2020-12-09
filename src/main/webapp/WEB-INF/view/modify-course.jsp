@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="instructor-header.jsp"%>
+<%-- <%@ include file="instructor-header.jsp"%> --%>
 <%@ include file="footer.jsp"%>
 
 <!DOCTYPE html>
@@ -18,6 +18,7 @@
 <body>
 <c:if test="${tempSession.id != 'temp'}">	
 <header>
+<div class="overlay">
 	<div id="leftHeader">
 		<a href="${pageContext.request.contextPath}/home/instructor/viewProfile">
 		<img class="logoprop"src="${pageContext.request.contextPath}/resources/images/logo.png"></a>
@@ -27,6 +28,7 @@
 			<a href="${pageContext.request.contextPath}/home/instructor/viewProfile">Hello ${tempSession.firstName}</a>
 		</div>
 		<div id="headerLink"><a href="${pageContext.request.contextPath}/home/course/showCourseHomeToInstructor"></a></div>
+	</div>
 	</div>
 </header>
 <div class="content" onclick="hideForm();">

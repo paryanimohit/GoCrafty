@@ -15,6 +15,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <title>Courses</title>
 </head>
 <body>
@@ -28,6 +31,6 @@
 	<input type="button" class="viewcourse" value="View Course" onclick="location.href = '${pageContext.request.contextPath}/home/course/viewCourseDescription?id=${theCourse.getId()}';">
 	</div>
 	</c:forEach>
-<br><br><br><br><br><br><br><br>
+
 </body>
 </html>
