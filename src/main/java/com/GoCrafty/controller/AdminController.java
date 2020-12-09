@@ -130,21 +130,21 @@ public class AdminController {
 		}
 		
 	}
-//	
-//	@GetMapping("/deleteStudent")
-//	public String deleteStudent(@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m,@RequestParam("userId") int userId)
-//	{
-//		if(!(adminSession.get("id").equals("temp")) || (adminSession.get("id").equals(null)))
-//		{
-//			@SuppressWarnings("unused")
-//			String message = adminService.deleteStudent(userId); 
-//			return "redirect:/home/admin/getStudent";
-//		}
-//		else {
-//			m.addAttribute("Message", "Something Went wrong! Please Login again");
-//			return "redirect:/home/showAdminLogin";
-//		}
-//	}
+	
+	@GetMapping("/deleteStudent")
+	public String deleteStudent(@SessionAttribute(name="tempSession") HashMap<String,String> adminSession, Model m,@RequestParam("studentId") int userId)
+	{
+		if(!(adminSession.get("id").equals("temp")) || (adminSession.get("id").equals(null)))
+		{
+			@SuppressWarnings("unused")
+			String message = adminService.deleteStudent(userId); 
+			return "redirect:/home/admin/getStudent";
+		}
+		else {
+			m.addAttribute("Message", "Something Went wrong! Please Login again");
+			return "redirect:/home/showAdminLogin";
+		}
+	}
 	
 	
 	

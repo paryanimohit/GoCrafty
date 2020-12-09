@@ -17,9 +17,9 @@ public interface AdminService {
 	List<Instructor> getInstructor();
 
 	String deleteInstructor(int instructorId);
-//
-//	String deleteUser(int userId);
-//
+
+	String deleteStudent(int userId);
+
 	List<Course> getCourse();
 
 	String deleteCourse(int courseId);

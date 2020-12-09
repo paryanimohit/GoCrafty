@@ -87,21 +87,21 @@ public class AdminDAOImpl implements AdminDAO{
 		}
 	}
 
-//	@Override
-//	public String deleteUser(int userId) {
-//		try {
-//			Session currentSession = sessionFactory.getCurrentSession();
-//			Query query=currentSession.createSQLQuery("Set foreign_key_checks = 0");
-//			query.executeUpdate();
-//			User myUser = currentSession.get(User.class, userId);
-//			currentSession.delete(myUser);
-//			return "User Deleted Successfully";
-//			}
-//			catch (Exception e) {
-//				e.printStackTrace();
-//				return "An error has occured! Please try again.";
-//			}
-//	}
+	@Override
+	public String deleteStudent(int userId) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = userId;
+			Student student = currentSession.get(Student.class, id);
+			currentSession.delete(student);
+			return "Student Deleted";
+		}
+		catch (Exception e) {
+			
+			e.printStackTrace();
+			return "Sorry for the inconvinience! Student can not be deleted. Please contact the website Administrator.";
+		}
+	}
 
 	@Override
 	public List<Course> getCourse() {

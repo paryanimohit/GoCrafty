@@ -47,12 +47,12 @@ public class AdminServiceImpl implements AdminService{
 		return adminDAO.deleteInstructor(instructorId);
 	}
 
-//	@Override
-//	@Transactional
-//	public String deleteUser(int userId) {
-//		// TODO Auto-generated method stub
-//		return adminDAO.deleteUser(userId);
-//	}
+	@Override
+	@Transactional
+	public String deleteStudent(int userId) {
+		// TODO Auto-generated method stub
+		return adminDAO.deleteStudent(userId);
+	}
 
 	@Override
 	@Transactional

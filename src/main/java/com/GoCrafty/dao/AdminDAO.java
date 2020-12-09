@@ -16,8 +16,8 @@ public interface AdminDAO {
 	List<Student> getStudent();
 
 	String deleteInstructor(int instructorId);
-//
-//	String deleteUser(int userId);
+
+	String deleteStudent(int userId);
 
 	List<Course> getCourse();
 
