@@ -25,6 +25,8 @@ public interface CourseService {
 	public List<Course> getEnrolledCourses(int id);
 
 	public Course modifyCourse(Course course, String courseId);
+	
+	public float getScore(String userEmail, List<String> reponselink);
 
 	public String uploadVideo(String uploadVideo, String courseId);
 

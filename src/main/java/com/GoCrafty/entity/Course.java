@@ -45,6 +45,9 @@ public class Course {
 	@Column(name = "quiz_link")
 	private String quizLink;
 	
+	@Column(name = "response_link")
+	private String responseLink;
+
 	@OneToMany(fetch = FetchType.EAGER,
 			cascade = {CascadeType.ALL})
 	@JoinColumn(name = "course_id")
@@ -108,7 +111,13 @@ public class Course {
 		this.instructor_id = instructor_id;
 	}
 	
-	
+	public String getResponseLink() {
+		return responseLink;
+	}
+
+	public void setResponseLink(String responseLink) {
+		this.responseLink = responseLink;
+	}
 
 	public String getVideoLink() {
 		return videoLink;
@@ -127,24 +136,16 @@ public class Course {
 	}
 
 	public Course(String name, String description, String estimatedTimeToComplete, String category,
-			int instructor_id) {
+			int instructor_id, String videoLink, String quizLink, String responseLink) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.estimatedTimeToComplete = estimatedTimeToComplete;
 		this.category = category;
 		this.instructor_id = instructor_id;
-	}
-
-	public Course(String name, String description, String estimatedTimeToComplete, String category,
-			String videoLink, String quizLink) {
-		
-		this.name = name;
-		this.description = description;
-		this.estimatedTimeToComplete = estimatedTimeToComplete;
-		this.category = category;
 		this.videoLink = videoLink;
 		this.quizLink = quizLink;
+		this.responseLink = responseLink;
 	}
 	
 }

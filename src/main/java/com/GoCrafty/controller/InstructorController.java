@@ -73,7 +73,7 @@ public class InstructorController {
 		{
 			theModel.addAttribute("message", message);
 			if(instructorSession.containsKey("status")){
-				return "redirect:/home/admin/getUsers";
+				return "redirect:/home/admin/getInstructor";
 			}
 			else
 				return "redirect:/home/userLogin?role=instructor";

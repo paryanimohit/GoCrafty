@@ -84,7 +84,7 @@ public class StudentController {
 		{
 			theModel.addAttribute("message", message);
 			if(studentSession.containsKey("status")){
-				return "redirect:/home/admin/getUsers";
+				return "redirect:/home/admin/getStudent";
 			}
 			else
 				return "redirect:/home/userLogin?role=student";
@@ -139,7 +139,7 @@ public class StudentController {
 				studentSession.put("lastName",student.getLastName());
 				studentSession.put("email",student.getEmail());
 				return "redirect:/home/student/viewProfile";
-				}		
+				}
 		}
 		else {
 			model.addAttribute("Message", "Your Session was Expired! Please login again to continue");

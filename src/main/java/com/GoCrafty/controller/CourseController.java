@@ -86,15 +86,22 @@ public class CourseController {
 	public String addCourse(@ModelAttribute(name="course") Course course,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
 		
 		String userId=instructorSession.get("id");
-		
+		System.out.println(userId);
 		if (userId==null || userId.equals("temp"))
 		{
+			if(instructorSession.containsKey("status")){
+				return "redirect:/home/admin/showAdminLogin";
+			}
 			return "redirect:/home/userLogin?role=instructor";
 		}
 		else {	
 			Course myCourse = courseService.addCourse(course);
 			int newId = myCourse.getId();
 			instructorSession.put("newCourseId", String.valueOf(newId));
+			if(instructorSession.containsKey("status")){
+				return "redirect:/home/admin/getCourse";
+			}
+		
 			return "redirect:/home/course/showCourseHomeToInstructor?id="+newId;
 		}
 	}
@@ -130,10 +137,32 @@ public class CourseController {
 	}
 	
 
+	@RequestMapping("/generateCertificate")
+	public String generateCert(@RequestParam("courseId")String courseId, @SessionAttribute(name="tempSession") HashMap<String,String> studentSession, Model theModel) {
+		
+		String userId=studentSession.get("id");
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=student";
+		}
+		else {
+			String userEmail = studentSession.get("email");
+			Course theCourse = courseService.getCourseById(courseId);
+			List<String> responses = Utilities.getResponseLink(theCourse.getResponseLink());
+			theModel.addAttribute("name",studentSession.get("firstName")+" "+studentSession.get("lastName"));
+			theModel.addAttribute("course",theCourse.getName());
+			theModel.addAttribute("email",studentSession.get("email"));
+			theModel.addAttribute("percentage",String.valueOf(Math.round(courseService.getScore(userEmail, responses))));
+			theModel.addAttribute("theCourse", theCourse);
+			return "course-home-student";
+		}
+	}
+	
 	@RequestMapping("/course-home-student")
 	public String course_home_student(@RequestParam("courseId")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession
 							,@RequestParam("vId")String videoId)
 	{
+		
 		String userId=studentSession.get("id");
 		
 		if (userId==null || userId.equals("temp"))
@@ -148,7 +177,7 @@ public class CourseController {
 			HashMap<String, String> instructorName=courseService.getInstructorNames(course);
 			
 			//getVideoLinks
-			HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink());
+			HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink()+","+theCourse.getQuizLink());
 			
 		
 			//convert youtube url to embeded url
