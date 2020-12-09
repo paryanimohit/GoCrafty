@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.GoCrafty.entity.Course;
-import com.GoCrafty.entity.CourseEnrolled;
 import com.GoCrafty.entity.Student;
 
 public interface CourseService {
@@ -26,7 +25,7 @@ public interface CourseService {
 
 	public Course modifyCourse(Course course, String courseId);
 	
-	public float getScore(String userEmail, List<String> reponselink);
+	public float getScore(String userEmail, List<String> reponselink, int courseID);
 
 	public String uploadVideo(String uploadVideo, String courseId);
 

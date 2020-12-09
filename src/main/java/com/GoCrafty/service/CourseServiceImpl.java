@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.GoCrafty.dao.CourseDAO;
 import com.GoCrafty.entity.Course;
-import com.GoCrafty.entity.CourseEnrolled;
 import com.GoCrafty.entity.Student;
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -69,8 +68,8 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Override
 	@Transactional
-	public float getScore(String email, List<String> repsonseLink) {
-		return courseDAO.getScore(email, repsonseLink);
+	public float getScore(String email, List<String> repsonseLink, int courseID) {
+		return courseDAO.getScore(email, repsonseLink, courseID);
 	}
 
 	@Override

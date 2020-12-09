@@ -2,7 +2,6 @@ package com.GoCrafty.service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.*;
 
 import com.ibm.icu.text.DateFormat;
@@ -23,7 +22,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class PdfCreator {
 	
-	public static void genrateCertificate(String studentName,String courseName,String instrucutorName) throws DocumentException, MalformedURLException, IOException
+	public static void genrateCertificate(String studentName,String courseName,String instrucutorName, String percentage) throws DocumentException, IOException
 	{
 		
 		Date date = new Date();
@@ -45,7 +44,7 @@ public class PdfCreator {
 		Font paraFont = new Font(Font.FontFamily.TIMES_ROMAN, 30,
 	            Font.ITALIC,BaseColor.BLUE);
 		Paragraph preface2 = new Paragraph("This is to certify that "+studentName+" successfully completed "+courseName
-				+" on Go Crafty online course on "+dateFormat.format(date)+" ", paraFont);
+				+" on Go Crafty online course on "+dateFormat.format(date)+" with a percentage score of " +percentage, paraFont);
 		
 		
 		Font signFont = new Font(Font.FontFamily.COURIER, 20,
@@ -64,7 +63,7 @@ public class PdfCreator {
 		
 		//img block
 		
-		String filename = "logo.png";
+		String filename =  PdfCreator.class.getProtectionDomain().getCodeSource().getLocation()+"/../../resources/images/logo.png";
         Image image = Image.getInstance(filename);
         image.setAlignment(1);  	
 	      

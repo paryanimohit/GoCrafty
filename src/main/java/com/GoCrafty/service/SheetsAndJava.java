@@ -19,6 +19,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.ValueRange;
+import com.itextpdf.text.log.SysoCounter;
 
 public class SheetsAndJava {
 	
@@ -51,6 +52,7 @@ public class SheetsAndJava {
 	}
 	
 	public static float getGrades(String email, String response_ID) throws IOException, GeneralSecurityException {
+		System.out.println(email +" "+ response_ID);
 		sheetsService = getSheetsService();
 		String range = "A2:E10";
 		ValueRange resp = sheetsService.spreadsheets().values()
@@ -69,6 +71,18 @@ public class SheetsAndJava {
 			}
 		}
 		return total == 0 ? 0 : obtained*100/total;
+	}
+	
+	public static void main(String[] args) {
+		try {
+			getGrades("harshshah0110@gmail.com", "1dXUrRTzQXVjuRohTgL9boUCOPdnU2V0KxKz0taKO0K8");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (GeneralSecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private static void getPercentage(String score) {

@@ -1,5 +1,6 @@
 package com.GoCrafty.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.CourseService;
+import com.GoCrafty.service.PdfCreator;
 import com.GoCrafty.service.Utilities;
+import com.itextpdf.text.DocumentException;
 
 @Controller
 @RequestMapping("home/course")
@@ -152,8 +155,17 @@ public class CourseController {
 			theModel.addAttribute("name",studentSession.get("firstName")+" "+studentSession.get("lastName"));
 			theModel.addAttribute("course",theCourse.getName());
 			theModel.addAttribute("email",studentSession.get("email"));
-			theModel.addAttribute("percentage",String.valueOf(Math.round(courseService.getScore(userEmail, responses))));
+			String percentage = String.valueOf(Math.round(courseService.getScore(userEmail, responses, theCourse.getId())));
+			theModel.addAttribute("percentage", percentage);
 			theModel.addAttribute("theCourse", theCourse);
+			List<Course> courses = new ArrayList<Course>();
+			courses.add(theCourse);
+			HashMap<String, String> instructorName=courseService.getInstructorNames(courses);
+			try {
+				PdfCreator.genrateCertificate(studentSession.get("firstName")+" "+studentSession.get("lastName"), theCourse.getName(), instructorName.get(String.valueOf(theCourse.getInstructor_id())), percentage);
+			} catch (DocumentException | IOException e) {
+				e.printStackTrace();
+			}
 			return "course-home-student";
 		}
 	}

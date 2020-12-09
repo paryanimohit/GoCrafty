@@ -159,13 +159,14 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public float getScore(String email, List<String> responseLink) {
+	public float getScore(String email, List<String> responseLink, int courseID) {
 		System.out.println(email+ " "+responseLink);
 		float percentage = 0;
 		for(String response_ID : responseLink) {
 			try {
 				System.out.println(response_ID);
 				 percentage = SheetsAndJava.getGrades(email, response_ID);
+				 updateGrade(email, String.valueOf(percentage), courseID);
 				System.out.println(percentage);
 			} catch (IOException | GeneralSecurityException e) {
 				// TODO Auto-generated catch block
@@ -174,6 +175,21 @@ public class CourseDAOImpl implements CourseDAO {
 		}
 		return percentage;
 	}
+	
+	private void updateGrade(String email, String percentage, int courseID) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		Query query=currentSession.createQuery("from Student s WHERE s.email= :email");
+		query.setParameter("email", email);
+		Student theStudent = (Student) query.getSingleResult();
+		
+		query=currentSession.createQuery("from CourseEnrolled c WHERE c.studentId= :sid and c.courseId = :cid");
+		query.setParameter("sid", String.valueOf(theStudent.getId()));
+		query.setParameter("cid", String.valueOf(courseID));
+		CourseEnrolled courseEnrolled = (CourseEnrolled) query.getSingleResult();
+		courseEnrolled.setGrades(percentage);
+		currentSession.save(courseEnrolled);		
+	}
+
 	public String uploadVideo(String uploadVideo, String courseId) {
 		
 		Session  currentSession= sessionFactory.getCurrentSession();
@@ -254,7 +270,6 @@ public class CourseDAOImpl implements CourseDAO {
 		catch (Exception e) {
 			e.printStackTrace();
 			 ArrayList<Student> s = null;
-			 s.add(null);
 			 return s;
 		}
 	}

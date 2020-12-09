@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.GoCrafty.entity.Course;
-import com.GoCrafty.entity.CourseEnrolled;
 import com.GoCrafty.entity.Student;
 
 public interface CourseDAO {
@@ -24,7 +23,7 @@ public interface CourseDAO {
 
 	public Course modifyCourse(Course course, String courseId);
 	
-	public float getScore(String email, List<String> ResponseLink);
+	public float getScore(String email, List<String> ResponseLink, int courseID);
 
 	public String uploadVideo(String uploadVideo, String courseId);
 

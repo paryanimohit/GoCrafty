@@ -3,8 +3,6 @@ package com.GoCrafty.service;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 
 public class Encryption {
 	public String decrypt(String toDecrypt)
