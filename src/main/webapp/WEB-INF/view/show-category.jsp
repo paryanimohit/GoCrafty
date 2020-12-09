@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ include file="footer.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,20 +19,15 @@
 <c:if test="${tempSession.id != 'temp'}">
 <%@ include file="student-header.jsp"%>
 </c:if>
-
-
-<br><br><br><br><br><br><br><br><br><br>
-<div id = left>
-
+<div class="content"><br><br><br>
 	<c:forEach var="cat" items="${category}">
 	<br>
-		<div id="shop"> 
+		<div id="categories"> 
 			<form action = "${pageContext.request.contextPath}/home/course/showCoursesByCategory" method = "post">
 			<input type="hidden" value="${cat}" name="category">
-			<div id="butt"><input type="submit" value="${cat}" id="sbutton" ></div></form>
+			<input type="submit" value="${cat}" class="button-student" ></form>
 		</div>
 	</c:forEach>
-	</div>
-<%@ include file="footer.jsp" %>
+</div><br><br><br><br><br>
 </body>
 </html>

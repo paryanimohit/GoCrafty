@@ -3,29 +3,60 @@
 header{
 	display: block;
 	font-size: 19px;
-	background-color:#7EFFD4;
-	left:0px;
     width: 100%;
-	color: black;
-	min-height: 70px;
-	position: absolute;
-	opacity: 100%;
+	color: #32CD32;
+	height:auto;
 	z-index: 1500;
-	font-family: calibri;
 	font-weight:400;
+	background: url('/GoCrafty/resources/images/background.jpg');	
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	overflow: hidden;
+	border-radius: 0 0 85% 85% / 30%;
+	box-sizing: border-box;
+}
+
+header .overlay{
+	width: 100%;
+	height: 100%;
+	padding-top: 60px;
+	padding-bottom:60px;
+	padding-left:10px;
+	padding-right:10px;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #333;
+	background-image: linear-gradient( 315deg, black 10%, transparent 100%);
+}
+
+#categories{
+	padding: 60px;
+	width: 80%;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
+	display: block;	
+	margin: 0 auto;
+	font-size: 22px;
+	text-align: center;
+	position:relative;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 }
 
 footer{
 	display:block;
     width: 100%; 
     font-size: 18px;
-    color: white;
-/*     top: 3340px; */
-/*     bottom:0; */
+    color: #32CD32;
     left:0px;
     bottom:0px;
     z-index:600;
-	background-color:#7EFFD4;
+	background-color: black;
 	opacity:100%;
     position: absolute;
     overflow:hidden;
@@ -33,40 +64,24 @@ footer{
     height: 60px;
 }
 
-#about{
+#info{
+	padding: 60px;
+	width: 80%;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
 	display: block;	
-	font-size: 20px;
-	background-color: grey;
+	margin: 0 auto;
+	font-size: 22px;
 	text-align: center;
 	position:relative;
-	top:200px;
-	color: black;
 	height: 400px;
-	z-index: 1000;
-}
-
-#services{
-	display: block;	
-	font-size: 20px;
-	top:300px;
-	background-color: grey;
-	text-align:center;
-	position:relative;
-	color: black;
-	height: 400px;
-	z-index: 1000;
-}
-
-#contactus{
-	display: block;	
-	font-size: 20px;
-	background-color: grey;
-	text-align:center;
-	position:relative;
-	top:400px;
-	color: black;
-	height: 450px;
-	z-index: 1000;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 }
 
 .logoprop{
@@ -96,23 +111,21 @@ footer{
 }
 
 a:link {
-  color: black;
+  color: #32CD32;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:visited {
-  color: black;
+  color: #32CD32;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:hover {
-  color: black;
+  color: #32CD32;
   background-color: transparent;
-  text-decoration: none;
-  border: 1px solid black;
-  border-radius: 50%;
+  text-decoration: underline;
 }
 
 #footerLinks{
@@ -132,16 +145,14 @@ a:hover {
 body{
     display: block;
     font-size: 20px;
-	background-color: #181818;
-	color: white;
-	z-index: 10000;
-	min-height:100vh;
-	font-family: calibri;
-	max-height:360vh;
+/* 	background-color: #756213; */
+/* 	background-image: linear-gradient(-315deg, #756213 0%, #000000 74%); */
+	background: #563f0e;
+	font-family:  Marcellus, serif;
 	margin: 0;
+	color:#32CD32;
     width: 100%;
     position: relative;
-    padding: 0;
 }
 
 html{
@@ -160,11 +171,12 @@ html{
 .button{
 	display: block;
 	position: relative;
-	height:80px;
-	top: 100px;
+	height:auto;
 	text-align:center;
 	width:100%;
 	margin:0 auto;
+	padding-top: 80px;
+	padding-bottom: 80px;
 }
 
 .button-student{
@@ -175,7 +187,7 @@ html{
 	height: 80px;
 	width: 250px;
 	border: none;
-	background: #0F2027;  
+	background: black;  
 	background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); 
 	background: linear-gradient(#BDB76B, #BDB76B),linear-gradient(to right, black, #203A43, black); 	
   	background-size: 0 5px, auto;
@@ -193,15 +205,15 @@ html{
 .button-instructor{
 	display:inline-block;
 	position:relative;
-	color:black;
+	color:white;
 	font-size: 20px;
 	height: 80px;
 	width:250px;
 	border: none;
 	z-index:200;
-	background: #603813;  
-	background: -webkit-linear-gradient(to right, #b29f94, #603813);  
-	background: linear-gradient(black, black),linear-gradient(to right, #b29f94, #603813); 
+	background: black;  
+	background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+	background: linear-gradient(#BDB76B, #BDB76B),linear-gradient(to right, black, #203A43, black);
 	background-size: 0 5px, auto;
   	background-repeat: no-repeat;
   	background-position: center bottom;
@@ -385,17 +397,15 @@ html{
 /* 	font-size: 19px; */
 /* } */
 
-/* #butt{ */
+#mybutton{
 	
-/* 	display: inline-block; */
-/* 	position: absolute; */
-/* 	width: 150px; */
-/* 	height: 40px; */
-/* 	left: 140px; */
-/* 	text-align:center; */
-/* 	padding-top:170px; */
-/* 	font-size: 15px; */
-/* } */
+	display: inline-block;
+	position: relative;
+	width: 150px;
+	height: 40px;
+	text-align:center;
+	font-size: 15px;
+}
 
 /* #barbutt{ */
 	
@@ -460,22 +470,26 @@ html{
 /* } */
 
 #login-container{
-	display: block;
-	background-color:#7EFFD4;
-	color:black;
-	top: 220px;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
 	text-align: center;
-	width:70%;
+	display: block;	
 	margin: 0 auto;
+	font-size: 22px;
+	position:relative;
+	width:60%;
 	height: 300px;
-	position: relative;
-	z-index: 150;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
 }
 
 #loginhead{	
 	font-size: 22px;
-	top:30px;
-	display: inline-block;
+	display: block;
 	position: relative;
 }
 
@@ -834,15 +848,21 @@ html{
 /* } */
 
 #signup_form{
-	color: white;
-	display: block;
-	position: relative;
-	top:140px;
-	width: 70%;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	display: block;	
 	margin: 0 auto;
-	background: brown;
-	font-size: 20px;
-	border-radius: 30px;
+	font-size: 22px;
+	position:relative;
+	width:60%;
+	height: 350px;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
+	padding: 30px;
 }
 
 #namelgo{
@@ -1119,6 +1139,51 @@ html{
 	background-color: brown;
 }
 
+#mycourse{
+	padding: 30px;
+	width: 30%;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
+	display: block;	
+	margin: 0 auto;
+	font-size: 22px;
+	text-align: center;
+	position:relative;
+	height: 110px;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
+}
+
+.viewcourse{
+	display:inline-block;
+	position:relative;
+	font-size: 15px;
+	color:white;
+	height: 40px;
+	width: 170px;
+	border: none;
+	background: black;  
+	background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027); 
+	background: linear-gradient(#BDB76B, #BDB76B),linear-gradient(to right, black, #203A43, black); 	
+  	background-size: 0 5px, auto;
+  	background-repeat: no-repeat;
+  	background-position: center bottom;
+  	transition: all .2s ease-out;
+  	z-index: 200;
+}
+
+.viewcourse:hover {
+  background-size: 100% 5px, auto;
+  cursor: pointer;
+}
+	
+}
+
 #courses{
 	
 	width:43% ;
@@ -1320,17 +1385,16 @@ html{
 /* } */
 
 #leftSgn{
-	display: inline-block;
+	display: block;
 	position: relative;
-	width: 40%;
-	margin: 0 auto;
+	width:25%;
+	
 	
 }
 #rightSgn{
 	display: inline-block;
 	position: relative;
-	width: 55%;
-	margin: 0 auto;
+	width:30%;
 }
 
 /* #ANB */
@@ -1369,11 +1433,28 @@ html{
 /* 	left:250px; */
 /*  }  */
 
-.modify-course{
+.modify-course-left{
 	
 	display: block;
 	position: relative;
-	width: 70%;
+	float:left;
+	width: 30%;
 	margin: 0 auto;
+}
+
+.modify-course-center{
 	
+	display: block;
+	position: relative;
+	width: 30%;
+	margin: 0 auto;
+}
+
+.modify-course-right{
+	
+	display: block;
+	float:right;
+	position: relative;
+	width: 30%;
+	margin: 0 auto;
 }

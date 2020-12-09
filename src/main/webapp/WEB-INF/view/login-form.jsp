@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
 <title>Login</title>
 </head>
-<body>
+<body><br><br>
 	<div id = "login-container">
 		<div id="loginhead">Login</div>
 			<div id="loginerror"><c:catch var="exception">
@@ -42,6 +42,7 @@
 		</table>
 		</form:form>
 	</div>
+	<br><br><br><br>
 </body>
 </html>
 

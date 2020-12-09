@@ -14,13 +14,11 @@
 <body>
 	<div class = content>
 		<div class="button">
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 			<input class="button-student" type = "button" value = "For Students" onclick="location.href = 'home/userLogin?role=student';"/> 
 			<input class="button-instructor" type = "button" value = "For Instructors" onclick="location.href = 'home/userLogin?role=instructor';"/>
 		</div>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		<div id="about">
-			<h2> About</h2>
+		<div id="info">
+			<h1> About</h1>
 			<h4>We Provide a world where the learning is beyond any age and time restrictions. Explore our courses for free now!</h4>
 			<ul>
 				<li>Free Course Content</li>
@@ -30,8 +28,8 @@
 				<li>100% Online</li>
 				<li>Earn a certificate in 4-6 weeks</li>
 			</ul>
-		</div>
-		<div id="services">
+		</div><br><br>
+		<div id="info">
 			<h2>Services Offered</h2>
 			<h4>At GoCrafty, you have access to:</h4>
 			<div id = "leftService">
@@ -42,8 +40,8 @@
 				<div id="service3">SERVICE 3</div>
 				<div id="service4">SERVICE 4</div>
 			</div>
-		</div>
-		<div id="contactus">
+		</div><br><br>
+		<div id="info">
 			<h2>Contact Us</h2>
 				<p>GoCrafty is an initiative for students who wants to learn Arts and Crafts 100% online. The project is a part of course curriculum for ENPM613: Software Design and Architecture.
 					GoCrafty is currently in development stage and will be launched soon. The members of the team are:
@@ -56,6 +54,6 @@
 				</div>
 				<p>For any technical assistance, reach us at supportgocrafty@gmail.com ('@gocrafty.com' coming soon)</p>
 		</div>
-	</div>
+	</div><br><br><br><br><br><br>
 </body>
 </html>

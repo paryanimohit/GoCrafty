@@ -30,7 +30,7 @@
 	</div>
 </header>
 <div class="content" onclick="hideForm();">
-	<div class="modify-course">
+	<div class="modify-course-left">
 		<form:form action="${pageContext.request.contextPath}/home/course/modifyCourse" modelAttribute="course" method="post">
 		<div id="leftSgn"><label>Course Name </label></div>
 		<div id="rightSgn"><form:input id="forminputbox" path="name" required="required" value="${course.name}"/></div>
@@ -58,22 +58,22 @@
 		</form:form>
 	</div>
 	
-	<div id="uploadVideoButton">
+	<div class="modify-course-center">
 	<button onClick="showVideoUploadForm();" value="addVideos">Add Video</button>
 	</div>
 	
-	<div id="uploadQuizButton">
+	<div class="modify-course-right">
 	<button onClick="showQuizUploadForm();" value="addQuiz">Add Quiz</button>
 	</div>
 	
 	<c:if test="${videoListSize == '0'}">
-	<div class="modifyVideos">
+	<div class="modify-course-center">
 		Get started and upload your first video to unlock more of the GoCrafty!
 	</div>
 	</c:if>
 	
 	<c:if test="${videoListSize != '0'}">
-	<div class="modifyVideos">
+	<div class="modify-course-center">
 			<form action = "modifyVideos" method = "post">
 				<c:forEach items="${videoList}" var="video">
 				<iframe width="560" height="315" src="https://www.youtube.com/embed/${embededLink}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -88,13 +88,13 @@
 	 </c:if>
 	 
 	 <c:if test="${quizListSize == '0'}">
-	<div class="modifyQuiz">
+	<div class="modify-course-right">
 		Get started and upload your first Quiz to unlock more of the GoCrafty!
 	</div>
 	</c:if>
 	
 	<c:if test="${quizListSize != '0'}">
-	<div class="modifyQuiz">
+	<div class="modify-course-right">
 			<form action = "modifyQuiz" method = "post">
 				<c:forEach items="${quizList}" var="quiz">
 				<label>Quiz Name</label>

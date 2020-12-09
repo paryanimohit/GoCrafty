@@ -16,29 +16,28 @@
 <title>Create Account : Student</title>
 </head>
 <body>
-
+<br><br>
 	<div id="signup_form">
-		<div id="form-content">
 	<form:form action="${pageContext.request.contextPath}/home/student/createAccount" modelAttribute="student" method="post">
 		<div id="leftSgn"><label>First Name: </label></div>
-		<div id="rightSgn"><form:input id="forminputbox" path="firstName" required="required"/></div>
+		<div id="rightSgn"><form:input path="firstName" required="required"/></div>
 		<br>
 		<div id="leftSgn"><label>Last Name: </label></div>
-		<div id="rightSgn"><form:input id="forminputbox" path="lastName" required="required"/></div>
+		<div id="rightSgn"><form:input path="lastName" required="required"/></div>
 		<br>
 		<div id="leftSgn"><label>E-mail: </label></div>
-		<div id="rightSgn"><form:input id="forminputbox" path="email" required="required"/></div>
+		<div id="rightSgn"><form:input path="email" required="required"/></div>
 		<br>
 		<div id="leftSgn"><label>Password: </label></div>
-		<div id="rightSgn"><form:password id="forminputbox" path="password" required="required"/></div>
+		<div id="rightSgn"><form:password path="password" required="required"/></div>
 		<br>
 		<div id="leftSgn"><label>Birth Date: </label></div>
-		<div id="rightSgn"><form:input id="forminputbox" type="date" path="birthDate" required="required"/></div>
+		<div id="rightSgn"><form:input type="date" path="birthDate" required="required"/></div>
 		<div id="leftSgn"><label>Apply for Job: </label></div>
 		<div id="rightSgn"><form:checkbox path="applyForJob" value="1" /></div>
 		<div id="leftSgn"><input class="signupbutton" type="submit" value="Create Account"></div>
 	</form:form> 
 		</div>
-	</div>
+	<br><br><br><br>
 </body>
 </html>
