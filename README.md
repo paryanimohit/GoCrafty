@@ -54,3 +54,7 @@ How to add Video and quiz?
 - To enable successful communication with the sheets api, One should download the credentials from the same account where quiz is hosted. Refer: https://developers.google.com/sheets/api/quickstart/java?authuser=1
 - Store the credentials under /resources/credentials/credentials.json. There is a dummy file existing by default.
 - Authorize the connection when promted on clicking onto generate certificate.
+
+Video Format: https://www.youtube.com/watch?v=<id>
+Quiz/Google forms format: https://docs.google.com/forms/d/e/<form id>/viewform
+Response/Google sheets format: https://docs.google.com/spreadsheets/d/<id>/edit
