@@ -50,16 +50,16 @@
 <%-- 	</c:if> --%>
 
 <div class = "rightCourse">
-<c:if test="${videos.containsKey('null')}">
+<c:if test="${flag==1}">
 Seems like Instructor has not added videos yet!
 </c:if>
-<c:if test="${ !videos.containsKey('null')}">
-<c:forEach items="${videos}" var="theVideo">
+<c:if test="${ flag==0}">
+<c:forEach var="theVideo" items="${videos}" >
   <a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}&certificate=${certificate}">
   Title: ${theVideo.key}</a><br>
 </c:forEach>
 </c:if>
-</div><br>
+</div><br>	
 
 
 

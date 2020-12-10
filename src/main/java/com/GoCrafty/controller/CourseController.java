@@ -245,7 +245,17 @@ public class CourseController {
 				//empty model attribute for feedback form
 				Feedback theFeedback=new Feedback();
 				theModel.addAttribute("theFeedback",theFeedback);
-				//
+				//empty model attribute for feedback form
+				
+				
+				//check for null videos
+				int flag=0;
+				if(videos.containsKey(null))
+				{
+					flag=1;
+				}
+				theModel.addAttribute("flag",flag);
+				//check for null videos
 			theModel.addAttribute("courseId",courseId);
 			theModel.addAttribute("theCourse",theCourse);
 			theModel.addAttribute("instructorName",instructorName);
@@ -270,15 +280,16 @@ public class CourseController {
 		}
 		else {
 			
-			if(!(courseId.equals(null))) {
+			if(!(courseId==null)) {
 			
 				Course course = courseService.getCourseById(courseId);
 				theModel.addAttribute("course",course);
-				
 				HashMap<String, String> myVideos = Utilities.getVideoLinks(course.getVideoLink());
 				HashMap<String, String> myQuizes = Utilities.getQuizLinks(course.getQuizLink());
+				if(course.getResponseLink()!=null) {
 				String[] myResponses = course.getResponseLink().split(",");
-				
+				theModel.addAttribute("responseList", myResponses);
+				}
 				if(myVideos.containsKey("null") ) {
 					theModel.addAttribute("videoListSize", 0);
 				}
@@ -292,7 +303,7 @@ public class CourseController {
 				else {
 					theModel.addAttribute("quizList",myQuizes);
 				}
-				theModel.addAttribute("responseList", myResponses);
+				
 				
 				return "modify-course";
 			}

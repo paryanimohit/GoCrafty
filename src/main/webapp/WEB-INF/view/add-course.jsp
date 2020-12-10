@@ -23,7 +23,7 @@
 		<div id="rightSgn"><form:input id="forminputbox" path="name" required="required"/></div>
 		<br>
 		<div id="leftSgn"><label>Description </label></div>
-		<div id="rightSgn"><form:input id="forminputbox" path="description" required="required"/></div>
+		<div id="rightSgn"><form:textarea id="forminputbox" path="description" required="required"/></div>
 		<br>
 		<div id="leftSgn"><label>Course Duration <i>(Enter in Weeks. For example, "4 Weeks")</i> </label></div>
 		<div id="rightSgn"><form:input id="forminputbox" path="estimatedTimeToComplete" required="required"/></div>

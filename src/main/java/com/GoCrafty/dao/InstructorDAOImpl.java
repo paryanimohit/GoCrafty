@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
+import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.Encryption;
 import com.ibm.icu.util.Calendar;
 
@@ -180,5 +181,22 @@ public class InstructorDAOImpl implements InstructorDAO {
 			e.printStackTrace();
 			return "Sorry for the inconvinience! Instructor can not be deleted. Please contact the website Administrator.";
 		}
+	}
+
+	@Override
+	public String uploadImage(byte[] bytes, int userId) {
+		try {
+			Session  currentSession= sessionFactory.getCurrentSession();
+			Instructor theInstructor=currentSession.get(Instructor.class,userId);
+			theInstructor.setProfilePic(bytes);
+			return "ok";
+				
+			
+		}
+		catch (Exception e) {
+			
+			e.printStackTrace();	
+			return "not ok";
+			}
 	}
 }

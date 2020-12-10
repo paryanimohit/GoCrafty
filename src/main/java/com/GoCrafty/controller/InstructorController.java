@@ -1,5 +1,6 @@
 package com.GoCrafty.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.GoCrafty.entity.Course;
 import com.GoCrafty.entity.Instructor;
@@ -168,6 +170,42 @@ public class InstructorController {
 			theModel.addAttribute("message", message);
 			return "redirect:/home/userLogin?role=instructor";
 		}
+	}
+	
+	@PostMapping("/doUpload")
+	public String doUpload(Model theModel,@RequestParam("fileUpload") MultipartFile file,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession)
+	{
+		
+		String localId = instructorSession.get("id");
+
+		if(!(localId.contentEquals("temp") || localId.equals(null))) 
+	{
+		byte[] bytes = null;
+		try {
+			bytes = file.getBytes();
+			} 
+		catch (IOException e) 
+			{
+			// TODO Auto-generated catch block
+			return "error-page";
+			}
+		int userId=Integer.parseInt(localId);
+
+		String message=instructorService.uploadImage(bytes,userId);
+		if (message.equals("ok"))
+			{		
+			return "redirect:/home/instructor/viewProfile";
+			}
+		else {
+			theModel.addAttribute("message","An error has occured while uploading image\n Please login again");
+
+			return "redirect:/home/userLogin";
+			}
+	}
+		else {
+			theModel.addAttribute("message","Something went Wrong! Please login again");
+			return "redirect:/home/userLogin";	
+			}
 	}
 
 }
