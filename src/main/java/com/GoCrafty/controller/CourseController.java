@@ -143,7 +143,7 @@ public class CourseController {
 				
 //			}
 			Course newCourse = courseService.getCourseById(String.valueOf(newCourseId));
-			ArrayList<Student> studentsEnrolled = courseService.getStudentsEnrolled(newCourseId);
+			HashMap<String, String> studentsEnrolled = courseService.getStudentsEnrolled(newCourseId);
 //			System.out.println("ANSJHCasj"+studentsEnrolled.get(0).getFirstName());
 			int numberOfStudent = studentsEnrolled.size();
 			theModel.addAttribute("size",numberOfStudent);

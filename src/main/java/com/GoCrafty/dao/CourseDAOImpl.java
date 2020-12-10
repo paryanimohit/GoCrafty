@@ -271,29 +271,29 @@ public class CourseDAOImpl implements CourseDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<Student> getStudentsEnrolled(String newCourseId) {
+	public HashMap<String, String> getStudentsEnrolled(String newCourseId) {
 		
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
 			int id = Integer.parseInt(newCourseId);
-			Query query=currentSession.createQuery("select s.studentId from CourseEnrolled s WHERE s.courseId= :id");
+			Query query=currentSession.createQuery("from CourseEnrolled s WHERE s.courseId= :id");
 			query.setParameter("id", id);
-			ArrayList<Integer> students = new ArrayList<Integer>();
-			students = (ArrayList<Integer>) query.getResultList();
+			ArrayList<CourseEnrolled> enrolleds = new ArrayList<CourseEnrolled>();
+			enrolleds = (ArrayList<CourseEnrolled>) query.getResultList();
 //			System.out.println("fewbvbwuv"+students);
 //			System.out.println("fewbvbv"+newCourseId);
-			ArrayList<Student> s = new ArrayList<Student>();
+			HashMap<String, String> s= new HashMap<String, String>();
 			Student tempStudent;
-			for(int student:students) {
-				tempStudent = currentSession.get(Student.class, student);
-				s.add(tempStudent);
+			for(CourseEnrolled enrolled:enrolleds) {
+				tempStudent = currentSession.get(Student.class, enrolled.getStudentId());
+				s.put(enrolled.getGrades(), tempStudent.getFirstName()+" "+tempStudent.getLastName()+"@"+tempStudent.getEmail());
 			}
 //			System.out.println("wdcwjhwww"+s.get(0).getFirstName());
 			return s;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			 ArrayList<Student> s = null;
+			 HashMap<String, String> s = null;
 			 return s;
 		}
 	}

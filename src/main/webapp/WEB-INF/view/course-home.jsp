@@ -49,11 +49,14 @@
  			</div>
  			<div id="rightContainer">
  				Number of Students Enrolled : ${size}
+ 				<table>
+ 				<tbody>
+ 				<tr><td>Percentage</td><td>Name@Email</td></tr>
  				<c:forEach var="student" items="${students}">
- 					<div>
- 						${student.getFirstName()} ${student.getLastName()}
- 					</div>
+ 				<tr><td>${student.key}</td> <td>${student.value}</td></tr>
  				</c:forEach>
+ 				</tbody>
+ 				</table>
  				
  			</div>
  		</div>				

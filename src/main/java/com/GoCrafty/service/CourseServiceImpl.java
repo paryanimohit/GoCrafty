@@ -88,7 +88,7 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	@Transactional
-	public ArrayList<Student> getStudentsEnrolled(String newCourseId) {
+	public HashMap<String, String> getStudentsEnrolled(String newCourseId) {
 		// TODO Auto-generated method stub
 		return courseDAO.getStudentsEnrolled(newCourseId);
 	}
