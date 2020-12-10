@@ -71,7 +71,7 @@ public class SheetsAndJava {
 			total = obtained = 0;
 			for(List<?> row : values) {
 				System.out.println(row.get(0)+" " +row.get(1)+" " +row.get(2)+" " +row.get(3)+" " +row.get(4));
-				if (row.get(4).equals(email)) {
+				if (row.get(2).equals(email)) {
 					getPercentage(row.get(1).toString());	
 				}
 			}
@@ -102,8 +102,8 @@ public class SheetsAndJava {
 		
 		
 		try {
-			getGrades("harshshah0110@gmail.com", "1dXUrRTzQXVjuRohTgL9boUCOPdnU2V0KxKz0taKO0K8");
-			PdfCreator.genrateCertificate("Harsh Shah", "course", "instructor", "45");
+			float score = getGrades("harshshah0110@gmail.com", "1mHBWvYDdyA5whM5x1JY-HuckKfqqUcBXrKaedVS2fLY");
+			PdfCreator.genrateCertificate("Harsh Shah", "course", "instructor", score+"");
 //			saveFileFromUrlWithJavaIO("logo.png", "file:/C:/Users/harsh/eclipse-workspace/GoCrafty/src/main/webapp/resources/images/");
 		}
 		 catch (DocumentException e) {

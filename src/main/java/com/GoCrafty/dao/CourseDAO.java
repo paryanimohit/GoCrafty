@@ -34,6 +34,8 @@ public interface CourseDAO {
 
 	public Boolean deleteCourse(String courseId);
 
+	public String dropCourse(String studentId, String courseId);
+
 	
 
 

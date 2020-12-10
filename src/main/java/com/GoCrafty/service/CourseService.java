@@ -36,5 +36,7 @@ public interface CourseService {
 
 	public Boolean deleteCourse(String courseId);
 
+	public String dropCourse(String studentId, String courseId);
+
 
 }

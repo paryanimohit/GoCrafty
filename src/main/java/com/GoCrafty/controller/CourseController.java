@@ -357,4 +357,27 @@ public class CourseController {
 			
 		}
 	}
+	
+	@RequestMapping("/dropCourse")
+	public String dropCourse(Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> studentSession
+			, @RequestParam("courseId")String courseId)
+	{
+		String studentId = studentSession.get("id");
+		if (studentId==null || studentId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=student";
+		}
+		else {
+
+			String msg= courseService.dropCourse(studentId,courseId);
+			if(!(msg.equals("course dropped")))
+					{
+						return "error-page";
+					}
+			
+		}
+
+		
+		return "redirect:/home/student/viewProfile ";
+	}
 }

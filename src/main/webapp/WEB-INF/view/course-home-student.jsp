@@ -45,6 +45,7 @@
   	</div><br>
 	</c:forEach>
 	</c:if>
+
 <div class = "rightCourse">
 <c:if test="${videos.containsKey('null')}">
 Seems like Instructor has not added videos yet!
@@ -57,12 +58,15 @@ Seems like Instructor has not added videos yet!
 </c:if>
 </div><br>
 
+
+
 <div class = "rightCourse">
 	Course Duration: ${theCourse.getEstimatedTimeToComplete()}<br>
 	Instructor: ${instructorName.get(String.valueOf(theCourse.getInstructor_id()))}<br>
 	Category: ${theCourse.getCategory()}<br>
 	Description: ${theCourse.getDescription() }<br>
 </div><br>
+<input type="button" value = "Drop Course" onclick="location.href = '${pageContext.request.contextPath}/home/course/dropCourse?courseId=${theCourse.getId()}';" >
 
 <div class = "rightCourse">
 <a href="${pageContext.request.contextPath}/home/course/generateCertificate?courseId=${courseId}&vId=${param.vId}"><h3 align="center">Complete and Generate Certificate</h3></a>
