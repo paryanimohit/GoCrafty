@@ -81,9 +81,9 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	@Transactional
-	public String uploadQuiz(String uploadQuiz, String courseId) {
+	public String uploadQuiz(String uploadQuiz, String courseId, String responseLink) {
 		// TODO Auto-generated method stub
-		return courseDAO.uploadQuiz(uploadQuiz,courseId);
+		return courseDAO.uploadQuiz(uploadQuiz,courseId, responseLink);
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public interface CourseService {
 
 	public String uploadVideo(String uploadVideo, String courseId);
 
-	public String uploadQuiz(String uploadQuiz, String courseId);
+	public String uploadQuiz(String uploadQuiz, String courseId, String responseLink);
 
 	public ArrayList<Student> getStudentsEnrolled(String newCourseId);
 

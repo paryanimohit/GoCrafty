@@ -159,8 +159,8 @@ public class CourseDAOImpl implements CourseDAO {
 			myCourse.setDescription(course.getDescription());
 			myCourse.setEstimatedTimeToComplete(course.getEstimatedTimeToComplete());
 			myCourse.setCategory(course.getCategory());
-			Course myUpdatedCourse = currentSession.get(Course.class, id);
-			return myUpdatedCourse;
+			currentSession.save(myCourse);
+			return myCourse;
 		}
 		catch (Exception e) {
 			return null;
@@ -227,7 +227,7 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public String uploadQuiz(String uploadQuiz, String courseId) {
+	public String uploadQuiz(String uploadQuiz, String courseId, String responseLink) {
 		
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
@@ -245,6 +245,21 @@ public class CourseDAOImpl implements CourseDAO {
 			query = currentSession.createQuery("update Course c set c.quizLink= :link where c.id= :id");
 			query.setParameter("id", id);
 			query.setParameter("link", quizLink);
+			query.executeUpdate();
+			
+			query=currentSession.createQuery("select c.responseLink from Course c WHERE c.id= :id");
+			query.setParameter("id", id);
+			String responseLink1 = null;
+			responseLink1 = (String)query.getSingleResult();
+			if(responseLink1 ==null) {
+				responseLink1 = responseLink;
+			}
+			else {
+			responseLink1 = responseLink1+","+responseLink;
+			}
+			query = currentSession.createQuery("update Course c set c.responseLink= :link where c.id= :id");
+			query.setParameter("id", id);
+			query.setParameter("link", responseLink1);
 			query.executeUpdate();
 			return "ok";
 		}

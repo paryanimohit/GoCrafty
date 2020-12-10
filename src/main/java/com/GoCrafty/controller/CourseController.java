@@ -125,7 +125,7 @@ public class CourseController {
 	
 	@RequestMapping("/showCourseHomeToInstructor")
 	public String showCourseHomeToInstructor(@RequestParam("id")int id,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,Model theModel) {
-		
+		System.out.println("6");
 		String userId=instructorSession.get("id");
 		
 		if (userId==null || userId.equals("temp"))
@@ -242,6 +242,7 @@ public class CourseController {
 				
 				HashMap<String, String> myVideos = Utilities.getVideoLinks(course.getVideoLink());
 				HashMap<String, String> myQuizes = Utilities.getQuizLinks(course.getQuizLink());
+				String[] myResponses = course.getResponseLink().split(",");
 				
 				if(myVideos.containsKey("null") ) {
 					theModel.addAttribute("videoListSize", 0);
@@ -256,6 +257,7 @@ public class CourseController {
 				else {
 					theModel.addAttribute("quizList",myQuizes);
 				}
+				theModel.addAttribute("responseList", myResponses);
 				
 				return "modify-course";
 			}
@@ -268,10 +270,10 @@ public class CourseController {
 	
 	@RequestMapping("/modifyCourse")
 	public String modifyCourse(@ModelAttribute(name="course") Course course,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
-		
 		String courseId = instructorSession.get("newCourseId");
+		System.out.println(courseId);
 		String userId=instructorSession.get("id");
-		
+		System.out.println(userId);
 		if (userId==null || userId.equals("temp"))
 		{
 			return "redirect:/home/userLogin?role=instructor";
@@ -280,38 +282,43 @@ public class CourseController {
 			Course myCourse = courseService.modifyCourse(course, courseId);
 			int newId = myCourse.getId();
 			instructorSession.put("newCourseId", String.valueOf(newId));
-			return "redirect:/home/course/showCourseHomeToInstructor";
+			return "redirect:/home/course/showModifyCourse";
 		}
 	}
 	
 	@RequestMapping("/modifyVideos")
 	public String modifyVideos(@RequestParam("videoName")String videoName, @RequestParam("youtubeLink")String youtubeLink, Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
-		
 		String courseId = instructorSession.get("newCourseId");
+		System.out.println(courseId);
 		String userId=instructorSession.get("id");
+		System.out.println(userId);
 		if (userId==null || userId.equals("temp"))
 		{
 			return "redirect:/home/userLogin?role=instructor";
 		}
 		else {	
+			
 			String uploadVideo = videoName+"@"+youtubeLink;
+			System.out.println(uploadVideo);
 			courseService.uploadVideo(uploadVideo,courseId);
 		return "redirect:/home/course/showModifyCourse";
 		}
 	}
 	
 	@RequestMapping("/modifyQuiz")
-	public String modifyQuiz(@RequestParam("quizName")String quizName, @RequestParam("docsLink")String docsLink, Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
-		
+	public String modifyQuiz(@RequestParam("quizName")String quizName, @RequestParam("docsLink")String docsLink, @RequestParam("respLink")String respLink, Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
 		String courseId = instructorSession.get("newCourseId");
+		System.out.println(courseId);
 		String userId=instructorSession.get("id");
+		System.out.println(userId);
 		if (userId==null || userId.equals("temp"))
 		{
 			return "redirect:/home/userLogin?role=instructor";
 		}
 		else {	
 			String uploadQuiz = quizName+"@"+docsLink;
-			courseService.uploadQuiz(uploadQuiz,courseId);
+			System.out.println(uploadQuiz+ " "+respLink);
+			courseService.uploadQuiz(uploadQuiz,courseId, respLink);
 		return "redirect:/home/course/showModifyCourse";
 		}
 	}

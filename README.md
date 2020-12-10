@@ -45,3 +45,6 @@ If you are an Admin
 - you can login to the admin console using <domainname>/Gocrafty/home/showAdminLogin and enter the valid password set manually into the database.
 - The admin can View/Add/Delete any Instructor user/Student User/Course as required to maintain the standard and integrity of the application.
 - The admin can also reset the password on successful login into the application.
+
+How to add Video and quiz?
+- 
