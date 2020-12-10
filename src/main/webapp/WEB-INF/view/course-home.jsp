@@ -54,7 +54,7 @@
  				<c:forEach var="student" items="${students}">
  				${student.key} <br> 
  				Name: ${name}<br>
- 				Email: ${email}
+ 				Email:<a href="mailto:${email} ">${email}</a>
  				</c:forEach>
  			</div>
  		</div>				
