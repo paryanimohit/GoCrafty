@@ -67,9 +67,9 @@
  				<i>Get exciting offers from team GoCrafty on your Birthday! </i></div>
  				<div id="logslgo">Last Login: ${student.logs}</div>
  		</div>
-		<div id="courseContainer-student">
+		<div id="courseContainer-student">Your Enrolled Courses
 			<c:if test="${enrolledCourses.size()!=0 }">
-		<c:forEach var="i" begin="0" end="${enrolledCourses.size()-1}" >
+			<c:forEach var="i" begin="0" end="${enrolledCourses.size()-1}" >
 				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${enrolledCourses.get(i).getId()}&vId=1">
 					<br>Course Name: ${enrolledCourses.get(i).getName()}<br>
 						Estimated time to complete:  ${enrolledCourses.get(i).getEstimatedTimeToComplete()}<br>
@@ -79,15 +79,17 @@
 						
 						<hr>
 				</a>
-				</div><br>
-			</c:forEach> 	
+			</c:forEach>
 			</c:if>
+		</div><br>
+			 	
 			<c:if test="${ enrolledCourses.size() == 0}">
+			<div id="courseContainer-student">
 			You have't enrolled in any course.<br>
 			Visit Browse Course Catalog to enroll in the course
+			</div>
 			</c:if>
-		</div>	
- </div>
-</c:if><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>	
+</c:if>
 </body>
 </html>

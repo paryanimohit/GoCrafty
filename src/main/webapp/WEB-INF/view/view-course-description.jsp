@@ -8,6 +8,10 @@
 <%@ include file="student-header.jsp"%>
 </c:if>
 
+<c:if test="${tempSession.id == 'temp'}">
+<%@ include file="footer.jsp"%>
+</c:if>
+
 <!DOCTYPE html>
 <html>
 <head>

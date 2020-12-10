@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ include file="student-header.jsp"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="student-header.jsp"%>
-<%@ include file="footer.jsp" %>
+
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/logo.png" />
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <title>${theCourse.getName()}</title>
 </head>
 <body>
-<div class = "coursecontent">
+<div class = "content">
 
 <h2 align="center">${theCourse.getName()}</h2>
 
@@ -26,17 +29,22 @@
 </c:if>
 </div>
 
-<div class = "rightCourse">
-<c:if test="${videos.containsKey('null')}">
-Seems like Instructor has not added videos yet!
-</c:if>
-<c:if test="${ !videos.containsKey('null')}">
-<c:forEach items="${videos}" var="theVideo">
-  <a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}">
-  Title: ${theVideo.key}</a><br>
-</c:forEach>
-</c:if>
-</div><br>
+<div id = rightbox>
+
+	<c:if test="${videos.containsKey('null')}">
+	<div class = "rightCourse">
+	Seems like Instructor has not added videos yet!
+	</div><br>
+	</c:if>
+
+	<c:if test="${ !videos.containsKey('null')}">
+	<c:forEach items="${videos}" var="theVideo">
+	<div class = "rightCourse">
+  	<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}">
+  	Title: ${theVideo.key}</a>
+  	</div><br>
+	</c:forEach>
+	</c:if>
 
 <div class = "rightCourse">
 	Course Duration: ${theCourse.getEstimatedTimeToComplete()}<br>
@@ -59,6 +67,6 @@ Contact Professor!<br>
 <a href="mailto:name@rapidtables.com">Send mail</a>
 </div><br>
 </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
 </body>
 </html>

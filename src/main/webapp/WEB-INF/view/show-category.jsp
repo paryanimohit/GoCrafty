@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ include file="footer.jsp" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +19,11 @@
 <c:if test="${tempSession.id != 'temp'}">
 <%@ include file="student-header.jsp"%>
 </c:if>
+<c:if test="${tempSession.id == 'temp'}">
+<%@ include file="footer.jsp"%>
+</c:if>
+
+
 <div class="content"><br><br>
 	<c:forEach var="cat" items="${category}">
 		<div id="categories"> 

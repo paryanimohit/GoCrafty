@@ -175,7 +175,7 @@ public class StudentController {
 		catch (IOException e) 
 			{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return "error-page";
 			}
 		int userId=Integer.parseInt(localId);
 

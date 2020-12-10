@@ -33,6 +33,8 @@ public interface CourseDAO {
 
 	public ArrayList<String> getGrades(List<Course> enrolledCourses, int id);
 
+	public Boolean deleteCourse(String courseId);
+
 	
 
 

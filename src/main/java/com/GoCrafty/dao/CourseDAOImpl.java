@@ -292,4 +292,20 @@ public class CourseDAOImpl implements CourseDAO {
 		return grades;
 	}
 
+	@Override
+	public Boolean deleteCourse(String courseId) {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		try {
+			int id = Integer.parseInt(courseId);
+			Course myCourse = currentSession.get(Course.class, id);
+			currentSession.delete(myCourse);
+			return true;
+		}
+		catch (Exception e) {
+			
+			e.printStackTrace();
+			return false;
+		}
+	}
+
 }

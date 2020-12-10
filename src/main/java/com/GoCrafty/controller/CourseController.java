@@ -131,6 +131,7 @@ public class CourseController {
 			Course newCourse = courseService.getCourseById(String.valueOf(newCourseId));
 			ArrayList<Student> studentsEnrolled = courseService.getStudentsEnrolled(newCourseId);
 //			System.out.println("ANSJHCasj"+studentsEnrolled.get(0).getFirstName());
+//			System.out.println(videos.get(0));
 			int numberOfStudent = studentsEnrolled.size();
 			theModel.addAttribute("size",numberOfStudent);
 			theModel.addAttribute("students",studentsEnrolled);
@@ -299,6 +300,28 @@ public class CourseController {
 			String uploadQuiz = quizName+"@"+docsLink;
 			courseService.uploadQuiz(uploadQuiz,courseId);
 		return "redirect:/home/course/showModifyCourse";
+		}
+	}
+	
+	@RequestMapping("/deleteCourse")
+	public String deleteCourse(Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
+		
+		String courseId = instructorSession.get("newCourseId");
+		String userId=instructorSession.get("id");
+		
+		if (userId==null || userId.equals("temp"))
+		{
+			return "redirect:/home/userLogin?role=instructor";
+		}
+		else {	
+			Boolean delete = courseService.deleteCourse(courseId);
+			if(delete.equals(true)) {
+				return "redirect:/home/instructor/viewProfile";
+			}
+			else {
+				return "error-page";
+			}
+			
 		}
 	}
 }

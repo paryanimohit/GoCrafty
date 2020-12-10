@@ -44,12 +44,12 @@ public class Utilities {
 	public static String getEmbededLink(String videoURL) {
 		String[] temp2;
 		if(!videoURL.contains("form")) {
-			System.out.println("video url: "+videoURL);
+//			System.out.println("video url: "+videoURL);
 			String[] temp=videoURL.split("\\?v=");
 			temp2=temp[1].split("&");
 		}
 		else {
-			System.out.println("Form url: "+videoURL);
+//			System.out.println("Form url: "+videoURL);
 			String[] temp=videoURL.split("/e/");
 			temp2=temp[1].split("/viewform");
 		}

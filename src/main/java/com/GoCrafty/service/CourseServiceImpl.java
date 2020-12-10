@@ -99,4 +99,11 @@ public class CourseServiceImpl implements CourseService {
 		return courseDAO.getGrades(enrolledCourses, id);
 	}
 
+	@Override
+	@Transactional
+	public Boolean deleteCourse(String courseId) {
+		// TODO Auto-generated method stub
+		return courseDAO.deleteCourse(courseId);
+	}
+
 }
