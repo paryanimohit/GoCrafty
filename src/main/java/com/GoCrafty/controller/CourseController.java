@@ -211,6 +211,12 @@ public class CourseController {
 			course.add(theCourse);
 			HashMap<String, String> instructorName=courseService.getInstructorNames(course);
 			
+			//getInstructorEmail
+			
+			String instructorEmail=courseService.getInstructorEmail(String.valueOf(theCourse.getInstructor_id()));
+			theModel.addAttribute("instructorEmail", instructorEmail);
+			//getInstructorEmail
+			
 			//getVideoLinks
 			HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink()+","+theCourse.getQuizLink());
 			

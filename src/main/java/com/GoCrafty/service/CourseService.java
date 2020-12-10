@@ -38,5 +38,7 @@ public interface CourseService {
 
 	public String dropCourse(String studentId, String courseId);
 
+	public String getInstructorEmail(String valueOf);
+
 
 }

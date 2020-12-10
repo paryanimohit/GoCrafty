@@ -79,8 +79,10 @@ Seems like Instructor has not added videos yet!
 </div><br>
 
 <div class="rightCourse">
+<c:if test="${instructorEmail != null }">
 Contact Professor!<br>
-<a href="mailto:name@rapidtables.com">Send mail</a>
+<a href="mailto:${instructorEmail} ">Send mail</a>
+</c:if>
 </div><br>
 </div>
 </div>

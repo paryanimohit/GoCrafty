@@ -349,5 +349,22 @@ public class CourseDAOImpl implements CourseDAO {
 		
 		return "course dropped";
 	}
+	@Override
+	public String getInstructorEmail(String courseId) {
+		String instructorEmail;
+		try {
+		Session  currentSession= sessionFactory.getCurrentSession();
+		Query query=currentSession.createQuery("from Instructor i WHERE i.id= :id");
+		query.setParameter("id", courseId);
+		Instructor theInstructor=(Instructor) query.getSingleResult();
+		instructorEmail=theInstructor.getEmail();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			instructorEmail=null;
+			
+		}
+		return instructorEmail;
+	}
 
 }
