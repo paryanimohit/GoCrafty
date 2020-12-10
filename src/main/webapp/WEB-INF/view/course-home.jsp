@@ -49,13 +49,17 @@
 					Category: ${course.category}<br><br>
  			</div>
  			<div id="rightContainer">
- 				Number of Students Enrolled : ${size}<br>
- 				Percentage:
+ 				<table>
+ 				<tbody>
+ 				<tr><td>Percentage</td><td>Name@Email</td></tr>
  				<c:forEach var="student" items="${students}">
- 				${student.key} <br> 
- 				Name: ${name}<br>
- 				Email: ${email}
+<!--  					<div> -->
+<%--  						${student.getFirstName()} ${student.getLastName()} --%>
+<!--  					</div> -->
+ 				<tr><td>${student.key}</td> <td>${student.value}</td></tr>
  				</c:forEach>
+ 				</tbody>
+ 				</table>
  			</div>
  		</div>				
  </div>

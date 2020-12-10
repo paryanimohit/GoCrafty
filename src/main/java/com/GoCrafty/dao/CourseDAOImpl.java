@@ -285,7 +285,7 @@ public class CourseDAOImpl implements CourseDAO {
 			Student tempStudent;
 			for(CourseEnrolled enrolled:enrolleds) {
 				tempStudent = currentSession.get(Student.class, enrolled.getStudentId());
-				s.put(enrolled.getGrades(), tempStudent.getFirstName()+" "+tempStudent.getLastName()+"T"+tempStudent.getEmail());
+				s.put(enrolled.getGrades(), tempStudent.getFirstName()+" "+tempStudent.getLastName()+"@"+tempStudent.getEmail());
 			}
 //			System.out.println("wdcwjhwww"+s.get(0).getFirstName());
 			return s;
