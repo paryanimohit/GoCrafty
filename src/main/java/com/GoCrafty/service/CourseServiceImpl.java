@@ -105,4 +105,10 @@ public class CourseServiceImpl implements CourseService {
 		return courseDAO.deleteCourse(courseId);
 	}
 
+	@Override
+	@Transactional
+	public String dropCourse(String studentId, String courseId) {
+		return courseDAO.dropCourse(studentId,courseId);
+	}
+
 }

@@ -332,4 +332,22 @@ public class CourseDAOImpl implements CourseDAO {
 		}
 	}
 
+	@Override
+	public String dropCourse(String studentId, String courseId) {
+		try {
+			Session  currentSession= sessionFactory.getCurrentSession();
+			Query query = currentSession.createQuery("delete CourseEnrolled c  where c.courseId= :cid and c.studentId = :sid");
+			query.setParameter("sid",studentId);
+			query.setParameter("cid",courseId);
+
+			query.executeUpdate();
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "course dropped";
+	}
+
 }
