@@ -144,7 +144,10 @@ public class CourseController {
 			Course newCourse = courseService.getCourseById(String.valueOf(newCourseId));
 			HashMap<String, String> studentsEnrolled = courseService.getStudentsEnrolled(newCourseId);
 //			System.out.println("ANSJHCasj"+studentsEnrolled.get(0).getFirstName());
-//			System.out.println(videos.get(0));
+//			System.out.println(studentsEnrolled);
+			String email[] = studentsEnrolled.get("0").split("T");
+			theModel.addAttribute("email",email[1]);
+			theModel.addAttribute("name",email[0]);
 			int numberOfStudent = studentsEnrolled.size();
 			theModel.addAttribute("size",numberOfStudent);
 			theModel.addAttribute("students",studentsEnrolled);
