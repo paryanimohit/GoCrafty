@@ -30,22 +30,6 @@
 </div>
 
 <div id = rightbox>
-
-	<c:if test="${videos.containsKey('null')}">
-	<div class = "rightCourse">
-	Seems like Instructor has not added videos yet!
-	</div><br>
-	</c:if>
-
-	<c:if test="${ !videos.containsKey('null')}">
-	<c:forEach items="${videos}" var="theVideo">
-	<div class = "rightCourse">
-  	<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}">
-  	Title: ${theVideo.key}</a>
-  	</div><br>
-	</c:forEach>
-	</c:if>
-
 <div class = "rightCourse">
 <c:if test="${videos.containsKey('null')}">
 Seems like Instructor has not added videos yet!
