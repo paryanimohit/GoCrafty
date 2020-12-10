@@ -31,20 +31,20 @@
 
 <div id = rightbox>
 
-	<c:if test="${videos.containsKey('null')}">
-	<div class = "rightCourse">
-	Seems like Instructor has not added videos yet!
-	</div><br>
-	</c:if>
+<%-- 	<c:if test="${videos.containsKey('null')}"> --%>
+<!-- 	<div class = "rightCourse"> -->
+<!-- 	Seems like Instructor has not added videos yet! -->
+<!-- 	</div><br> -->
+<%-- 	</c:if> --%>
 
-	<c:if test="${ !videos.containsKey('null')}">
-	<c:forEach items="${videos}" var="theVideo">
-	<div class = "rightCourse">
-  	<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}">
-  	Title: ${theVideo.key}</a>
-  	</div><br>
-	</c:forEach>
-	</c:if>
+<%-- 	<c:if test="${ !videos.containsKey('null')}"> --%>
+<%-- 	<c:forEach items="${videos}" var="theVideo"> --%>
+<!-- 	<div class = "rightCourse"> -->
+<%--   	<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}"> --%>
+<%--   	Title: ${theVideo.key}</a> --%>
+<!--   	</div><br> -->
+<%-- 	</c:forEach> --%>
+<%-- 	</c:if> --%>
 
 <div class = "rightCourse">
 <c:if test="${videos.containsKey('null')}">
@@ -71,7 +71,7 @@ Seems like Instructor has not added videos yet!
 <div class = "rightCourse">
 <a href="${pageContext.request.contextPath}/home/course/generateCertificate?courseId=${courseId}&vId=${param.vId}"><h3 align="center">Complete and Generate Certificate</h3></a>
 <c:if test="${certificate == 'yes'}">
-<a href="${pageContext.request.contextPath}/resources/certificate.pdf"}">Download Certificate</a>
+<a href="${pageContext.request.contextPath}/resources/certificate.pdf}">Download Certificate</a>
 </c:if>
 <c:if test="${certificate == 'no'}">
 <a>Cannot download Certificate. Contact Admin!</a>
