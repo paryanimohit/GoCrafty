@@ -31,6 +31,7 @@
 
 <div id = rightbox>
 
+
 <%-- 	<c:if test="${videos.containsKey('null')}"> --%>
 <!-- 	<div class = "rightCourse"> -->
 <!-- 	Seems like Instructor has not added videos yet! -->
