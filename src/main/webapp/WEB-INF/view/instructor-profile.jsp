@@ -74,7 +74,7 @@
 						Course Duration:  ${course.getEstimatedTimeToComplete()}<br>
 						Category: ${course.getCategory()}
 			</a>
-			</div>
+			</div><hr>
 		</c:forEach> 
 </div>
 </div>

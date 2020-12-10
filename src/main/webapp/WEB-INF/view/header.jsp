@@ -18,9 +18,9 @@
 		<img src="${pageContext.request.contextPath}/resources/images/logo.png" class="logoprop"></a> 
 </div>
 <div id="header-links">
-	<div id="headerLink"><a id="about1" href = "${pageContext.request.contextPath}/#info" class="smooth-scroll" onclick="scrollSmooth(this.id)">About</a></div>
-	<div id="headerLink"><a id="services1" href = "${pageContext.request.contextPath}/#info" class="smooth-scroll" onclick="scrollSmooth(this.id)">Services</a></div>
-	<div id="headerLink"><a id="contact1" href = "${pageContext.request.contextPath}/#info" class="smooth-scroll" onclick="scrollSmooth(this.id)">Contact Us</a></div>
+	<div id="headerLink"><a id="about1" href = "${pageContext.request.contextPath}/#about" class="smooth-scroll" onclick="scrollSmooth(this.id)">About</a></div>
+	<div id="headerLink"><a id="services1" href = "${pageContext.request.contextPath}/#services" class="smooth-scroll" onclick="scrollSmooth(this.id)">Services</a></div>
+	<div id="headerLink"><a id="contact1" href = "${pageContext.request.contextPath}/#contactus" class="smooth-scroll" onclick="scrollSmooth(this.id)">Contact Us</a></div>
 	<div id="headerLink">
 	<c:if test="${tempSession.id == 'temp'}">
 		<a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a>

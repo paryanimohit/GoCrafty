@@ -57,7 +57,47 @@ footer{
     height: 60px;
 }
 
-#info{
+#about{
+	padding: 60px;
+	width: 80%;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
+	display: block;	
+	margin: 0 auto;
+	font-size: 22px;
+	text-align: center;
+	position:relative;
+	height: 400px;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
+}
+
+#services{
+	padding: 60px;
+	width: 80%;
+	background: #ffffe0;
+	color: #32CD32;
+	font-family: Marcellus, serif;
+	text-shadow: 0 2px #fff;
+	text-align: center;
+	display: block;	
+	margin: 0 auto;
+	font-size: 22px;
+	text-align: center;
+	position:relative;
+	height: 400px;
+	border:dashed;
+	border-color: #32CD32;
+	box-shadow: 0 0 0 3;
+	border-width: 6px;
+}
+
+#contactus{
 	padding: 60px;
 	width: 80%;
 	background: #ffffe0;
@@ -1278,6 +1318,25 @@ html{
 	position: relative;
 	}
 
+.social{
+	width: 40px;
+	height:40px;
+}
+
+#membercards{
+	
+	display: block;
+	width:100%;
+	position: relative;
+}
+
+#membercard{
+	
+	display: inline-block;
+	width:40%;
+	position: relative;
+	padding: 20px;
+}
 
 #courseContainer-student{
 	

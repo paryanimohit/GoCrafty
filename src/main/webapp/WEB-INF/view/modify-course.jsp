@@ -87,7 +87,7 @@
 	 </c:if>
 	 
 	 <c:if test="${quizListSize == '0'}">
-	<div class="modify-course-right">
+	<div class="modify-course-center">
 		Get started and upload your first Quiz to unlock more of the GoCrafty!
 	</div>
 	</c:if>
@@ -105,6 +105,6 @@
 	</div>
 	</c:if>
 </div>
-</c:if>
+</c:if><br><br><br>
 </body>
 </html>
