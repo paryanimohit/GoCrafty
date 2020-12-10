@@ -1,9 +1,13 @@
 package com.GoCrafty.service;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +37,8 @@ public class SheetsAndJava {
 	
 	//Exchange Oauth to grant application exchange
 	private static Credential authorize() throws IOException, GeneralSecurityException {
-		InputStream in = new FileInputStream("C:\\Users\\harsh\\eclipse-workspace\\GoCrafty\\src\\main\\webapp\\resources\\credentials\\credentials.json");
+		InputStream in = new FileInputStream(SheetsAndJava.class.getProtectionDomain().getCodeSource().getLocation()+"/../../resources/credentials/credentials.json");
+//		InputStream in = new FileInputStream("C:/Users\\harsh\\eclipse-workspace\\GoCrafty/src/main/webapp/resources/credentials/credentials.json");
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(), new InputStreamReader(in));
 		List<String> scopes = Arrays.asList(SheetsScopes.SPREADSHEETS_READONLY);
 		
@@ -73,11 +78,33 @@ public class SheetsAndJava {
 		}
 		return total == 0 ? 0 : obtained*100/total;
 	}
-	
+	 public static void saveFileFromUrlWithJavaIO(String fileName, String fileUrl)
+			 throws MalformedURLException, IOException {
+			 BufferedInputStream in = null;
+			 FileOutputStream fout = null;
+			 try {
+			 in = new BufferedInputStream(new URL(fileUrl).openStream());
+			 fout = new FileOutputStream(fileName);
+
+			byte data[] = new byte[1024];
+			 int count;
+			 while ((count = in.read(data, 0, 1024)) != -1) {
+			 fout.write(data, 0, count);
+			 }
+			 } finally {
+			 if (in != null)
+			 in.close();
+			 if (fout != null)
+			 fout.close();
+			 }
+			 }
 	public static void main(String[] args) {
+		
+		
 		try {
 			getGrades("harshshah0110@gmail.com", "1dXUrRTzQXVjuRohTgL9boUCOPdnU2V0KxKz0taKO0K8");
 			PdfCreator.genrateCertificate("Harsh Shah", "course", "instructor", "45");
+//			saveFileFromUrlWithJavaIO("logo.png", "file:/C:/Users/harsh/eclipse-workspace/GoCrafty/src/main/webapp/resources/images/");
 		}
 		 catch (DocumentException e) {
 				// TODO Auto-generated catch block

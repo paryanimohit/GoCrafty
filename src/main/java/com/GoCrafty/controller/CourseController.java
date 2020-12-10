@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
-import com.GoCrafty.entity.Student;
 import com.GoCrafty.service.CourseService;
 import com.GoCrafty.service.PdfCreator;
 import com.GoCrafty.service.Utilities;
@@ -75,10 +74,24 @@ public class CourseController {
 		else
 		{
 			String msg= courseService.enroll(userId,courseId);
-			if(!(msg.equals("Enrolled")))
-					{
-						return "error-page";
-					}
+			if (msg.contains("already")) {
+//				System.out.println("inside already enrolled");
+				Course theCourse=courseService.getCourseById(courseId);
+				List<Course> course =new ArrayList<Course>();
+				course.add(theCourse);
+				HashMap<String, String> instructorName=courseService.getInstructorNames(course);
+				
+				theModel.addAttribute("theCourse",theCourse);
+				theModel.addAttribute("instructorName",instructorName);
+				theModel.addAttribute("message", msg);
+				
+				//if(studentSession.get(""))
+				return "view-course-description";
+			}
+			else if(!(msg.contains("enrolled"))) {
+//				System.out.println("inside enrolled");
+				return "error-page";
+			}
 		}
 		
 		return "redirect:/home/student/viewProfile";
@@ -111,7 +124,7 @@ public class CourseController {
 	
 	@RequestMapping("/showCourseHomeToInstructor")
 	public String showCourseHomeToInstructor(@RequestParam("id")int id,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession,Model theModel) {
-		
+		System.out.println("6");
 		String userId=instructorSession.get("id");
 		
 		if (userId==null || userId.equals("temp"))
@@ -129,7 +142,7 @@ public class CourseController {
 				
 //			}
 			Course newCourse = courseService.getCourseById(String.valueOf(newCourseId));
-			ArrayList<Student> studentsEnrolled = courseService.getStudentsEnrolled(newCourseId);
+			HashMap<String, String> studentsEnrolled = courseService.getStudentsEnrolled(newCourseId);
 //			System.out.println("ANSJHCasj"+studentsEnrolled.get(0).getFirstName());
 //			System.out.println(videos.get(0));
 			int numberOfStudent = studentsEnrolled.size();
@@ -142,7 +155,7 @@ public class CourseController {
 	
 
 	@RequestMapping("/generateCertificate")
-	public String generateCert(@RequestParam("courseId")String courseId, @SessionAttribute(name="tempSession") HashMap<String,String> studentSession, Model theModel) {
+	public String generateCert(@RequestParam("courseId")String courseId, @RequestParam("vId")String vId, @SessionAttribute(name="tempSession") HashMap<String,String> studentSession, Model theModel) {
 		
 		String userId=studentSession.get("id");
 		if (userId==null || userId.equals("temp"))
@@ -162,18 +175,27 @@ public class CourseController {
 			List<Course> courses = new ArrayList<Course>();
 			courses.add(theCourse);
 			HashMap<String, String> instructorName=courseService.getInstructorNames(courses);
+			String certGenerated = "no";
 			try {
+				System.out.println(percentage);
 				PdfCreator.genrateCertificate(studentSession.get("firstName")+" "+studentSession.get("lastName"), theCourse.getName(), instructorName.get(String.valueOf(theCourse.getInstructor_id())), percentage);
+				System.out.println("certificate generated");
+				certGenerated = "yes";
+				studentSession.put("certificate", "yes");
+//				theModel.addAttribute("certificate", "yes");
 			} catch (DocumentException | IOException e) {
 				e.printStackTrace();
+				System.out.println("certificate not generated");
+				studentSession.put("certificate", "no");
+//				theModel.addAttribute("certificate", "no");
 			}
-			return "course-home-student";
+			return "redirect:/home/course/course-home-student?courseId="+courseId+"&vId="+vId+"&certificate="+certGenerated;
 		}
 	}
 	
 	@RequestMapping("/course-home-student")
 	public String course_home_student(@RequestParam("courseId")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession
-							,@RequestParam("vId")String videoId)
+							,@RequestParam("vId")String videoId, @RequestParam("certificate")String cert)
 	{
 		
 		String userId=studentSession.get("id");
@@ -204,6 +226,7 @@ public class CourseController {
 			theModel.addAttribute("theCourse",theCourse);
 			theModel.addAttribute("instructorName",instructorName);
 			theModel.addAttribute("videos",videos);
+			theModel.addAttribute("certificate", cert);
 			
 			return "course-home-student";
 		}
@@ -229,6 +252,7 @@ public class CourseController {
 				
 				HashMap<String, String> myVideos = Utilities.getVideoLinks(course.getVideoLink());
 				HashMap<String, String> myQuizes = Utilities.getQuizLinks(course.getQuizLink());
+				String[] myResponses = course.getResponseLink().split(",");
 				
 				if(myVideos.containsKey("null") ) {
 					theModel.addAttribute("videoListSize", 0);
@@ -243,6 +267,7 @@ public class CourseController {
 				else {
 					theModel.addAttribute("quizList",myQuizes);
 				}
+				theModel.addAttribute("responseList", myResponses);
 				
 				return "modify-course";
 			}
@@ -255,10 +280,10 @@ public class CourseController {
 	
 	@RequestMapping("/modifyCourse")
 	public String modifyCourse(@ModelAttribute(name="course") Course course,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
-		
 		String courseId = instructorSession.get("newCourseId");
+		System.out.println(courseId);
 		String userId=instructorSession.get("id");
-		
+		System.out.println(userId);
 		if (userId==null || userId.equals("temp"))
 		{
 			return "redirect:/home/userLogin?role=instructor";
@@ -267,38 +292,43 @@ public class CourseController {
 			Course myCourse = courseService.modifyCourse(course, courseId);
 			int newId = myCourse.getId();
 			instructorSession.put("newCourseId", String.valueOf(newId));
-			return "redirect:/home/course/showCourseHomeToInstructor";
+			return "redirect:/home/course/showModifyCourse";
 		}
 	}
 	
 	@RequestMapping("/modifyVideos")
 	public String modifyVideos(@RequestParam("videoName")String videoName, @RequestParam("youtubeLink")String youtubeLink, Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
-		
 		String courseId = instructorSession.get("newCourseId");
+		System.out.println(courseId);
 		String userId=instructorSession.get("id");
+		System.out.println(userId);
 		if (userId==null || userId.equals("temp"))
 		{
 			return "redirect:/home/userLogin?role=instructor";
 		}
 		else {	
+			
 			String uploadVideo = videoName+"@"+youtubeLink;
+			System.out.println(uploadVideo);
 			courseService.uploadVideo(uploadVideo,courseId);
 		return "redirect:/home/course/showModifyCourse";
 		}
 	}
 	
 	@RequestMapping("/modifyQuiz")
-	public String modifyQuiz(@RequestParam("quizName")String quizName, @RequestParam("docsLink")String docsLink, Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
-		
+	public String modifyQuiz(@RequestParam("quizName")String quizName, @RequestParam("docsLink")String docsLink, @RequestParam("respLink")String respLink, Model theModel, @SessionAttribute(name="tempSession") HashMap<String,String> instructorSession) {
 		String courseId = instructorSession.get("newCourseId");
+		System.out.println(courseId);
 		String userId=instructorSession.get("id");
+		System.out.println(userId);
 		if (userId==null || userId.equals("temp"))
 		{
 			return "redirect:/home/userLogin?role=instructor";
 		}
 		else {	
 			String uploadQuiz = quizName+"@"+docsLink;
-			courseService.uploadQuiz(uploadQuiz,courseId);
+			System.out.println(uploadQuiz+ " "+respLink);
+			courseService.uploadQuiz(uploadQuiz,courseId, respLink);
 		return "redirect:/home/course/showModifyCourse";
 		}
 	}

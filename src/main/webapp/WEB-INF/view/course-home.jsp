@@ -50,11 +50,13 @@
  			</div>
  			<div id="rightContainer">
  				Number of Students Enrolled : ${size}
+ 				<table>
+ 				<tbody>
+ 				<tr><td>Percentage</td><td>Name@Email</td></tr>
  				<c:forEach var="student" items="${students}">
- 					<div>
- 						${student.getFirstName()} ${student.getLastName()}
- 					</div>
+ 				<tr><td>${student.key}</td> <td>${student.value}</td></tr>
  				</c:forEach>
+<<<<<<< HEAD
  			</div>
  			<div id="video">
  				<c:forEach var="video" items="${videos}">
@@ -63,6 +65,11 @@
 				<c:forEach var="quiz" items="${quizzes}">
 				<iframe src="https://docs.google.com/forms/d/e/${quiz}/viewform?embedded=true" width="800" height="480" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 				</c:forEach>
+=======
+ 				</tbody>
+ 				</table>
+ 				
+>>>>>>> 178a8425e91db086a689b459687f0305ee5243a3
  			</div>
  		</div>				
  </div>

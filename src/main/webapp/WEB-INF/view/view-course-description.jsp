@@ -29,6 +29,7 @@
 	Category: ${theCourse.getCategory()}<br>
 	Description: ${theCourse.getDescription() }<br>
 	<input type="button" class="viewcourse" value="Enroll" onclick="location.href = '${pageContext.request.contextPath}/home/course/enrollCourse?id=${theCourse.getId()}';">
+	<br>${message}
 </div><br><br><br>
 </body>
 </html>	

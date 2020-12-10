@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.GoCrafty.entity.Course;
-import com.GoCrafty.entity.Student;
 
 public interface CourseDAO {
 	public List<String> showCategories(String recruitment);
@@ -27,9 +26,9 @@ public interface CourseDAO {
 
 	public String uploadVideo(String uploadVideo, String courseId);
 
-	public String uploadQuiz(String uploadQuiz, String courseId);
+	public String uploadQuiz(String uploadQuiz, String courseId, String responseLink);
 
-	public ArrayList<Student> getStudentsEnrolled(String newCourseId);
+	public HashMap<String, String> getStudentsEnrolled(String newCourseId);
 
 	public ArrayList<String> getGrades(List<Course> enrolledCourses, int id);
 

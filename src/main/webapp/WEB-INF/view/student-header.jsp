@@ -19,7 +19,7 @@
 <div id="header-links">
 	<div id="headerLink"><a href="${pageContext.request.contextPath}/home/student/viewProfile">Profile</a></div>
 	<div id="headerLink"><a href="${pageContext.request.contextPath}/home/authentication/logOut">Log Out</a></div>
-	<div id="headerLink"><a href="${pageContext.request.contextPath}/home/student/browseCourses">Browse Course Catalog</a></div>
+	<%-- <div id="headerLink"><a href="${pageContext.request.contextPath}/home/student/browseCourses">Browse Course Catalog</a></div> --%>
 </div>
 </div>
 </header>

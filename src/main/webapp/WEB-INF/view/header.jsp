@@ -23,7 +23,7 @@
 	<div id="headerLink"><a id="contact1" href = "${pageContext.request.contextPath}/#contactus" class="smooth-scroll" onclick="scrollSmooth(this.id)">Contact Us</a></div>
 	<div id="headerLink">
 	<c:if test="${tempSession.id == 'temp'}">
-		<a href = "${pageContext.request.contextPath}/home/course/showCategories">Browse Course Catalog</a>
+		<a href = "${pageContext.request.contextPath}/home/course/showCategories?recruitment=1">Browse Course Catalog</a>
 	</c:if>
 	</div>
 </div>

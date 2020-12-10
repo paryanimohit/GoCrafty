@@ -103,8 +103,14 @@ function showQuizUploadForm(){
 		var docsLink = document.createElement("input");
 		docsLink.setAttribute("type", "text"); 
 		docsLink.setAttribute("name", "docsLink"); 
-		docsLink.setAttribute("placeholder", "Enter your quiz link here");
+		docsLink.setAttribute("placeholder", "Enter quiz link here");
 		docsLink.setAttribute("required","true");
+		
+		var respLink = document.createElement("input");
+		respLink.setAttribute("type", "text"); 
+		respLink.setAttribute("name", "respLink"); 
+		respLink.setAttribute("placeholder", "Enter your response link here");
+		respLink.setAttribute("required","true");
     
 		var s = document.createElement("input"); 
 		s.setAttribute("type", "submit"); 
@@ -112,6 +118,7 @@ function showQuizUploadForm(){
     
 		form.appendChild(docsLink);
 		form.appendChild(quizName);
+		form.appendChild(respLink);
 		form.appendChild(s);
     
 		document.getElementsByTagName("body")[0] 

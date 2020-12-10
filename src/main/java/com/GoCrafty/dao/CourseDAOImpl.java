@@ -87,14 +87,24 @@ public class CourseDAOImpl implements CourseDAO {
 	public String enroll(String useId, String courseId) {
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
-			CourseEnrolled enroll= new CourseEnrolled(Integer.parseInt(courseId),Integer.parseInt(useId), "0");
-			currentSession.save(enroll);
+			Query query=currentSession.createQuery("select count(*) from CourseEnrolled c WHERE c.studentId= :sid and c.courseId= :cid");
+			query.setParameter("cid", Integer.parseInt(courseId));
+			query.setParameter("sid", Integer.parseInt(useId));
+//			System.out.println(query.getSingleResult());
+			int alreadyregistered = Integer.parseInt(query.getSingleResult().toString());
+			System.out.println(alreadyregistered);
+			if (alreadyregistered == 0) {
+				CourseEnrolled enroll= new CourseEnrolled(Integer.parseInt(courseId),Integer.parseInt(useId), "0");
+				currentSession.save(enroll);
+				return "You are enrolled";
+			}
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
+		return "You are already Enrolled. Cannot enroll again.";
 		
-		return "Enrolled";
 	}
 
 	@Override
@@ -149,8 +159,8 @@ public class CourseDAOImpl implements CourseDAO {
 			myCourse.setDescription(course.getDescription());
 			myCourse.setEstimatedTimeToComplete(course.getEstimatedTimeToComplete());
 			myCourse.setCategory(course.getCategory());
-			Course myUpdatedCourse = currentSession.get(Course.class, id);
-			return myUpdatedCourse;
+			currentSession.save(myCourse);
+			return myCourse;
 		}
 		catch (Exception e) {
 			return null;
@@ -168,7 +178,6 @@ public class CourseDAOImpl implements CourseDAO {
 				 updateGrade(email, String.valueOf(percentage), courseID);
 				System.out.println(percentage);
 			} catch (IOException | GeneralSecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -217,7 +226,7 @@ public class CourseDAOImpl implements CourseDAO {
 	}
 
 	@Override
-	public String uploadQuiz(String uploadQuiz, String courseId) {
+	public String uploadQuiz(String uploadQuiz, String courseId, String responseLink) {
 		
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
@@ -236,6 +245,21 @@ public class CourseDAOImpl implements CourseDAO {
 			query.setParameter("id", id);
 			query.setParameter("link", quizLink);
 			query.executeUpdate();
+			
+			query=currentSession.createQuery("select c.responseLink from Course c WHERE c.id= :id");
+			query.setParameter("id", id);
+			String responseLink1 = null;
+			responseLink1 = (String)query.getSingleResult();
+			if(responseLink1 ==null) {
+				responseLink1 = responseLink;
+			}
+			else {
+			responseLink1 = responseLink1+","+responseLink;
+			}
+			query = currentSession.createQuery("update Course c set c.responseLink= :link where c.id= :id");
+			query.setParameter("id", id);
+			query.setParameter("link", responseLink1);
+			query.executeUpdate();
 			return "ok";
 		}
 		catch (Exception e) {
@@ -246,29 +270,29 @@ public class CourseDAOImpl implements CourseDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<Student> getStudentsEnrolled(String newCourseId) {
+	public HashMap<String, String> getStudentsEnrolled(String newCourseId) {
 		
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
 			int id = Integer.parseInt(newCourseId);
-			Query query=currentSession.createQuery("select s.studentId from CourseEnrolled s WHERE s.courseId= :id");
+			Query query=currentSession.createQuery("from CourseEnrolled s WHERE s.courseId= :id");
 			query.setParameter("id", id);
-			ArrayList<Integer> students = new ArrayList<Integer>();
-			students = (ArrayList<Integer>) query.getResultList();
+			ArrayList<CourseEnrolled> enrolleds = new ArrayList<CourseEnrolled>();
+			enrolleds = (ArrayList<CourseEnrolled>) query.getResultList();
 //			System.out.println("fewbvbwuv"+students);
 //			System.out.println("fewbvbv"+newCourseId);
-			ArrayList<Student> s = new ArrayList<Student>();
+			HashMap<String, String> s= new HashMap<String, String>();
 			Student tempStudent;
-			for(int student:students) {
-				tempStudent = currentSession.get(Student.class, student);
-				s.add(tempStudent);
+			for(CourseEnrolled enrolled:enrolleds) {
+				tempStudent = currentSession.get(Student.class, enrolled.getStudentId());
+				s.put(enrolled.getGrades(), tempStudent.getFirstName()+" "+tempStudent.getLastName()+"@"+tempStudent.getEmail());
 			}
 //			System.out.println("wdcwjhwww"+s.get(0).getFirstName());
 			return s;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			 ArrayList<Student> s = null;
+			 HashMap<String, String> s = null;
 			 return s;
 		}
 	}

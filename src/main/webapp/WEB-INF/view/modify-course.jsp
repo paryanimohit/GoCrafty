@@ -96,10 +96,14 @@
 	<div class="modify-course-right">
 			<form action = "modifyQuiz" method = "post">
 				<c:forEach items="${quizList}" var="quiz">
-				<label>Quiz Name</label>
-				<input type="text" name="quizName" value="${quiz.key}"/><br>
-				<label>Quiz URL </label>
-				<input type="text" name="quizURL" value="${quiz.value}"/><br>
+					<c:set var="count" value="0" scope="page" />
+					<label>Quiz Name</label>
+					<input type="text" name="quizName" value="${quiz.key}"/><br>
+					<label>Quiz URL </label>
+					<input type="text" name="quizURL" value="${quiz.value}"/><br>
+					<label>Response URL </label>
+					<input type="text" name="responseURL" value="${responseList[count]}"/><br>
+					<c:set var="count" value="${count + 1}" scope="page"/>
 				</c:forEach>
 			</form>
 	</div>

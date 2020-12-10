@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.GoCrafty.dao.CourseDAO;
 import com.GoCrafty.entity.Course;
-import com.GoCrafty.entity.Student;
 @Service
 public class CourseServiceImpl implements CourseService {
 
@@ -81,14 +80,14 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	@Transactional
-	public String uploadQuiz(String uploadQuiz, String courseId) {
+	public String uploadQuiz(String uploadQuiz, String courseId, String responseLink) {
 		// TODO Auto-generated method stub
-		return courseDAO.uploadQuiz(uploadQuiz,courseId);
+		return courseDAO.uploadQuiz(uploadQuiz,courseId, responseLink);
 	}
 
 	@Override
 	@Transactional
-	public ArrayList<Student> getStudentsEnrolled(String newCourseId) {
+	public HashMap<String, String> getStudentsEnrolled(String newCourseId) {
 		// TODO Auto-generated method stub
 		return courseDAO.getStudentsEnrolled(newCourseId);
 	}
