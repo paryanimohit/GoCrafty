@@ -87,14 +87,24 @@ public class CourseDAOImpl implements CourseDAO {
 	public String enroll(String useId, String courseId) {
 		Session  currentSession= sessionFactory.getCurrentSession();
 		try {
-			CourseEnrolled enroll= new CourseEnrolled(Integer.parseInt(courseId),Integer.parseInt(useId), "0");
-			currentSession.save(enroll);
+			Query query=currentSession.createQuery("select count(*) from CourseEnrolled c WHERE c.studentId= :sid and c.courseId= :cid");
+			query.setParameter("cid", Integer.parseInt(courseId));
+			query.setParameter("sid", Integer.parseInt(useId));
+//			System.out.println(query.getSingleResult());
+			int alreadyregistered = Integer.parseInt(query.getSingleResult().toString());
+			System.out.println(alreadyregistered);
+			if (alreadyregistered == 0) {
+				CourseEnrolled enroll= new CourseEnrolled(Integer.parseInt(courseId),Integer.parseInt(useId), "0");
+				currentSession.save(enroll);
+				return "You are enrolled";
+			}
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
+		return "You are already Enrolled. Cannot enroll again.";
 		
-		return "Enrolled";
 	}
 
 	@Override

@@ -75,10 +75,24 @@ public class CourseController {
 		else
 		{
 			String msg= courseService.enroll(userId,courseId);
-			if(!(msg.equals("Enrolled")))
-					{
-						return "error-page";
-					}
+			if (msg.contains("already")) {
+//				System.out.println("inside already enrolled");
+				Course theCourse=courseService.getCourseById(courseId);
+				List<Course> course =new ArrayList<Course>();
+				course.add(theCourse);
+				HashMap<String, String> instructorName=courseService.getInstructorNames(course);
+				
+				theModel.addAttribute("theCourse",theCourse);
+				theModel.addAttribute("instructorName",instructorName);
+				theModel.addAttribute("message", msg);
+				
+				//if(studentSession.get(""))
+				return "view-course-description";
+			}
+			else if(!(msg.contains("enrolled"))) {
+//				System.out.println("inside enrolled");
+				return "error-page";
+			}
 		}
 		
 		return "redirect:/home/student/viewProfile";
