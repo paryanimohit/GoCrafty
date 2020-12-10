@@ -55,6 +55,6 @@ How to add Video and quiz?
 - Store the credentials under /resources/credentials/credentials.json. There is a dummy file existing by default.
 - Authorize the connection when promted on clicking onto generate certificate.
 
-Video Format: https://www.youtube.com/watch?v=<id> <br />
-Quiz/Google forms format: https://docs.google.com/forms/d/e/<form id>/viewform <br />
-Response/Google sheets format: https://docs.google.com/spreadsheets/d/<id>/edit <br />
+Video Format: https://www.youtube.com/watch?v={youtube id} <br />
+Quiz/Google forms format: https://docs.google.com/forms/d/e/{form id}/viewform <br />
+Response/Google sheets format: https://docs.google.com/spreadsheets/d/{sheets id}/edit <br />
