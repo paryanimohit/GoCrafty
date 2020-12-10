@@ -35,7 +35,7 @@ public class Authentication {
 			{
 				//email block
 				try {
-					JavaEmailWithGMail.Email(theUser.getEmail(), "You just tried login with 3 wrong password. Please review your account.");
+					JavaEmailWithGMail.Email(theUser.getEmail(), "Someone just tried login with 3 wrong password. Please review your account.");
 				} catch (Exception e) {
 					e.printStackTrace();
 					System.out.println("Sending Email failed ");

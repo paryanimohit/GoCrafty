@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ include file="student-header.jsp"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -48,16 +50,16 @@
 <%-- 	</c:if> --%>
 
 <div class = "rightCourse">
-<c:if test="${videos.containsKey('null')}">
+<c:if test="${flag==1}">
 Seems like Instructor has not added videos yet!
 </c:if>
-<c:if test="${ !videos.containsKey('null')}">
-<c:forEach items="${videos}" var="theVideo">
+<c:if test="${ flag==0}">
+<c:forEach var="theVideo" items="${videos}" >
   <a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}&certificate=${certificate}">
   Title: ${theVideo.key}</a><br>
 </c:forEach>
 </c:if>
-</div><br>
+</div><br>	
 
 
 
@@ -80,9 +82,30 @@ Seems like Instructor has not added videos yet!
 </div><br>
 
 <div class="rightCourse">
+<c:if test="${instructorEmail != null }">
 Contact Professor!<br>
-<a href="mailto:name@rapidtables.com">Send mail</a>
+<a href="mailto:${instructorEmail} ">Send mail</a>
+</c:if>
 </div><br>
+
+Feedback<br>
+<c:forEach  var="theFeedback" items="${feedback}">
+     Comment: ${theFeedback.value}<br>
+    -By: ${theFeedback.key}<br><br>
+</c:forEach>
+<br>
+Add Comment:
+<br>
+<form:form action="${pageContext.request.contextPath}/home/feedback/addFeedback?courseId=${theCourse.getId() }" modelAttribute="theFeedback" method="post">
+		<label>Email: </label>
+		<form:input id="email" path="studentEmail" required="required"/>
+		<br>
+		
+		<label>feedback: </label>
+		<form:input id="feedback" path="comment" required="required"/>
+		<br>
+		<input  type="submit" value="Submit feddback"><br>
+</form:form>		 
 </div>
 </div>
 </body>

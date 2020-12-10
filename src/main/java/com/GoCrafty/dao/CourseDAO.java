@@ -36,6 +36,8 @@ public interface CourseDAO {
 
 	public String dropCourse(String studentId, String courseId);
 
+	public String getInstructorEmail(String id);
+
 	
 
 

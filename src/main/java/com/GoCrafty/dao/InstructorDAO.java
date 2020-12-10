@@ -22,4 +22,6 @@ public interface InstructorDAO {
 	public List<Course> getCourseByInstructorId(int id);
 
 	public String deleteProfile(String userId);
+
+	public String uploadImage(byte[] bytes, int userId);
 }

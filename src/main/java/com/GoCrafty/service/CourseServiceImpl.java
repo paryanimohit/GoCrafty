@@ -111,4 +111,10 @@ public class CourseServiceImpl implements CourseService {
 		return courseDAO.dropCourse(studentId,courseId);
 	}
 
+	@Override
+	@Transactional
+	public String getInstructorEmail(String id) {
+		return courseDAO.getInstructorEmail(id);
+	}
+
 }

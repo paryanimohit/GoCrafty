@@ -70,4 +70,10 @@ public class InstructorServiceImpl implements InstructorService {
 		return instructorDAO.deleteProfile(userId);
 		
 	}
+
+	@Override
+	@Transactional
+	public String uploadImage(byte[] bytes, int userId) {
+		return instructorDAO.uploadImage(bytes,userId);
+	}
 }

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.GoCrafty.entity.Course;
+import com.GoCrafty.entity.Feedback;
 import com.GoCrafty.service.CourseService;
+import com.GoCrafty.service.FeedbackService;
 import com.GoCrafty.service.PdfCreator;
 import com.GoCrafty.service.Utilities;
 import com.itextpdf.text.DocumentException;
@@ -26,6 +28,9 @@ import com.itextpdf.text.DocumentException;
 public class CourseController {
 	@Autowired
 	private CourseService courseService;
+	
+	@Autowired
+	private FeedbackService feedbackService;
 	
 	@GetMapping("/showCategories")
 	public String showCategories(Model theModel, @RequestParam("recruitment")String recruitment)
@@ -215,9 +220,20 @@ public class CourseController {
 			course.add(theCourse);
 			HashMap<String, String> instructorName=courseService.getInstructorNames(course);
 			
+			//getInstructorEmail
+			
+			String instructorEmail=courseService.getInstructorEmail(String.valueOf(theCourse.getInstructor_id()));
+			theModel.addAttribute("instructorEmail", instructorEmail);
+			//getInstructorEmail
+			
 			//getVideoLinks
 			HashMap<String, String> videos=Utilities.getVideoLinks(theCourse.getVideoLink()+","+theCourse.getQuizLink());
 			
+			
+			//feedback
+			HashMap<String, String> feedback=feedbackService.getFeedback(theCourse.getId());
+			
+			//feedback
 		
 			//convert youtube url to embeded url
 				if(!(videoId.equals("1"))) 
@@ -226,10 +242,26 @@ public class CourseController {
 				
 				theModel.addAttribute("embededLink",embededLink);
 				}
+				
+				//empty model attribute for feedback form
+				Feedback theFeedback=new Feedback();
+				theModel.addAttribute("theFeedback",theFeedback);
+				//empty model attribute for feedback form
+				
+				
+				//check for null videos
+				int flag=0;
+				if(videos.containsKey(null))
+				{
+					flag=1;
+				}
+				theModel.addAttribute("flag",flag);
+				//check for null videos
 			theModel.addAttribute("courseId",courseId);
 			theModel.addAttribute("theCourse",theCourse);
 			theModel.addAttribute("instructorName",instructorName);
 			theModel.addAttribute("videos",videos);
+			theModel.addAttribute("feedback", feedback);
 			theModel.addAttribute("certificate", cert);
 			
 			return "course-home-student";
@@ -249,15 +281,16 @@ public class CourseController {
 		}
 		else {
 			
-			if(!(courseId.equals(null))) {
+			if(!(courseId==null)) {
 			
 				Course course = courseService.getCourseById(courseId);
 				theModel.addAttribute("course",course);
-				
 				HashMap<String, String> myVideos = Utilities.getVideoLinks(course.getVideoLink());
 				HashMap<String, String> myQuizes = Utilities.getQuizLinks(course.getQuizLink());
+				if(course.getResponseLink()!=null) {
 				String[] myResponses = course.getResponseLink().split(",");
-				
+				theModel.addAttribute("responseList", myResponses);
+				}
 				if(myVideos.containsKey("null") ) {
 					theModel.addAttribute("videoListSize", 0);
 				}
@@ -271,7 +304,7 @@ public class CourseController {
 				else {
 					theModel.addAttribute("quizList",myQuizes);
 				}
-				theModel.addAttribute("responseList", myResponses);
+				
 				
 				return "modify-course";
 			}

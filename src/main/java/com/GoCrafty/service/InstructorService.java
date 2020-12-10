@@ -15,4 +15,5 @@ public interface InstructorService {
 	public Instructor editProfile(ArrayList<String> updatedInstructor, String localId);
 	public List<Course> getCourseByInstructorId(int id);
 	public String deleteProfile(String userId);
+	public String uploadImage(byte[] bytes, int userId);
 }

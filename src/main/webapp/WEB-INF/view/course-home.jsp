@@ -53,10 +53,10 @@
  				<tbody>
  				<tr><td>Percentage</td><td>Name@Email</td></tr>
  				<c:forEach var="student" items="${students}">
-<!--  					<div> -->
-<%--  						${student.getFirstName()} ${student.getLastName()} --%>
-<!--  					</div> -->
+
  				<tr><td>${student.key}</td> <td>${student.value}</td></tr>
+
+ 				${student.key} <br> 
  				</c:forEach>
  				</tbody>
  				</table>
