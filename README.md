@@ -47,4 +47,10 @@ If you are an Admin
 - The admin can also reset the password on successful login into the application.
 
 How to add Video and quiz?
-- 
+- Create a google form quiz. Google form provides ways to create a quiz. Refer: https://support.google.com/docs/answer/7032287?hl=en
+- Make the quiz public and save the link that appears in the quiz preview. That link will be used as quiz link.
+- The first question in the quiz should be the Email ID
+- Record the responses in excel file. The responses by default have scores in it along with email which will be used while generating the certificate.
+- To enable successful communication with the sheets api, One should download the credentials from the same account where quiz is hosted. Refer: https://developers.google.com/sheets/api/quickstart/java?authuser=1
+- Store the credentials under /resources/credentials/credentials.json. There is a dummy file existing by default.
+- Authorize the connection when promted on clicking onto generate certificate.

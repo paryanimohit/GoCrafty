@@ -155,7 +155,7 @@ public class CourseController {
 	
 
 	@RequestMapping("/generateCertificate")
-	public String generateCert(@RequestParam("courseId")String courseId, @SessionAttribute(name="tempSession") HashMap<String,String> studentSession, Model theModel) {
+	public String generateCert(@RequestParam("courseId")String courseId, @RequestParam("vId")String vId, @SessionAttribute(name="tempSession") HashMap<String,String> studentSession, Model theModel) {
 		
 		String userId=studentSession.get("id");
 		if (userId==null || userId.equals("temp"))
@@ -175,18 +175,27 @@ public class CourseController {
 			List<Course> courses = new ArrayList<Course>();
 			courses.add(theCourse);
 			HashMap<String, String> instructorName=courseService.getInstructorNames(courses);
+			String certGenerated = "no";
 			try {
+				System.out.println(percentage);
 				PdfCreator.genrateCertificate(studentSession.get("firstName")+" "+studentSession.get("lastName"), theCourse.getName(), instructorName.get(String.valueOf(theCourse.getInstructor_id())), percentage);
+				System.out.println("certificate generated");
+				certGenerated = "yes";
+				studentSession.put("certificate", "yes");
+//				theModel.addAttribute("certificate", "yes");
 			} catch (DocumentException | IOException e) {
 				e.printStackTrace();
+				System.out.println("certificate not generated");
+				studentSession.put("certificate", "no");
+//				theModel.addAttribute("certificate", "no");
 			}
-			return "course-home-student";
+			return "redirect:/home/course/course-home-student?courseId="+courseId+"&vId="+vId+"&certificate="+certGenerated;
 		}
 	}
 	
 	@RequestMapping("/course-home-student")
 	public String course_home_student(@RequestParam("courseId")String courseId,Model theModel,@SessionAttribute(name="tempSession") HashMap<String,String> studentSession
-							,@RequestParam("vId")String videoId)
+							,@RequestParam("vId")String videoId, @RequestParam("certificate")String cert)
 	{
 		
 		String userId=studentSession.get("id");
@@ -217,6 +226,7 @@ public class CourseController {
 			theModel.addAttribute("theCourse",theCourse);
 			theModel.addAttribute("instructorName",instructorName);
 			theModel.addAttribute("videos",videos);
+			theModel.addAttribute("certificate", cert);
 			
 			return "course-home-student";
 		}

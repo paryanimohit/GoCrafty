@@ -30,7 +30,8 @@ public class PdfCreator {
 	    
 		Document document = new Document();
 		document.setPageSize(PageSize.A4.rotate());
-		PdfWriter.getInstance(document, new FileOutputStream("Student Certificate.pdf"));
+		PdfWriter.getInstance(document, new FileOutputStream(PdfCreator.class.getProtectionDomain().getCodeSource().getLocation()+"/../../resources/certificate.pdf"));
+//		PdfWriter.getInstance(document, new FileOutputStream("C:/Users\\harsh\\eclipse-workspace\\GoCrafty/src/main/webapp/resources/certificates/certificate.pdf"));
 
 		document.open();
 		Font headingFont = new Font(Font.FontFamily.TIMES_ROMAN, 50,
@@ -64,6 +65,7 @@ public class PdfCreator {
 		//img block
 		
 		String filename =  PdfCreator.class.getProtectionDomain().getCodeSource().getLocation()+"/../../resources/images/logo.png";
+//		String filename = "C:\\Users\\harsh\\eclipse-workspace\\GoCrafty/src/main/webapp/resources/images/logo.png";
         Image image = Image.getInstance(filename);
         image.setAlignment(1);  	
 	      

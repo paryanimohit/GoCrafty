@@ -70,7 +70,7 @@
 		<div id="courseContainer-student">
 			<c:if test="${enrolledCourses.size()!=0 }">
 		<c:forEach var="i" begin="0" end="${enrolledCourses.size()-1}" >
-				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${enrolledCourses.get(i).getId()}&vId=1">
+				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${enrolledCourses.get(i).getId()}&vId=1&certificate='no'">
 					<br>Course Name: ${enrolledCourses.get(i).getName()}<br>
 						Estimated time to complete:  ${enrolledCourses.get(i).getEstimatedTimeToComplete()}<br>
 						Instructor name: ${instructorName.get(String.valueOf(enrolledCourses.get(i).getInstructor_id()))}<br>

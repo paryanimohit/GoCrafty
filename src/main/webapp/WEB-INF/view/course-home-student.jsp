@@ -32,7 +32,7 @@ Seems like Instructor has not added videos yet!
 </c:if>
 <c:if test="${ !videos.containsKey('null')}">
 <c:forEach items="${videos}" var="theVideo">
-  <a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}">
+  <a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${courseId}&vId=${theVideo.key}&certificate=${certificate}">
   Title: ${theVideo.key}</a><br>
 </c:forEach>
 </c:if>
@@ -46,12 +46,13 @@ Seems like Instructor has not added videos yet!
 </div><br>
 
 <div class = "rightCourse">
-<a href="${pageContext.request.contextPath}/home/course/generateCertificate?courseId=${courseId}"><h3 align="center">Complete and Generate Certificate</h3></a>
-<br/>Certificate:<br/>
-Full Name: ${name}<br>
-Course Name: ${course}<br>
-Email ID: ${email}<br>
-Percentage: ${percentage}<br>
+<a href="${pageContext.request.contextPath}/home/course/generateCertificate?courseId=${courseId}&vId=${param.vId}"><h3 align="center">Complete and Generate Certificate</h3></a>
+<c:if test="${certificate == 'yes'}">
+<a href="${pageContext.request.contextPath}/resources/certificate.pdf"}">Download Certificate</a>
+</c:if>
+<c:if test="${certificate == 'no'}">
+<a>Cannot download Certificate. Contact Admin!</a>
+</c:if>
 </div><br>
 
 <div class="rightCourse">
