@@ -46,26 +46,16 @@
 				<h3 align = "center">COURSE ANALYTICS</h3><br>
 					Course Description: ${course.description}<br>
 					Course Duration: ${course.estimatedTimeToComplete}<br>
-					Category: ${course.category}
+					Category: ${course.category}<br><br>
  			</div>
  			<div id="rightContainer">
- 				Number of Students Enrolled : ${size}
- 				<table>
- 				<tbody>
- 				<tr><td>Percentage</td><td>Name@Email</td></tr>
+ 				Number of Students Enrolled : ${size}<br>
+ 				Percentage:
  				<c:forEach var="student" items="${students}">
- 				<tr><td>${student.key}</td> <td>${student.value}</td></tr>
+ 				${student.key} <br> 
+ 				Name: ${name}<br>
+ 				Email: ${email}
  				</c:forEach>
- 			</div>
- 			<div id="video">
- 				<c:forEach var="video" items="${videos}">
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/${video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-				</c:forEach>
-				<c:forEach var="quiz" items="${quizzes}">
-				<iframe src="https://docs.google.com/forms/d/e/${quiz}/viewform?embedded=true" width="800" height="480" frameborder="0" marginheight="0" marginwidth="0"></iframe>
-				</c:forEach>
- 				</tbody>
- 				</table>
  			</div>
  		</div>				
  </div>

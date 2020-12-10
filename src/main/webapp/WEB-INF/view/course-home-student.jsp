@@ -29,7 +29,6 @@
 </c:if>
 </div>
 
-<<<<<<< HEAD
 <div id = rightbox>
 
 	<c:if test="${videos.containsKey('null')}">
@@ -46,7 +45,6 @@
   	</div><br>
 	</c:forEach>
 	</c:if>
-=======
 <div class = "rightCourse">
 <c:if test="${videos.containsKey('null')}">
 Seems like Instructor has not added videos yet!
@@ -58,7 +56,6 @@ Seems like Instructor has not added videos yet!
 </c:forEach>
 </c:if>
 </div><br>
->>>>>>> 178a8425e91db086a689b459687f0305ee5243a3
 
 <div class = "rightCourse">
 	Course Duration: ${theCourse.getEstimatedTimeToComplete()}<br>
