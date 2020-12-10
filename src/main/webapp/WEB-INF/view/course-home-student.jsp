@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ include file="student-header.jsp"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -85,6 +87,25 @@ Contact Professor!<br>
 <a href="mailto:${instructorEmail} ">Send mail</a>
 </c:if>
 </div><br>
+
+Feedback<br>
+<c:forEach  var="theFeedback" items="${feedback}">
+     Comment: ${theFeedback.value}<br>
+    -By: ${theFeedback.key}<br><br>
+</c:forEach>
+<br>
+Add Comment:
+<br>
+<form:form action="${pageContext.request.contextPath}/home/feedback/addFeedback?courseId=${theCourse.getId() }" modelAttribute="theFeedback" method="post">
+		<label>Email: </label>
+		<form:input id="email" path="studentEmail" required="required"/>
+		<br>
+		
+		<label>feedback: </label>
+		<form:input id="feedback" path="comment" required="required"/>
+		<br>
+		<input  type="submit" value="Submit feddback"><br>
+</form:form>		 
 </div>
 </div>
 </body>

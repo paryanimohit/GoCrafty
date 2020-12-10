@@ -34,7 +34,7 @@ public class JavaEmailWithGMail
     public MimeMessage draftEmailMessage(String to,String msg) throws AddressException, MessagingException
     {
         String[] toEmails = { to};
-        String emailSubject = "Test email subject";
+        String emailSubject = "Critical Security Alert";
         String emailBody = msg;
         MimeMessage emailMessage = new MimeMessage(mailSession);
         /**
@@ -61,8 +61,8 @@ public class JavaEmailWithGMail
         /**
          * Sender's credentials
          * */
-        String fromUser = "Enter email here";
-        String fromUserEmailPassword = "Enter password here";
+        String fromUser = "gocrafty2020@gmail.com";
+        String fromUserEmailPassword = "ENPM613GOCRAFTY";
 
         String emailHost = "smtp.gmail.com";
         Transport transport = mailSession.getTransport("smtp");
