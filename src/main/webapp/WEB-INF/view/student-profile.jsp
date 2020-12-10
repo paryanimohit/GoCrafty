@@ -69,9 +69,6 @@
  		</div>
 		<div id="courseContainer-student">Your Enrolled Courses
 			<c:if test="${enrolledCourses.size()!=0 }">
-			<c:forEach var="i" begin="0" end="${enrolledCourses.size()-1}" >
-				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${enrolledCourses.get(i).getId()}&vId=1"> </a>
-		</c:forEach>
 		<c:forEach var="i" begin="0" end="${enrolledCourses.size()-1}" >
 				<a href="${pageContext.request.contextPath}/home/course/course-home-student?courseId=${enrolledCourses.get(i).getId()}&vId=1&certificate='no'">
 
